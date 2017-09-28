@@ -7,13 +7,14 @@
 
         <title>{% block title %}{% endblock %} - Burning Heads</title>
 
-        {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     </head>
     <body class="grey lighten-3">
+
+        <!-- HEADER -->
 
         <header>
             <div class="container">
@@ -27,11 +28,13 @@
             </div>
         </header>
 
+        <!-- MENU -->
+
         {% block menu %}
             <nav>
                 <div class="nav-wrapper container">
 
-                    <!-- MENU DESKTOP -->
+                    <!-- DESKTOP -->
 
                     <ul id="nav-mobile" class="hide-on-med-and-down center-align">
 
@@ -44,7 +47,7 @@
 
                     </ul>
 
-                    <!-- Menu déroulant Club -->
+                    <!-- Dropdown Club -->
                     <ul id="dropdown-club" class="dropdown-content">
 
                         <li><a href="{{ path('presentation') }}">PRESENTATION</a></li>
@@ -53,7 +56,7 @@
 
                     </ul>
 
-                    <!-- Menu déroulant Roster -->
+                    <!-- Dropdown Roster -->
                     <ul id="dropdown-roster" class="dropdown-content">
 
                         <li><a href="{{ path('roster', {'id': '1'}) }}">ROSTER 1</a></li>
@@ -63,7 +66,7 @@
 
                     </ul>
 
-                    <!-- MENU MOBILE -->
+                    <!-- MOBILE -->
 
                     <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
@@ -89,10 +92,14 @@
             </nav>
         {% endblock %}
 
+        <!-- CONTENU PRINCIPAL -->
+
         <main>
             {% block content %}
             {% endblock %}
         </main>
+
+        <!-- FOOTER -->
 
         <footer>
             <div class="container">
@@ -103,6 +110,8 @@
                 </div>
             </div>
         </footer>
+
+        <!-- JAVASCRIPT -->
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>

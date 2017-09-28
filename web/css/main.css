@@ -35,19 +35,15 @@ nav
     border-top: 1px solid #b71c1c;
 }
 
-nav ul { text-align: center; }
-
 nav ul li
 {
     display: inline-block;
     float: none;
 }
 
-nav ul li a
-{
-    display: inline-block;
-    padding: 0 40px;
-}
+nav ul li a { padding: 0 40px; }
+
+nav #mobile li { display: block; }
 
 
 /* FOOTER */

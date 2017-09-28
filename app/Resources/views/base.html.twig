@@ -30,7 +30,10 @@
         {% block menu %}
             <nav>
                 <div class="nav-wrapper container">
-                    <ul id="nav-mobile" class="hide-on-med-and-down">
+
+                    <!-- MENU DESKTOP -->
+
+                    <ul id="nav-mobile" class="hide-on-med-and-down center-align">
 
                         <li><a href="{{ path('home') }}">NEWS</a></li>
                         <li><a href="">LE CLUB</a></li>
@@ -40,6 +43,22 @@
                         <li><a href="{{ path('contact') }}">CONTACT</a></li>
 
                     </ul>
+
+                    <!-- MENU MOBILE -->
+
+                    <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+                    <ul id="mobile" class="side-nav">
+                    
+                        <li><a href="{{ path('home') }}">NEWS</a></li>
+                        <li><a href="">LE CLUB</a></li>
+                        <li><a href="">ROSTERS</a></li>
+                        <li><a href="{{ path('partenaires') }}">PARTENAIRES</a></li>
+                        <li><a href="{{ path('livestream') }}">LIVESTREAM</a></li>
+                        <li><a href="{{ path('contact') }}">CONTACT</a></li>
+
+                    </ul>
+
                 </div>
             </nav>
         {% endblock %}
@@ -61,6 +80,7 @@
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

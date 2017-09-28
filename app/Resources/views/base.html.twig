@@ -2,12 +2,64 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>{% block title %}{% endblock %} - Burning Heads</title>
+
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+        <header>
+            <div class="container">
+                <div class="row">
+                    <a href="{{ path('home') }}">
+                        <div class="col s12 center-align">
+                            <img src="{{ asset('img/logo-bh3.png') }}" alt="Logo BH3">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        {% block menu %}
+            <nav>
+                <div class="nav-wrapper container">
+                    <ul id="nav-mobile" class="hide-on-med-and-down">
+
+                        <li><a href="">NEWS</a></li>
+                        <li><a href="">LE CLUB</a></li>
+                        <li><a href="">PRESENTATION</a></li>
+                        <li><a href="">STAFF</a></li>
+                        <li><a href="">PALMARES</a></li>
+                        <li><a href="">ROSTERS</a></li>
+                        <li><a href="">PARTENAIRES</a></li>
+                        <li><a href="">LIVESTREAM</a></li>
+                        <li><a href="">CONTACT</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        Burning Heads 2017 | Made by Valkried
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -2,6 +2,114 @@
 
 {% block title %}Staff{% endblock %}
 
+{% block css %}
+<style>
+    #introduction {
+        margin-bottom: 35px;
+    }
+    .icon {
+        padding: 0 5px;
+    }
+    .profil {
+        margin-bottom: 15px;
+    }
+    #annonce {
+        margin-top: 35px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
+
+    <div class="row center-align">
+    
+        <div id="introduction" class="col s12">
+            <p>
+                Le staff Burning Heads est composé de personnes volontaires et motivées, au service de nos joueurs. Peu importe le prix, nous travaillons toujours 
+                pour améliorer les conditions de jeu de nos rosters : nous nous efforçons de nous informer sur les dernières actualités des joueurs afin de les 
+                relayer avec l’aide de nos newsers et youtubers ; nous assurons la gestion des équipes durant les tournois, que ce soit pour inscrire les équipes 
+                aux LANs, régler un litige ou répartir le cash-prize remporté.
+            </p>
+            <p>
+                Notre priorité est de donner de la visibilité à nos joueurs, afin qu’ils aient toute la reconnaissance qu’ils méritent dans le milieu de l’esport.
+            </p>
+        </div>
+
+        <div class="col s12 m6 xl4">
+            <div class="card-panel hoverable">
+
+                <img src="{{ asset('img/membres/beh3ad.jpg') }}" alt="Beh3ad" class="responsive-img circle profil">
+
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('img/plateforme/xbox.png') }}" alt="Xbox" class="icon">
+                    </a>
+                    <a href="#">
+                        <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
+                    </a>
+                </div>
+
+                <h5>Julien <span class="red-text text-darken-4">BEH3AD</span></h5>
+                <h6>Président</h6>
+
+            </div>
+        </div>
+
+        <div class="col s12 m6 xl4">
+            <div class="card-panel hoverable">
+
+                <img src="{{ asset('img/membres/valkried.jpg') }}" alt="Valkried" class="responsive-img circle profil">
+
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('img/plateforme/xbox.png') }}" alt="Xbox" class="icon">
+                    </a>
+                    <a href="#">
+                        <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
+                    </a>
+                </div>
+
+                <h5>Julien <span class="red-text text-darken-4">VALKRIED</span></h5>
+                <h6>Développeur / Webmaster</h6>
+
+            </div>
+        </div>
+
+        <div class="col s12 m6 xl4">
+            <div class="card-panel hoverable">
+
+                <img src="{{ asset('img/membres/stereokilla.jpg') }}" alt="StereoKilla" class="responsive-img circle profil">
+
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('img/plateforme/xbox.png') }}" alt="Xbox" class="icon">
+                    </a>
+                    <a href="#">
+                        <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
+                    </a>
+                </div>
+
+                <h5>Régis <span class="red-text text-darken-4">STEREOKILLA</span></h5>
+                <h6>Head Manager</h6>
+
+            </div>
+        </div>
+
+        <div id="annonce" class="col s10 offset-s1">
+            <p>
+                Serez-vous le prochain membre du staff Burning Heads ?  Si vous êtes intéressé par notre association, voici les postes que nous recherchons :
+            </p>
+            <ul class="left-align">
+                <li>Un Manager Console pour gérer le management de 2 à 3 Rosters (Xbox principalement) en collaboration avec le Head Manager.</li>
+                <li>Un Manager PC pour gérer le management de 2 à 3 Rosters en collaboration avec le Head Manager.</li>
+                <li>Un Graphiste pour nous accompagner sur différents projets (MàJ du design du maillot par ex) et réaliser des visuels pour nos rédacteurs et 
+                    Youtubers.</li>
+                <li>Des Rédacteurs, capables de réaliser des articles pertinents sur l’actualité du jeu vidéo et de l’esport ainsi que sur les événements auquel 
+                    l’association participe.</li>
+                <li>Un Youtuber supplémentaire pour rejoindre l’équipe déjà en place. (Une vidéo par mois demandée)</li>
+            </ul>
+        </div>
+
+    </div>
 
 {% endblock %}

@@ -1,3 +1,4 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+bh3:
+    resource: "@BH3Bundle/Controller/"
+    type:     annotation
+    prefix:   /

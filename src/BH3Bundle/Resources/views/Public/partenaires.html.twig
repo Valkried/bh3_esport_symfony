@@ -2,6 +2,87 @@
 
 {% block title %}Partenaires{% endblock %}
 
+{% block css %}
+<style>
+    .logo {
+        margin-bottom: 25px;
+    }
+
+    @media only screen and (min-width: 601px) {
+        .card-panel .row {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            margin-bottom: 0px;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
+<div class="row center-align">
+
+    <div class="col s12">
+        <div class="card-panel">
+            <div class="row">
+            
+                <div class="col s8 offset-s2 m3 xl2">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/partenaires/a4g-logo.png') }}" alt="All4Gamer" class="responsive-img logo">
+                    </a>
+                </div>
+
+                <div class="col s12 m6 xl8">
+                    <p>
+                        All4Gamer est une nouvelle société française spécialisé dans la distribution d’accessoires et de matériel Gaming.<br><br>
+                        
+                        Exerçant ses activités uniquement sur le Web via sa boutique, ALL4GAMER.fr propose un large choix de produits aussi bien pour les gamers occasionnel que pour les professionnels.<br><br>
+                        
+                        Astrogaming, Steelseries, TurtleBeach, DXracer… et d’autres grandes marques sont au rendez-vous où vous trouvez notamment : Casque, Clavier, Souris, Micros ou encore Lunettes et Sièges gaming.
+                    </p>
+                </div>
+
+                <div class="col m3 xl2 hide-on-small-only">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook" class="responsive-img">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12">
+        <div class="card-panel center-align">
+            <div class="row">
+            
+                <div class="col s8 offset-s2 m3 xl2">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/partenaires/a4g-logo.png') }}" alt="All4Gamer" class="responsive-img logo">
+                    </a>
+                </div>
+
+                <div class="col s12 m6 xl8">
+                    <p>
+                        All4Gamer est une nouvelle société française spécialisé dans la distribution d’accessoires et de matériel Gaming.<br><br>
+                        
+                        Exerçant ses activités uniquement sur le Web via sa boutique, ALL4GAMER.fr propose un large choix de produits aussi bien pour les gamers occasionnel que pour les professionnels.<br><br>
+                        
+                        Astrogaming, Steelseries, TurtleBeach, DXracer… et d’autres grandes marques sont au rendez-vous où vous trouvez notamment : Casque, Clavier, Souris, Micros ou encore Lunettes et Sièges gaming.
+                    </p>
+                </div>
+
+                <div class="col m3 xl2 hide-on-small-only">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook" class="responsive-img">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

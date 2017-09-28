@@ -1,4 +1,4 @@
-bh3_symfony
+Burning Heads
 ===========
 
-A Symfony project created on September 28, 2017, 12:06 pm.
+Site internet de la structure e-sportive Burning Heads (BH3).

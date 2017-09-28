@@ -2,6 +2,144 @@
 
 {% block title %}News{% endblock %}
 
+{% block css %}
+<style>
+    #slider {
+        margin-bottom: 15px;
+    }
+    .pagination {
+        margin-bottom: 0px;
+        margin-top: 25px;
+    }
+    .social-buttons {
+        border-radius: 15px;
+    }
+    #aside {
+        padding-left: 12px;
+    }
+    #twitter {
+        margin-top: 17px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
+    <div class="row">
+    
+        <section class="col s12 l9">
+            <div class="row">
+            
+                <div class="articles">
+                
+                    <!-- SLIDER -->
+
+                    <div class="col s12 hide-on-small-only">
+                        <div id="slider" class="carousel carousel-slider center-align hoverable">
+                            <a href="" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-1.jpg') }}') center no-repeat; background-size: 1000px;">
+                                <h2>Titre News 1</h2>
+                            </a>
+                            <a href="" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-2.jpg') }}') center no-repeat; background-size: 1000px;">
+                                <h2>Titre News 2</h2>
+                            </a>
+                            <a href="" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-3.jpg') }}') center no-repeat; background-size: 1000px;">
+                                <h2>Titre News 3</h2>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ARTICLES -->
+
+                    <article class="col s12">
+                        <a href="">
+                            <div class="card-panel hoverable">
+                                <h4>Titre News 1</h4>
+                                <h6 class="red-text text-darken-4">Posté par auteur</h6>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat similique neque eum a quasi blanditiis, necessitatibus harum numquam dolor labore iure! Quaerat quos, nobis inventore temporibus dicta earum debitis quidem.</p>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="col s12">
+                        <a href="">
+                            <div class="card-panel hoverable">
+                                <h4>Titre News 1</h4>
+                                <h6 class="red-text text-darken-4">Posté par auteur</h6>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat similique neque eum a quasi blanditiis, necessitatibus harum numquam dolor labore iure! Quaerat quos, nobis inventore temporibus dicta earum debitis quidem.</p>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="col s12">
+                        <a href="">
+                            <div class="card-panel hoverable">
+                                <h4>Titre News 1</h4>
+                                <h6 class="red-text text-darken-4">Posté par auteur</h6>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat similique neque eum a quasi blanditiis, necessitatibus harum numquam dolor labore iure! Quaerat quos, nobis inventore temporibus dicta earum debitis quidem.</p>
+                            </div>
+                        </a>
+                    </article>
+                
+                </div>
+
+                <!-- PAGINATION -->
+
+                <div class="col s12 center-align">
+                    <ul class="pagination">
+                        <li class="waves-effect active"><a href="">1</a></li>
+                        <li class="waves-effect"><a href="">2</a></li>
+                    </ul>
+                </div>
+            
+            </div>
+        </section>
+
+        <!-- BARRE LATERALE -->
+
+        <aside id="aside" class="col s3 hide-on-med-and-down">
+            <div class="row">
+            
+                <div class="col s6 xl3">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook" class="hoverable responsive-img social-buttons">
+                    </a>
+                </div>
+                <div class="col s6 xl3">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/social/twitter.png') }}" alt="Twitter" class="hoverable responsive-img social-buttons">
+                    </a>
+                </div>
+                <div class="col s6 xl3">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/social/youtube.png') }}" alt="Youtube" class="hoverable responsive-img social-buttons">
+                    </a>
+                </div>
+                <div class="col s6 xl3">
+                    <a href="" target="_blank">
+                        <img src="{{ asset('img/social/twitch.png') }}" alt="Twitch" class="hoverable responsive-img social-buttons">
+                    </a>
+                </div>
+
+                <div id="twitter" class="col s12">
+                    <a class="twitter-timeline" data-lang="fr" data-height="600" data-theme="dark" data-link-color="#b71c1c" href="https://twitter.com/burning_heads">Burning Heads</a>
+                </div>
+
+            </div>
+        </aside>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $(function() {
+
+        $('.carousel-slider').carousel({fullWidth: true, indicators: true});
+
+        setInterval(function() {
+            $('.carousel.carousel-slider').carousel('next');
+        }, 4000);
+
+    });
+</script>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endblock %}

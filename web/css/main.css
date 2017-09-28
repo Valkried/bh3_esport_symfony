@@ -33,6 +33,7 @@ nav
     -webkit-box-shadow: 0px 0px 30px #121212;
     -o-box-shadow: 0px 0px 30px #121212;
     border-top: 1px solid #b71c1c;
+    margin-bottom: 40px;
 }
 
 nav ul li

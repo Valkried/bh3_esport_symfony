@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        {% block css %}{% endblock %}
     </head>
     <body class="grey lighten-3">
 
@@ -94,7 +95,7 @@
 
         <!-- CONTENU PRINCIPAL -->
 
-        <main>
+        <main class="container">
             {% block content %}
             {% endblock %}
         </main>

@@ -2,6 +2,70 @@
 
 {% block title %}Roster{% endblock %}
 
+{% block css %}
+<style>
+    .icon {
+        padding: 0 5px;
+    }
+    .profil {
+        max-width: 150px;
+        width: 100%;
+    }
+    .outer-card {
+        display: flex;
+        align-items: center;
+        height: 180px;
+        margin: 0;
+    }
+    .inner-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 150px;
+    }
+    h5, h6 {
+        margin: 0;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
+
+    <div class="row center-align">
+
+        <div class="col s12">
+            <img src="{{ asset('img/rosters/halo.jpg') }}" alt="Halo" class="responsive-img">
+        </div>
+        
+        <div class="col s12 m6 xl4">
+            <div class="card-panel hoverable">
+                <div class="row outer-card">
+
+                    <div class="col s6">
+                        <img src="{{ asset('img/membres/beh3ad.jpg') }}" alt="Beh3ad" class="profil">
+                    </div>
+
+                    <div class="col s6 inner-card">
+
+                        <h5 class="red-text text-darken-4">Beh3ad</h5>
+
+                        <h6>Julien</h6>
+
+                        <div>
+                            <a href="" target="_blank">
+                                <img src="{{ asset('img/plateforme/xbox.png') }}" alt="Xbox" class="icon">
+                            </a>
+                            <a href="" target="_blank">
+                                <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 {% endblock %}

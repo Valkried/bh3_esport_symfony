@@ -36,7 +36,7 @@
 
                     <div class="col s12 hide-on-small-only">
                         <div id="slider" class="carousel carousel-slider center-align hoverable">
-                            <a href="" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-1.jpg') }}') center no-repeat; background-size: 1000px;">
+                            <a href="{{ path('news', {'id': '1'}) }}" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-1.jpg') }}') center no-repeat; background-size: 1000px;">
                                 <h2>Titre News 1</h2>
                             </a>
                             <a href="" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-2.jpg') }}') center no-repeat; background-size: 1000px;">
@@ -51,7 +51,7 @@
                     <!-- ARTICLES -->
 
                     <article class="col s12">
-                        <a href="">
+                        <a href="{{ path('news', {'id': '1'}) }}">
                             <div class="card-panel hoverable">
                                 <h4 class="black-text">Titre News 1</h4>
                                 <h6 class="red-text text-darken-4">Posté par auteur</h6>

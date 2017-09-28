@@ -16,6 +16,16 @@ class CoreController extends Controller
     }
 
     /**
+     * @Route("/news/{id}", name="news")
+     */
+    public function newsAction($id)
+    {
+        return $this->render('BH3Bundle:Public:news.html.twig', array(
+            'news' => $id
+        ));
+    }
+
+    /**
      * @Route("/presentation", name="presentation")
      */
     public function presentationAction()
@@ -71,6 +81,5 @@ class CoreController extends Controller
     public function contactAction()
     {
         return $this->render('BH3Bundle:Public:contact.html.twig');
-        
     }
 }

@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}News 1{% endblock %}
+
+{% block content %}
+
+    <div class="row center-align">
+        <div class="col s12">
+        
+            <div class="parallax-container">
+                <div class="parallax">
+                    <img src="{{ asset('img/news/banniere-news-1.jpg') }}" alt="News 1">
+                </div>
+            </div>
+
+            <div class="card-panel">
+                <h3>Titre News 1</h3>
+                <h5>Par auteur, le 28/05/2017 à 03:06</h5>
+            </div>
+
+            <div class="card-panel">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti inventore error quibusdam ea similique rem recusandae adipisci, repudiandae quo aperiam numquam odit assumenda ullam eaque ducimus impedit, esse laudantium deleniti.</p>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $(function() {
+        $('.parallax').parallax();
+    });
+</script>
+{% endblock %}

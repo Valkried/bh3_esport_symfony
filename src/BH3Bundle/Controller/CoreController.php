@@ -4,18 +4,31 @@ namespace BH3Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CoreController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/{page}", name="home", requirements={"page" = "\d+"}, defaults={"page" = 1})
      */
-    public function indexAction()
+    public function indexAction($page)
     {
-        $listNews = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->getAllNews();
+        $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
+
+        $offset = ($page * 3 - 3);
+        $nbPages = ceil(count($repository->findAll()) / 3);
+
+        if ($page > $nbPages)
+        {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $listNews = $repository->getAllNews($offset);
 
         return $this->render('BH3Bundle:Public:index.html.twig', array(
-            'news' => $listNews
+            'news' => $listNews,
+            'nbPages' => $nbPages,
+            'currentPage' => $page
         ));
     }
 

@@ -14,9 +14,7 @@ header
     padding: 50px 0;
 }
 
-header .container .row {
-    margin-bottom: 0;
-}
+header .container .row { margin-bottom: 0; }
 
 
 /* MENU */
@@ -47,9 +45,7 @@ nav ul li a { padding: 0 40px; }
 nav #mobile li { display: block; }
 
 .dropdown-content li>a,
-.dropdown-content li>span {
-    color: #b71c1c;
-}
+.dropdown-content li>span { color: #b71c1c; }
 
 
 /* FOOTER */
@@ -70,17 +66,20 @@ footer
     height: 64px;
 }
 
-body {
+body
+{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
-main {
-    flex: 1 0 auto;
-}
+main { flex: 1 0 auto; }
 
 
 /* GENERAL */
 
 .cursor-default { cursor:default; }
+
+.pagination li.active,
+.pagination li:hover { background-color: #b71c1c; }
+.pagination li a:hover { color: white; }

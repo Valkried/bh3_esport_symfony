@@ -64,8 +64,11 @@
 
                 <div class="col s12 center-align">
                     <ul class="pagination">
-                        <li class="waves-effect active"><a href="">1</a></li>
-                        <li class="waves-effect"><a href="">2</a></li>
+                        {% for page in 1..nbPages %}
+                            <li class="waves-effect {% if currentPage == page %}active{% endif %}">
+                                <a href="{{ path('home', {'page': page}) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             

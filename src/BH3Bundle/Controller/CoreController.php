@@ -12,7 +12,11 @@ class CoreController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BH3Bundle:Public:index.html.twig');
+        $listNews = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->getAllNews();
+
+        return $this->render('BH3Bundle:Public:index.html.twig', array(
+            'news' => $listNews
+        ));
     }
 
     /**

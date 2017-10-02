@@ -10,4 +10,11 @@ namespace BH3Bundle\Repository;
  */
 class NewsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllNews()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.date', 'DESC');
+        
+        return $qb->getQuery()->getResult();
+    }
 }

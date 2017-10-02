@@ -36,47 +36,27 @@
 
                     <div class="col s12 hide-on-small-only">
                         <div id="slider" class="carousel carousel-slider center-align hoverable">
-                            <a href="{{ path('news', {'id': '1'}) }}" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-1.jpg') }}') center no-repeat; background-size: 1000px;">
-                                <h2>Titre News 1</h2>
-                            </a>
-                            <a href="" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-2.jpg') }}') center no-repeat; background-size: 1000px;">
-                                <h2>Titre News 2</h2>
-                            </a>
-                            <a href="" class="carousel-item white-text" style="background: url('{{ asset('img/news/banniere-news-3.jpg') }}') center no-repeat; background-size: 1000px;">
-                                <h2>Titre News 3</h2>
-                            </a>
+                            {% for new in news %}
+                                <a href="{{ path('news', {'id': new.id}) }}" class="carousel-item white-text" style="background: url('{{ asset('img/news/') ~ new.picture }}') center no-repeat; background-size: 1000px;">
+                                    <h2>{{ new.title }}</h2>
+                                </a>
+                            {% endfor %}
                         </div>
                     </div>
 
                     <!-- ARTICLES -->
 
-                    <article class="col s12">
-                        <a href="{{ path('news', {'id': '1'}) }}">
-                            <div class="card-panel hoverable">
-                                <h4 class="black-text">Titre News 1</h4>
-                                <h6 class="red-text text-darken-4">Posté par auteur</h6>
-                                <p class="black-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat similique neque eum a quasi blanditiis, necessitatibus harum numquam dolor labore iure! Quaerat quos, nobis inventore temporibus dicta earum debitis quidem.</p>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="col s12">
-                        <a href="">
-                            <div class="card-panel hoverable">
-                                <h4 class="black-text">Titre News 2</h4>
-                                <h6 class="red-text text-darken-4">Posté par auteur</h6>
-                                <p class="black-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat similique neque eum a quasi blanditiis, necessitatibus harum numquam dolor labore iure! Quaerat quos, nobis inventore temporibus dicta earum debitis quidem.</p>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="col s12">
-                        <a href="">
-                            <div class="card-panel hoverable">
-                                <h4 class="black-text">Titre News 3</h4>
-                                <h6 class="red-text text-darken-4">Posté par auteur</h6>
-                                <p class="black-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat similique neque eum a quasi blanditiis, necessitatibus harum numquam dolor labore iure! Quaerat quos, nobis inventore temporibus dicta earum debitis quidem.</p>
-                            </div>
-                        </a>
-                    </article>
+                    {% for new in news %}
+                        <article class="col s12">
+                            <a href="{{ path('news', {'id': new.id}) }}">
+                                <div class="card-panel hoverable">
+                                    <h4 class="black-text">{{ new.title }}</h4>
+                                    <h6 class="red-text text-darken-4">Posté par auteur</h6>
+                                    <p class="black-text">{{ new.content|slice(0, 350) }}...</p>
+                                </div>
+                            </a>
+                        </article>
+                    {% endfor %}
                 
                 </div>
 

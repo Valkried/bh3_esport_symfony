@@ -9,17 +9,17 @@
         
             <div class="parallax-container">
                 <div class="parallax">
-                    <img src="{{ asset('img/news/banniere-news-1.jpg') }}" alt="News 1">
+                    <img src="{{ asset('img/news/') ~ news.picture }}" alt="News 1">
                 </div>
             </div>
 
             <div class="card-panel">
-                <h3>Titre News 1</h3>
-                <h5>Par auteur, le 28/05/2017 à 03:06</h5>
+                <h3>{{ news.title }}</h3>
+                <h5>Par auteur, le {{ news.date|date('d/m/Y à h:i') }}</h5>
             </div>
 
             <div class="card-panel">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti inventore error quibusdam ea similique rem recusandae adipisci, repudiandae quo aperiam numquam odit assumenda ullam eaque ducimus impedit, esse laudantium deleniti.</p>
+                <p>{{ news.content|nl2br }}</p>
             </div>
 
         </div>

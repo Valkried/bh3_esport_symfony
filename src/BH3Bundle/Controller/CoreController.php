@@ -35,12 +35,18 @@ class CoreController extends Controller
     }
 
     /**
-     * @Route("/news/{id}", name="news")
+     * @Route("/news/{id}", name="news", requirements={"id" = "\d+"})
      */
     public function newsAction($id)
     {
+        $news = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
+
+        if ($news === null) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
         return $this->render('BH3Bundle:Public:news.html.twig', array(
-            'news' => $id
+            'news' => $news
         ));
     }
 

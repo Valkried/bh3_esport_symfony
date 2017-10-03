@@ -98,6 +98,11 @@ class PublicController extends Controller
     {
         $roster = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findBy(array('url' => $url));
 
+        if (!$roster)
+        {
+            throw new NotFoundHttpException('Ce roster n\'existe pas');
+        }
+
         return $this->render('BH3Bundle:Public:roster.html.twig', array(
             'roster' => $roster
         ));

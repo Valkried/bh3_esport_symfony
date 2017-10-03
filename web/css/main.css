@@ -81,5 +81,5 @@ main { flex: 1 0 auto; }
 .cursor-default { cursor:default; }
 
 .pagination li.active,
-.pagination li:hover { background-color: #b71c1c; }
-.pagination li a:hover { color: white; }
+.pagination li:hover:not(.disabled) { background-color: #b71c1c; }
+.pagination li:not(.disabled) a:hover { color: white; }

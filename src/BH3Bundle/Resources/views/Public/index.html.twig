@@ -64,11 +64,28 @@
 
                 <div class="col s12 center-align">
                     <ul class="pagination">
+
+                        {# Page précédente #}
+                        {% if currentPage == 1 %}
+                            <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+                        {% else %}
+                            <li class="waves-effect waves-light"><a href="{{ path('home', {'page': currentPage - 1}) }}"><i class="material-icons">chevron_left</i></a></li>
+                        {% endif %}
+
+                        {# Liste des pages #}
                         {% for page in 1..nbPages %}
-                            <li class="waves-effect {% if currentPage == page %}active{% endif %}">
+                            <li class="waves-effect waves-light {% if currentPage == page %}active{% endif %}">
                                 <a href="{{ path('home', {'page': page}) }}">{{ page }}</a>
                             </li>
                         {% endfor %}
+
+                        {# Page suivante #}
+                        {% if currentPage == nbPages %}
+                            <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+                        {% else %}
+                            <li class="waves-effect waves-light"><a href="{{ path('home', {'page': currentPage + 1}) }}"><i class="material-icons">chevron_right</i></a></li>
+                        {% endif %}
+
                     </ul>
                 </div>
             

@@ -15,15 +15,17 @@ class CoreController extends Controller
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
 
-        $offset = ($page * 3 - 3);
-        $nbPages = ceil(count($repository->findAll()) / 3);
+        $limit = 3; // Nombre de news à afficher par page
+        
+        $offset = ($page - 1) * $limit;
+        $nbPages = ceil(count($repository->findAll()) / $limit);
 
         if ($page > $nbPages)
         {
             throw new NotFoundHttpException('La page demandée n\'existe pas');
         }
 
-        $listNews = $repository->getAllNews($offset);
+        $listNews = $repository->getAllNews($offset, $limit);
 
         return $this->render('BH3Bundle:Public:index.html.twig', array(
             'news' => $listNews,

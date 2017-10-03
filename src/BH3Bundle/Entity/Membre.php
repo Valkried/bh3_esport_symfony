@@ -84,6 +84,12 @@ class Membre
      */
     private $staff;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="BH3Bundle\Entity\Roster", inversedBy="membres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $roster;
+
 
     /**
      * Get id
@@ -310,5 +316,28 @@ class Membre
     {
         return $this->staff;
     }
-}
 
+    /**
+     * Set roster
+     *
+     * @param \BH3Bundle\Entity\Roster $roster
+     *
+     * @return Membre
+     */
+    public function setRoster(\BH3Bundle\Entity\Roster $roster)
+    {
+        $this->roster = $roster;
+
+        return $this;
+    }
+
+    /**
+     * Get roster
+     *
+     * @return \BH3Bundle\Entity\Roster
+     */
+    public function getRoster()
+    {
+        return $this->roster;
+    }
+}

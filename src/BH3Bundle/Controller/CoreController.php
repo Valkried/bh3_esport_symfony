@@ -92,8 +92,10 @@ class CoreController extends Controller
      */
     public function rosterAction($url)
     {
+        $roster = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findBy(array('url' => $url));
+
         return $this->render('BH3Bundle:Public:roster.html.twig', array(
-            'roster' => $url
+            'roster' => $roster
         ));
     }
 

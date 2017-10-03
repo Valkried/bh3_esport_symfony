@@ -42,6 +42,11 @@ class Roster
      */
     private $picture;
 
+    /**
+     * @ORM\OneToMany(targetEntity="BH3Bundle\Entity\Membre", mappedBy="roster")
+     */
+    private $membres;
+
 
     /**
      * Get id
@@ -124,5 +129,47 @@ class Roster
     {
         return $this->picture;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->membres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add membre
+     *
+     * @param \BH3Bundle\Entity\Membre $membre
+     *
+     * @return Roster
+     */
+    public function addMembre(\BH3Bundle\Entity\Membre $membre)
+    {
+        $this->membres[] = $membre;
+
+        $membre->setRoster($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove membre
+     *
+     * @param \BH3Bundle\Entity\Membre $membre
+     */
+    public function removeMembre(\BH3Bundle\Entity\Membre $membre)
+    {
+        $this->membres->removeElement($membre);
+    }
+
+    /**
+     * Get membres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMembres()
+    {
+        return $this->membres;
+    }
+}

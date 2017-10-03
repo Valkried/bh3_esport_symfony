@@ -33,38 +33,57 @@
 
     <div class="row center-align">
 
-        <div class="col s12">
-            <img src="{{ asset('img/rosters/halo.jpg') }}" alt="Halo" class="responsive-img">
-        </div>
-        
-        <div class="col s12 m6 xl4">
-            <div class="card-panel hoverable">
-                <div class="row outer-card">
+        {% for roster in roster %}
 
-                    <div class="col s6">
-                        <img src="{{ asset('img/membres/beh3ad.jpg') }}" alt="Beh3ad" class="profil">
-                    </div>
-
-                    <div class="col s6 inner-card">
-
-                        <h5 class="red-text text-darken-4">Beh3ad</h5>
-
-                        <h6>Julien</h6>
-
-                        <div>
-                            <a href="" target="_blank">
-                                <img src="{{ asset('img/plateforme/xbox.png') }}" alt="Xbox" class="icon">
-                            </a>
-                            <a href="" target="_blank">
-                                <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
-                            </a>
-                        </div>
-
-                    </div>
-
-                </div>
+            {# Bannière du roster #}
+            <div class="col s12">
+                <img src="{{ asset('img/rosters/'~ roster.picture) }}" alt="{{ roster.name }}" class="responsive-img">
             </div>
-        </div>
+            
+            {% for membre in roster.membres %}
+                <div class="col s12 m6 xl4">
+                    <div class="card-panel hoverable">
+                        <div class="row outer-card">
+
+                            {# Photo de profil #}
+                            <div class="col s6">
+                                <img src="{{ asset('img/membres/'~ membre.picture) }}" alt="{{ membre.pseudo }}" class="profil">
+                            </div>
+
+                            <div class="col s6 inner-card">
+
+                                {# Pseudo #}
+                                <h5 class="red-text text-darken-4">{{ membre.pseudo }}</h5>
+
+                                {# Prénom #}
+                                <h6>{{ membre.name }}</h6>
+
+                                <div>
+                                    {# Plateforme #}
+                                    {% if membre.profile %}
+                                        <a href="{{ membre.profile }}" target="_blank">
+                                            <img src="{{ asset('img/plateforme/'~ membre.plateforme ~'.png') }}" alt="{{ membre.plateforme }}" class="icon">
+                                        </a>
+                                    {% else %}
+                                        <img src="{{ asset('img/plateforme/'~ membre.plateforme ~'.png') }}" alt="{{ membre.plateforme }}" class="icon">
+                                    {% endif %}
+
+                                    {# Twitter #}
+                                    {% if membre.twitter %}
+                                        <a href="https://www.twitter.com/{{ membre.twitter }}" target="_blank">
+                                            <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
+                                        </a>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% endfor %}
 
     </div>
 

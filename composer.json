@@ -2,6 +2,7 @@
     "name": "luneral/bh3_symfony",
     "license": "proprietary",
     "type": "project",
+    "description": "Site web de la structure e-sportive Burning Heads",
     "autoload": {
         "psr-4": {
             "": "src/",

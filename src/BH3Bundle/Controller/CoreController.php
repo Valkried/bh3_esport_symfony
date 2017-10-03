@@ -63,7 +63,11 @@ class CoreController extends Controller
      */
     public function staffAction()
     {
-        return $this->render('BH3Bundle:Public:staff.html.twig');
+        $listStaff = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->getStaff();
+
+        return $this->render('BH3Bundle:Public:staff.html.twig', array(
+            'staff' => $listStaff
+        ));
     }
 
     /**

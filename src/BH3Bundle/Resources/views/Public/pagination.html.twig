@@ -1,0 +1,49 @@
+<ul class="pagination">
+
+    {# Page précédente #}
+    {% if currentPage == 1 %}
+        <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+    {% else %}
+        <li class="waves-effect waves-light"><a href="{{ path('home', {'page': currentPage - 1}) }}"><i class="material-icons">chevron_left</i></a></li>
+    {% endif %}
+
+    {# Première page #}
+    <li class="waves-effect waves-light {% if currentPage == 1 %}active{% endif %}">
+        <a href="{{ path('home', {'page': 1}) }}">1</a>
+    </li>
+
+    {# Liste des pages #}
+    {% if nbPages > 2 %}
+        {% for page in 2..nbPages - 1 %}
+
+            {# Si l'écart entre la page courante et le début de la boucle est inférieur à 2, on affiche le numéro de page #}
+            {% if (page >= currentPage - 2) and (page <= currentPage + 2) %}
+                <li class="waves-effect waves-light {% if currentPage == page %}active{% endif %}">
+                    <a href="{{ path('home', {'page': page}) }}">{{ page }}</a>
+                </li>
+
+            {# Sinon, s'il s'agit de la première ou dernière itération, on ajout les points de suspension #}
+            {% elseif loop.first or loop.last %}
+                <li class="disabled">
+                    <a>...</a>
+                </li>
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+
+    {# Dernière page #}
+    {% if nbPages != 1 %}
+        <li class="waves-effect waves-light {% if currentPage == nbPages %}active{% endif %}">
+            <a href="{{ path('home', {'page': nbPages}) }}">{{ nbPages }}</a>
+        </li>
+    {% endif %}
+
+    {# Page suivante #}
+    {% if currentPage == nbPages %}
+        <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+    {% else %}
+        <li class="waves-effect waves-light"><a href="{{ path('home', {'page': currentPage + 1}) }}"><i class="material-icons">chevron_right</i></a></li>
+    {% endif %}
+
+</ul>

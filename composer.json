@@ -5,7 +5,6 @@
     "description": "Site web de la structure e-sportive Burning Heads",
     "autoload": {
         "psr-4": {
-            "": "src/",
             "BH3Bundle\\": "src/BH3Bundle"
         },
         "classmap": [

@@ -4,12 +4,14 @@ namespace BH3Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PublicController extends Controller
 {
     /**
      * @Route("/{page}", name="home", requirements={"page" = "\d+"}, defaults={"page" = 1})
+     * @Method("GET")
      */
     public function indexAction($page)
     {
@@ -45,6 +47,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/news/{id}", name="news", requirements={"id" = "\d+"})
+     * @Method("GET")
      */
     public function newsAction($id)
     {
@@ -61,6 +64,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/presentation", name="presentation")
+     * @Method("GET")
      */
     public function presentationAction()
     {
@@ -69,6 +73,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/staff", name="staff")
+     * @Method("GET")
      */
     public function staffAction()
     {
@@ -81,6 +86,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/palmares", name="palmares")
+     * @Method("GET")
      */
     public function palmaresAction()
     {
@@ -93,6 +99,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/roster/{url}", name="roster")
+     * @Method("GET")
      */
     public function rosterAction($url)
     {
@@ -110,6 +117,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/partenaires", name="partenaires")
+     * @Method("GET")
      */
     public function partenairesAction()
     {
@@ -122,6 +130,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/livestream", name="livestream")
+     * @Method("GET")
      */
     public function livestreamAction()
     {
@@ -130,6 +139,7 @@ class PublicController extends Controller
 
     /**
      * @Route("/contact", name="contact")
+     * @Method("GET")
      */
     public function contactAction()
     {

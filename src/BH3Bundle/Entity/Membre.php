@@ -174,7 +174,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setRank($rank)
+    public function setRank($rank = null)
     {
         $this->rank = $rank;
 
@@ -198,7 +198,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setTwitter($twitter)
+    public function setTwitter($twitter = null)
     {
         $this->twitter = $twitter;
 
@@ -222,7 +222,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setProfile($profile)
+    public function setProfile($profile = null)
     {
         $this->profile = $profile;
 
@@ -246,7 +246,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setPicture($picture)
+    public function setPicture($picture = 'tete-bh3.png')
     {
         $this->picture = $picture;
 
@@ -270,7 +270,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setPlateforme($plateforme)
+    public function setPlateforme($plateforme = 'website')
     {
         $this->plateforme = $plateforme;
 
@@ -294,7 +294,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setStaff($staff)
+    public function setStaff($staff = false)
     {
         $this->staff = $staff;
 

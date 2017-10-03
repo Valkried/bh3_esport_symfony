@@ -108,7 +108,11 @@ class PublicController extends Controller
      */
     public function partenairesAction()
     {
-        return $this->render('BH3Bundle:Public:partenaires.html.twig');
+        $listPartenaires = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Partenaire')->findAll();
+
+        return $this->render('BH3Bundle:Public:partenaires.html.twig', array(
+            'partenaires' => $listPartenaires
+        ));
     }
 
     /**

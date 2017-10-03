@@ -34,6 +34,15 @@ class CoreController extends Controller
         ));
     }
 
+    public function menuAction()
+    {
+        $listRosters = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findAll();
+
+        return $this->render('BH3Bundle:Public:menu.html.twig', array(
+            'rosters' => $listRosters
+        ));
+    }
+
     /**
      * @Route("/news/{id}", name="news", requirements={"id" = "\d+"})
      */
@@ -79,12 +88,12 @@ class CoreController extends Controller
     }
 
     /**
-     * @Route("/roster/{id}", name="roster")
+     * @Route("/roster/{url}", name="roster")
      */
-    public function rosterAction($id)
+    public function rosterAction($url)
     {
         return $this->render('BH3Bundle:Public:roster.html.twig', array(
-            'roster' => $id
+            'roster' => $url
         ));
     }
 

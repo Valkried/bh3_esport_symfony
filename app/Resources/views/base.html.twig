@@ -33,63 +33,7 @@
 
         {% block menu %}
             <nav>
-                <div class="nav-wrapper">
-
-                    <!-- DESKTOP -->
-
-                    <ul id="nav-mobile" class="hide-on-med-and-down center-align">
-
-                        <li><a href="{{ path('home') }}">NEWS</a>
-                        <li class="dropdown-button" data-activates="dropdown-club" data-hover="true" data-belowOrigin="true"><a class="cursor-default">LE CLUB</a>
-                        <li class="dropdown-button" data-activates="dropdown-roster" data-hover="true" data-belowOrigin="true"><a class="cursor-default">ROSTERS</a>
-                        <li><a href="{{ path('partenaires') }}">PARTENAIRES</a>
-                        <li><a href="{{ path('livestream') }}">LIVESTREAM</a>
-                        <li><a href="{{ path('contact') }}">CONTACT</a></li>
-
-                    </ul>
-
-                    <!-- Dropdown Club -->
-                    <ul id="dropdown-club" class="dropdown-content">
-
-                        <li><a href="{{ path('presentation') }}">PRESENTATION</a></li>
-                        <li><a href="{{ path('staff') }}">STAFF</a></li>
-                        <li><a href="{{ path('palmares') }}">PALMARES</a></li>
-
-                    </ul>
-
-                    <!-- Dropdown Roster -->
-                    <ul id="dropdown-roster" class="dropdown-content">
-
-                        <li><a href="{{ path('roster', {'id': '1'}) }}">ROSTER 1</a></li>
-                        <li><a href="{{ path('roster', {'id': '2'}) }}">ROSTER 2</a></li>
-                        <li><a href="{{ path('roster', {'id': '3'}) }}">ROSTER 3</a></li>
-                        <li><a href="{{ path('roster', {'id': '4'}) }}">JOUEURS LOISIR</a></li>
-
-                    </ul>
-
-                    <!-- MOBILE -->
-
-                    <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-
-                    <ul id="mobile" class="side-nav">
-                    
-                        <li><a href="{{ path('home') }}">NEWS</a></li>
-                        <li><a href="{{ path('presentation') }}">PRESENTATION</a></li>
-                        <li><a href="{{ path('staff') }}">STAFF</a></li>
-                        <li><a href="{{ path('palmares') }}">PALMARES</a></li>
-
-                        <li><a href="{{ path('roster', {'id': '1'}) }}"><i class="material-icons left">group</i>ROSTER 1</a></li>
-                        <li><a href="{{ path('roster', {'id': '2'}) }}"><i class="material-icons left">group</i>ROSTER 2</a></li>
-                        <li><a href="{{ path('roster', {'id': '3'}) }}"><i class="material-icons left">group</i>ROSTER 3</a></li>
-                        <li><a href="{{ path('roster', {'id': '4'}) }}"><i class="material-icons left">group</i>JOUEURS LOISIR</a></li>
-
-                        <li><a href="{{ path('partenaires') }}">PARTENAIRES</a></li>
-                        <li><a href="{{ path('livestream') }}">LIVESTREAM</a></li>
-                        <li><a href="{{ path('contact') }}">CONTACT</a></li>
-
-                    </ul>
-
-                </div>
+                {{ render(controller("BH3Bundle:Core:menu")) }}
             </nav>
         {% endblock %}
 

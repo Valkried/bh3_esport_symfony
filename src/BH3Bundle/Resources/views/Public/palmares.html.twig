@@ -6,6 +6,7 @@
 <style>
     table {
         margin-top: 15px;
+        margin-bottom: 40px;
     }
 </style>
 {% endblock %}
@@ -28,14 +29,16 @@
 
         <tbody>
 
-            <tr>
-                <td><img src="{{ asset('img/palmares/halo.png') }}" alt="Halo"></td>
-                <td>Halo T4</td>
-                <td>iLoveBTB</td>
-                <td>Paris</td>
-                <td>1er</td>
-                <td>2014</td>
-            </tr>
+            {% for palmares in palmares %}
+                <tr>
+                    <td><img src="{{ asset('img/palmares/'~ palmares.picture) }}" alt="{{ palmares.game }}"></td>
+                    <td>{{ palmares.roster }}</td>
+                    <td>{{ palmares.event }}</td>
+                    <td>{{ palmares.localisation }}</td>
+                    <td>{{ palmares.ranking }}</td>
+                    <td>{{ palmares.date }}</td>
+                </tr>
+            {% endfor %}
 
         </tbody>
     </table>

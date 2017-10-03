@@ -10,4 +10,11 @@ namespace BH3Bundle\Repository;
  */
 class PalmaresRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getByDate()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy('p.date', 'DESC');
+        
+        return $qb->getQuery()->getResult();
+    }
 }

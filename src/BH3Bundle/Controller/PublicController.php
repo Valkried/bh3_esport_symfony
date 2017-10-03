@@ -84,7 +84,11 @@ class PublicController extends Controller
      */
     public function palmaresAction()
     {
-        return $this->render('BH3Bundle:Public:palmares.html.twig');
+        $listPalmares = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Palmares')->getByDate();
+
+        return $this->render('BH3Bundle:Public:palmares.html.twig', array(
+            'palmares' => $listPalmares
+        ));
     }
 
     /**

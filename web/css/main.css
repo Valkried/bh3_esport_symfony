@@ -66,6 +66,8 @@ footer
     height: 64px;
 }
 
+footer .row { margin-bottom: 0; }
+
 body
 {
     display: flex;

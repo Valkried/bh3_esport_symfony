@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CoreController extends Controller
+class PublicController extends Controller
 {
     /**
      * @Route("/{page}", name="home", requirements={"page" = "\d+"}, defaults={"page" = 1})

@@ -32,8 +32,7 @@
             
                 <div class="articles">
                 
-                    <!-- SLIDER -->
-
+                    {# SLIDER #}
                     <div class="col s12 hide-on-small-only">
                         <div id="slider" class="carousel carousel-slider center-align hoverable">
                             {% for new in news %}
@@ -44,8 +43,7 @@
                         </div>
                     </div>
 
-                    <!-- ARTICLES -->
-
+                    {# NEWS #}
                     {% for new in news %}
                         <article class="col s12">
                             <a href="{{ path('news', {'id': new.id}) }}">
@@ -60,8 +58,7 @@
                 
                 </div>
 
-                <!-- PAGINATION -->
-
+                {# PAGINATION #}
                 <div class="col s12 center-align">
                     <ul class="pagination">
 
@@ -92,8 +89,7 @@
             </div>
         </section>
 
-        <!-- BARRE LATERALE -->
-
+        {# BARRE LATERALE #}
         <aside id="aside" class="col s3 hide-on-med-and-down">
             <div class="row">
             

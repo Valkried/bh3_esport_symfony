@@ -1,7 +1,6 @@
 <div class="nav-wrapper">
 
-    <!-- DESKTOP -->
-
+    {# DESKTOP #}
     <ul id="nav-mobile" class="hide-on-med-and-down center-align">
 
         <li><a href="{{ path('home') }}">NEWS</a>
@@ -13,7 +12,7 @@
 
     </ul>
 
-    <!-- Dropdown Club -->
+    {# Dropdown Club #}
     <ul id="dropdown-club" class="dropdown-content">
 
         <li><a href="{{ path('presentation') }}">PRESENTATION</a></li>
@@ -22,7 +21,7 @@
 
     </ul>
 
-    <!-- Dropdown Roster -->
+    {# Dropdown Roster #}
     <ul id="dropdown-roster" class="dropdown-content">
 
         {% for roster in rosters if roster.url != 'loisir' %}
@@ -32,8 +31,7 @@
 
     </ul>
 
-    <!-- MOBILE -->
-
+    {# MOBILE #}
     <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <ul id="mobile" class="side-nav">

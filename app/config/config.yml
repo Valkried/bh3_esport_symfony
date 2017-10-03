@@ -43,6 +43,7 @@ twig:
 doctrine:
     dbal:
         driver: pdo_mysql
+        server_version: 7.0.23
         host: '%database_host%'
         port: '%database_port%'
         dbname: '%database_name%'

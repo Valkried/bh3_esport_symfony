@@ -47,42 +47,42 @@ class Membre
      *
      * @ORM\Column(name="rank", type="string", length=255, nullable=true)
      */
-    private $rank;
+    private $rank = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
-    private $twitter;
+    private $twitter = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="profile", type="string", length=255, nullable=true)
      */
-    private $profile;
+    private $profile = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255)
      */
-    private $picture;
+    private $picture = 'tete-bh3.png';
 
     /**
      * @var string
      *
      * @ORM\Column(name="plateforme", type="string", length=255)
      */
-    private $plateforme;
+    private $plateforme = 'website';
 
     /**
      * @var bool
      *
      * @ORM\Column(name="staff", type="boolean")
      */
-    private $staff;
+    private $staff = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="BH3Bundle\Entity\Roster", inversedBy="membres")
@@ -180,7 +180,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setRank($rank = null)
+    public function setRank($rank)
     {
         $this->rank = $rank;
 
@@ -204,7 +204,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setTwitter($twitter = null)
+    public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
 
@@ -228,7 +228,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setProfile($profile = null)
+    public function setProfile($profile)
     {
         $this->profile = $profile;
 
@@ -252,7 +252,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setPicture($picture = 'tete-bh3.png')
+    public function setPicture($picture)
     {
         $this->picture = $picture;
 
@@ -276,7 +276,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setPlateforme($plateforme = 'website')
+    public function setPlateforme($plateforme)
     {
         $this->plateforme = $plateforme;
 
@@ -300,7 +300,7 @@ class Membre
      *
      * @return Membre
      */
-    public function setStaff($staff = false)
+    public function setStaff($staff)
     {
         $this->staff = $staff;
 

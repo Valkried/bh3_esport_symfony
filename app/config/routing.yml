@@ -2,3 +2,6 @@ bh3:
     resource: "@BH3Bundle/Controller/"
     type:     annotation
     prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

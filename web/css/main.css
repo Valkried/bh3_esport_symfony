@@ -97,7 +97,3 @@ input[type=text].valid:not(.browser-default):focus,
 /* GENERAL */
 
 .cursor-default { cursor:default; }
-
-.pagination li.active,
-.pagination li:hover:not(.disabled) { background-color: #b71c1c; }
-.pagination li:not(.disabled) a:hover { color: white; }

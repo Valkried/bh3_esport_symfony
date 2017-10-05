@@ -3,6 +3,7 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Email
@@ -25,6 +26,13 @@ class Email
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 50,
+     *    minMessage = "Le nom doit faire au moins 2 caractères",
+     *    maxMessage = "Le champ ne doit pas dépasser 50 caractères")
+     * @Assert\NotBlank(message = "Le nom doit être renseigné")
+     * @Assert\Type(type = "string")
      */
     private $name;
 
@@ -32,6 +40,9 @@ class Email
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(message = "L'email {{ value }} n'est pas valide", checkMX = true)
+     * @Assert\NotBlank(message = "L'email doit être renseigné")
+     * @Assert\Type(type = "string")
      */
     private $email;
 
@@ -39,6 +50,13 @@ class Email
      * @var string
      *
      * @ORM\Column(name="subject", type="string", length=255)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 255,
+     *    minMessage = "Le sujet doit faire au moins 2 caractères",
+     *    maxMessage = "Le champ ne doit pas dépasser 255 caractères")
+     * @Assert\NotBlank(message = "Le sujet doit être renseigné")
+     * @Assert\Type(type = "string")
      */
     private $subject;
 
@@ -46,6 +64,13 @@ class Email
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 1000,
+     *    minMessage = "Le contenu doit faire au moins 2 caractères",
+     *    maxMessage = "Le champ ne doit pas dépasser 1000 caractères")
+     * @Assert\NotBlank(message = "Le contenu doit être renseigné")
+     * @Assert\Type(type = "string")
      */
     private $content;
 

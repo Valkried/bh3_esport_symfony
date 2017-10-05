@@ -9,6 +9,7 @@
     }
     button {
         width: 100%;
+        margin: 10px auto;
     }
     .btn-large:hover {
         background-color: #f44336 !important;
@@ -35,6 +36,16 @@
             </p>
         </div>
 
+        {% if errors is defined %}
+            {% for error in errors %}
+                <div class="col s12">
+                    <div class="card-panel red darken-4 white-text center-align">
+                        <p>{{ error.message }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
         <div class="col s12">
             <div class="card-panel">
 
@@ -44,30 +55,30 @@
 
                     {# Nom #}
                     <div class="col s12 m6 l4 input-field">
-                        {{ form_widget(contactForm.name) }}
-                        {{ form_label(contactForm.name, 'Entrez votre nom') }}
                         {{ form_errors(contactForm.name) }}
+                        {{ form_widget(contactForm.name, {'attr': {'data-length': 50}}) }}
+                        {{ form_label(contactForm.name, 'Entrez votre nom') }}
                     </div>
 
                     {# Email #}
                     <div class="col s12 m6 l4 input-field">
-                        {{ form_widget(contactForm.email) }}
-                        {{ form_label(contactForm.email, 'Entrez votre adresse email') }}
                         {{ form_errors(contactForm.email) }}
+                        {{ form_widget(contactForm.email, {'attr': {'data-length': 255}}) }}
+                        {{ form_label(contactForm.email, 'Entrez votre adresse email') }}
                     </div>
 
                     {# Sujet #}
                     <div class="col s12 m6 l4 input-field">
-                        {{ form_widget(contactForm.subject) }}
-                        {{ form_label(contactForm.subject, 'Sujet de votre message') }}
                         {{ form_errors(contactForm.subject) }}
+                        {{ form_widget(contactForm.subject, {'attr': {'data-length': 255}}) }}
+                        {{ form_label(contactForm.subject, 'Sujet de votre message') }}
                     </div>
 
                     {# Contenu #}
                     <div class="col s12 input-field">
-                        {{ form_widget(contactForm.content, {'attr': {'class': 'materialize-textarea'}}) }}
-                        {{ form_label(contactForm.content, 'Entrez votre message') }}
                         {{ form_errors(contactForm.content) }}
+                        {{ form_widget(contactForm.content, {'attr': {'class': 'materialize-textarea', 'data-length': 1000}}) }}
+                        {{ form_label(contactForm.content, 'Entrez votre message') }}
                     </div>
 
                     {# Envoyer #}

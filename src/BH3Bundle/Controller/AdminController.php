@@ -19,8 +19,8 @@ class AdminController extends Controller
         {
             throw new AccessDeniedException('Accès limité au rédacteur et aux administrateurs');
         }
-
-
+        
+        return $this->render('BH3Bundle:Admin:news.html.twig');
     }
 
     /**
@@ -33,6 +33,8 @@ class AdminController extends Controller
         {
             throw new AccessDeniedException('Accès limité aux managers et administrateurs');
         }
+
+        return $this->render('BH3Bundle:Admin:membres.html.twig');
     }
 
     /**
@@ -45,6 +47,8 @@ class AdminController extends Controller
         {
             throw new AccessDeniedException('Accès limité aux administrateurs');
         }
+
+        return $this->render('BH3Bundle:Admin:messagerie.html.twig');
     }
 
     /**
@@ -57,6 +61,8 @@ class AdminController extends Controller
         {
             throw new AccessDeniedException('Accès limité aux administrateurs');
         }
+
+        return $this->render('BH3Bundle:Admin:rosters.html.twig');
     }
 
     /**
@@ -69,6 +75,8 @@ class AdminController extends Controller
         {
             throw new AccessDeniedException('Accès limité aux administrateurs');
         }
+
+        return $this->render('BH3Bundle:Admin:palmares.html.twig');
     }
 
     /**
@@ -81,5 +89,7 @@ class AdminController extends Controller
         {
             throw new AccessDeniedException('Accès limité aux administrateurs');
         }
+
+        return $this->render('BH3Bundle:Admin:partenaires.html.twig');
     }
 }

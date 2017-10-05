@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Email
  *
- * @ORM\Table(name="email")
+ * @ORM\Table(name="bh3_emails")
  * @ORM\Entity(repositoryClass="BH3Bundle\Repository\EmailRepository")
  */
 class Email

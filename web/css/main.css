@@ -78,6 +78,22 @@ body
 main { flex: 1 0 auto; }
 
 
+/* FORMULAIRES */
+
+.input-field input:focus + label,
+.input-field textarea:focus + label,
+p a { color: #b71c1c !important; }
+
+.input-field input:focus,
+.input-field textarea:focus,
+input[type=text].valid:not(.browser-default),
+input[type=text].valid:not(.browser-default):focus,
+.select-wrapper.valid>input.select-dropdown {
+    border-bottom: 1px solid #b71c1c !important;
+    box-shadow: 0 1px 0 0 #B71B1B !important;
+}
+
+
 /* GENERAL */
 
 .cursor-default { cursor:default; }

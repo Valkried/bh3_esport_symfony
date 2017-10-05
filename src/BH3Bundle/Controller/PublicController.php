@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use BH3Bundle\Entity\Email;
+use BH3Bundle\Form\ContactType;
 
 class PublicController extends Controller
 {
@@ -143,6 +145,11 @@ class PublicController extends Controller
      */
     public function contactAction()
     {
-        return $this->render('BH3Bundle:Public:contact.html.twig');
+        $email = new Email;
+        $contactForm = $this->createForm(ContactType::class, $email);
+
+        return $this->render('BH3Bundle:Public:contact.html.twig', array(
+            'contactForm' => $contactForm->createView()
+        ));
     }
 }

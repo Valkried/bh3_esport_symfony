@@ -29,11 +29,11 @@
         </header>
 
         {# MENU #}
-        {% block menu %}
-            <nav>
+        <nav>
+            {% block menu %}
                 {{ render(controller("BH3Bundle:Public:menu")) }}
-            </nav>
-        {% endblock %}
+            {% endblock %}
+        </nav>
 
         {# CONTENU PRINCIPAL #}
         <main class="container">

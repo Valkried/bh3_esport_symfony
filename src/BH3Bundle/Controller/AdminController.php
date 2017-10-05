@@ -5,6 +5,7 @@ namespace BH3Bundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AdminController extends Controller
 {
@@ -14,6 +15,11 @@ class AdminController extends Controller
      */
     public function newsAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_REDACTEUR'))
+        {
+            throw new AccessDeniedException('Accès limité au rédacteur et aux administrateurs');
+        }
+
 
     }
 
@@ -23,7 +29,10 @@ class AdminController extends Controller
      */
     public function membresAction()
     {
-
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_MANAGER'))
+        {
+            throw new AccessDeniedException('Accès limité aux managers et administrateurs');
+        }
     }
 
     /**
@@ -32,7 +41,10 @@ class AdminController extends Controller
      */
     public function messagerieAction()
     {
-
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+        {
+            throw new AccessDeniedException('Accès limité aux administrateurs');
+        }
     }
 
     /**
@@ -41,7 +53,10 @@ class AdminController extends Controller
      */
     public function rostersAction()
     {
-
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+        {
+            throw new AccessDeniedException('Accès limité aux administrateurs');
+        }
     }
 
     /**
@@ -50,7 +65,10 @@ class AdminController extends Controller
      */
     public function palmaresAction()
     {
-
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+        {
+            throw new AccessDeniedException('Accès limité aux administrateurs');
+        }
     }
 
     /**
@@ -59,6 +77,9 @@ class AdminController extends Controller
      */
     public function partenairesAction()
     {
-
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+        {
+            throw new AccessDeniedException('Accès limité aux administrateurs');
+        }
     }
 }

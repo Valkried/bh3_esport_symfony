@@ -3,6 +3,9 @@
     {# DESKTOP #}
     <ul id="nav-mobile" class="hide-on-med-and-down center-align">
 
+        {% if is_granted('ROLE_REDACTEUR') or is_granted('ROLE_MANAGER') %}
+            <li class="dropdown-button" data-activates="dropdown-admin" data-hover="true" data-belowOrigin="true"><a class="cursor-default red-text"><i class="material-icons left">settings</i>ADMINISTRATION</a>
+        {% endif %}
         <li><a href="{{ path('home') }}">NEWS</a>
         <li class="dropdown-button" data-activates="dropdown-club" data-hover="true" data-belowOrigin="true"><a class="cursor-default">LE CLUB</a>
         <li class="dropdown-button" data-activates="dropdown-roster" data-hover="true" data-belowOrigin="true"><a class="cursor-default">ROSTERS</a>
@@ -31,11 +34,48 @@
 
     </ul>
 
+    {# Dropdown Admin #}
+    <ul id="dropdown-admin" class="dropdown-content">
+
+        {% if is_granted('ROLE_REDACTEUR') %}
+            <li><a href="{{ path('admin_news') }}"><i class="material-icons left">create</i>NEWS</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_MANAGER') %}
+            <li><a href="{{ path('admin_membres') }}"><i class="material-icons left">group</i>MEMBRES</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('admin_rosters') }}"><i class="material-icons left">group_work</i>ROSTERS</a></li>
+            <li><a href="{{ path('admin_palmares') }}"><i class="material-icons left">school</i>PALMARES</a></li>
+            <li><a href="{{ path('admin_partenaires') }}"><i class="material-icons left">monetization_on</i>PARTENAIRES</a></li>
+            <li><a href="{{ path('admin_messagerie') }}"><i class="material-icons left">email</i>MESSAGERIE</a></li>
+        {% endif %}
+        <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons left">person</i>DECONNEXION</a></li>
+
+    </ul>
+
     {# MOBILE #}
     <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <ul id="mobile" class="side-nav">
     
+        {% if is_granted('ROLE_REDACTEUR') or is_granted('ROLE_MANAGER') %}
+            <li><a class="red-text text-darken-4">ADMINISTRATION</a></li>
+            {% if is_granted('ROLE_REDACTEUR') %}
+                <li><a href="{{ path('admin_news') }}"><i class="material-icons left red-text text-darken-4">create</i>NEWS</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_MANAGER') %}
+                <li><a href="{{ path('admin_membres') }}"><i class="material-icons left red-text text-darken-4">group</i>MEMBRES</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('admin_rosters') }}"><i class="material-icons left red-text text-darken-4">group_work</i>ROSTERS</a></li>
+                <li><a href="{{ path('admin_palmares') }}"><i class="material-icons left red-text text-darken-4">school</i>PALMARES</a></li>
+                <li><a href="{{ path('admin_partenaires') }}"><i class="material-icons left red-text text-darken-4">monetization_on</i>PARTENAIRES</a></li>
+                <li><a href="{{ path('admin_messagerie') }}"><i class="material-icons left red-text text-darken-4">email</i>MESSAGERIE</a></li>
+            {% endif %}
+            <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons left red-text text-darken-4">person</i>DECONNEXION</a></li>
+            <li class="divider red red-darken-4"></li>
+        {% endif %}
+
         <li><a href="{{ path('home') }}">NEWS</a></li>
         <li><a href="{{ path('presentation') }}">PRESENTATION</a></li>
         <li><a href="{{ path('staff') }}">STAFF</a></li>

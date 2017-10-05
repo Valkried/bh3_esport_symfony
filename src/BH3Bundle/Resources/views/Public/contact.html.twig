@@ -42,30 +42,35 @@
 
                 <div class="row">
 
+                    {# Nom #}
                     <div class="col s12 m6 l4 input-field">
                         {{ form_widget(contactForm.name) }}
                         {{ form_label(contactForm.name, 'Entrez votre nom') }}
                         {{ form_errors(contactForm.name) }}
                     </div>
 
+                    {# Email #}
                     <div class="col s12 m6 l4 input-field">
                         {{ form_widget(contactForm.email) }}
                         {{ form_label(contactForm.email, 'Entrez votre adresse email') }}
                         {{ form_errors(contactForm.email) }}
                     </div>
 
+                    {# Sujet #}
                     <div class="col s12 m6 l4 input-field">
                         {{ form_widget(contactForm.subject) }}
                         {{ form_label(contactForm.subject, 'Sujet de votre message') }}
                         {{ form_errors(contactForm.subject) }}
                     </div>
 
+                    {# Contenu #}
                     <div class="col s12 input-field">
                         {{ form_widget(contactForm.content, {'attr': {'class': 'materialize-textarea'}}) }}
                         {{ form_label(contactForm.content, 'Entrez votre message') }}
                         {{ form_errors(contactForm.content) }}
                     </div>
 
+                    {# Envoyer #}
                     <div class="col s12 input-field">
                         {{ form_widget(contactForm.submit, {'attr': {'class': 'btn-large waves-effect waves-light hoverable red darken-4'}, 'label': 'Envoyer'}) }}
                     </div>

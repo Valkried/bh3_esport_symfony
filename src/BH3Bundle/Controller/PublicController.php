@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
 use BH3Bundle\Entity\Email;
 use BH3Bundle\Form\ContactType;
 
@@ -141,12 +142,36 @@ class PublicController extends Controller
 
     /**
      * @Route("/contact", name="contact")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
         $email = new Email;
         $contactForm = $this->createForm(ContactType::class, $email);
+
+        if ($request->isMethod('POST') && $contactForm->handleRequest($request)->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($email);
+            $em->flush();
+
+            $message = (new \Swift_Message('Contact BH3'))
+                ->setFrom($email->getEmail())
+                ->setTo('burningheads@live.fr')
+                ->setBody(
+                    $this->renderView('Emails/contact.html.twig', array(
+                        'name' => $email->getName(),
+                        'subject' => $email->getSubject(),
+                        'email' => $email->getEmail(),
+                        'content' => $email->getContent(),
+                        'date' => $email->getDate()
+                    ), 'text/html')
+                );
+
+            $this->get('mailer')->send($message);
+
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('BH3Bundle:Public:contact.html.twig', array(
             'contactForm' => $contactForm->createView()

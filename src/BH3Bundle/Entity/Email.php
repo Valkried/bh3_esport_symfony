@@ -57,6 +57,12 @@ class Email
     private $date;
 
 
+    public function __construct()
+    {
+        $this->setDate(new \Datetime());
+    }
+
+
     /**
      * Get id
      *

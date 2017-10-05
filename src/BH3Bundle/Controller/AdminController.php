@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     /**
      * @Route("/admin/news", name="admin_news")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function newsAction()
     {
@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/membres", name="admin_membres")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function membresAction()
     {
@@ -28,7 +28,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/messagerie", name="admin_messagerie")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function messagerieAction()
     {
@@ -37,7 +37,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/rosters", name="admin_rosters")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function rostersAction()
     {
@@ -46,7 +46,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/palmares", name="admin_palmares")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function palmaresAction()
     {
@@ -55,7 +55,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/partenaires", name="admin_partenaires")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function partenairesAction()
     {

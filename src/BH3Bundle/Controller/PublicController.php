@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use BH3Bundle\Entity\Email;
-use BH3Bundle\Form\ContactType;
+use BH3Bundle\Form\Type\ContactType;
 
 class PublicController extends Controller
 {

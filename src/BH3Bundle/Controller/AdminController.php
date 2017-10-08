@@ -5,22 +5,39 @@ namespace BH3Bundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use BH3Bundle\Entity\News;
+use BH3Bundle\Form\Type\NewsType;
 
 class AdminController extends Controller
 {
     /**
      * @Route("/admin/news", name="admin_news")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function newsAction()
+    public function newsAction(Request $request)
     {
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_REDACTEUR'))
         {
             throw new AccessDeniedException('Accès limité au rédacteur et aux administrateurs');
         }
+
+        $new = new News;
+        $form = $this->createForm(NewsType::class, $new);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($new);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_news');
+        }
         
-        return $this->render('BH3Bundle:Admin:news.html.twig');
+        return $this->render('BH3Bundle:Admin:news.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

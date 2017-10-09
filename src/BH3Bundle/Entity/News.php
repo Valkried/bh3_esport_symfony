@@ -36,6 +36,12 @@ class News
     private $content;
 
     /**
+     * @ORM\ManyToOne(targetEntity="BH3Bundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255, unique=true)
@@ -185,5 +191,29 @@ class News
     public function getPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \BH3Bundle\Entity\User $author
+     *
+     * @return News
+     */
+    public function setAuthor(\BH3Bundle\Entity\User $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \BH3Bundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

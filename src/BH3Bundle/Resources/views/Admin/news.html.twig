@@ -82,7 +82,7 @@
                     {# Titre #}
                     <div class="card-content">
                         <span class="card-title activator">{{ new.title }}</span>
-                        <p>Par Auteur, le {{ new.date|date('d/m/Y à h:i') }}</p>
+                        <p>Par {{ new.author.username }}, le {{ new.date|date('d/m/Y à h:i') }}</p>
                     </div>
 
                     {# Modifier / Supprimer #}
@@ -92,7 +92,7 @@
                     </div>
 
                     {# Contenu #}
-                    <div class="card-reveal">
+                    <div class="card-reveal center-align">
                         <span class="card-title">{{ new.title }}<i class="material-icons right">close</i></span>
                         <p>{{ new.content|nl2br }}</p>
                     </div>

@@ -15,7 +15,7 @@
 
             <div class="card-panel">
                 <h3>{{ news.title }}</h3>
-                <h5>Par auteur, le {{ news.date|date('d/m/Y à h:i') }}</h5>
+                <h5>Par {{ news.author.username }}, le {{ news.date|date('d/m/Y à h:i') }}</h5>
             </div>
 
             <div class="card-panel">

@@ -62,6 +62,15 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/admin/news/delete/{id}", name="admin_news_delete", requirements={"id" = "\d+"})
+     * Method("GET")
+     */
+    public function newsDeleteAction()
+    {
+
+    }
+
+    /**
      * @Route("/admin/membres", name="admin_membres")
      * @Method("GET")
      */

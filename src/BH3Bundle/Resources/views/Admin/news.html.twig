@@ -24,6 +24,7 @@
             <h4>Module de news</h4>
         </div>
 
+        {# FORMULAIRE #}
         <div class="col s12">
             <div class="card-panel">
 
@@ -56,16 +57,64 @@
                         </div>
 
                         <div class="col s12 m6 input-field">
-                            {{ form_widget(form.submit, {'attr': {'class': 'btn cyan darken-2 waves-effect waves-light hoverable'}}) }}
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn cyan darken-2 waves-effect waves-light hoverable'}, 'label': 'Poster une news'}) }}
                         </div>
 
                     </div>
 
                     {{ form_rest(form) }}
-
                     {{ form_end(form) }}
 
             </div>
+        </div>
+
+        {# LISTE DE NEWS #}
+        {% for new in news %}
+            <div class="col s12">
+                <div class="card sticky-action hoverable">
+
+                    {# Bannière et bouton flottant #}
+                    <div class="card-image">
+                        <img src="{{ asset('img/news/'~ new.picture) }}" alt="{{ new.title }}" class="activator waves-effect waves-light">
+                        <a href="" class="btn-floating btn-large halfway-fab waves-effect waves-light"><i class="material-icons">lock</i></a>
+                    </div>
+
+                    {# Titre #}
+                    <div class="card-content">
+                        <span class="card-title activator">{{ new.title }}</span>
+                    </div>
+
+                    {# Modifier / Supprimer #}
+                    <div class="card-action">
+                        <a href="" class="left"><i class="material-icons left">delete</i>Supprimer</a>
+                        <a href=""><i class="material-icons left">edit</i>Modifier</a>
+                    </div>
+
+                    {# Contenu #}
+                    <div class="card-reveal">
+                        <span class="card-title">{{ new.title }}<i class="material-icons right">close</i></span>
+                        <p>{{ new.content|nl2br }}</p>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+
+        {# PAGINATION #}
+        <div class="col s12 center-align">
+            <ul class="pagination">
+
+                {# Page précédente #}
+                {% if currentPage > 1 %}
+                    <li class="waves-effect"><a href="{{ path('admin_news', {'page': currentPage - 1}) }}"><i class="material-icons left">chevron_left</i>Page précédente</a></li>
+                {% endif %}
+
+                {# Page suivante #}
+                {% if currentPage != nbPages %}
+                    <li class="waves-effect"><a href="{{ path('admin_news', {'page': currentPage + 1}) }}"><i class="material-icons right">chevron_right</i>Page suivante</a></li>
+                {% endif %}
+
+            </ul>
         </div>
 
     </div>

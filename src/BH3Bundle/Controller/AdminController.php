@@ -13,15 +13,29 @@ use BH3Bundle\Form\Type\NewsType;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin/news", name="admin_news")
+     * @Route("/admin/news/{page}", name="admin_news", requirements={"page" = "\d+"}, defaults={"page" = 1})
      * @Method({"GET", "POST"})
      */
-    public function newsAction(Request $request)
+    public function newsAction(Request $request, $page)
     {
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_REDACTEUR'))
         {
             throw new AccessDeniedException('Accès limité au rédacteur et aux administrateurs');
         }
+
+        $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
+        
+        $limit = 3; // Nombre de news à afficher par page
+        
+        $offset = ($page - 1) * $limit;
+        $nbPages = ceil(count($repository->findAll()) / $limit);
+
+        if ($page > $nbPages)
+        {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $listNews = $repository->getAllNews($offset, $limit);
 
         $new = new News;
         $form = $this->createForm(NewsType::class, $new);
@@ -36,7 +50,10 @@ class AdminController extends Controller
         }
         
         return $this->render('BH3Bundle:Admin:news.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'news' => $listNews,
+            'nbPages' => $nbPages,
+            'currentPage' => $page
         ));
     }
 

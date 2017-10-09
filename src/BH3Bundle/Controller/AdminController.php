@@ -18,11 +18,6 @@ class AdminController extends Controller
      */
     public function newsAction(Request $request, $page)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_REDACTEUR'))
-        {
-            throw new AccessDeniedException('Accès limité au rédacteur et aux administrateurs');
-        }
-
         $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
         
         $limit = 3; // Nombre de news à afficher par page
@@ -58,16 +53,20 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/admin/news/edit/{id}", name="admin_news_edit", requirements={"id" = "\d+"})
+     * @Method("GET")
+     */
+    public function newsEditAction()
+    {
+
+    }
+
+    /**
      * @Route("/admin/membres", name="admin_membres")
      * @Method("GET")
      */
     public function membresAction()
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_MANAGER'))
-        {
-            throw new AccessDeniedException('Accès limité aux managers et administrateurs');
-        }
-
         return $this->render('BH3Bundle:Admin:membres.html.twig');
     }
 
@@ -77,11 +76,6 @@ class AdminController extends Controller
      */
     public function messagerieAction()
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('Accès limité aux administrateurs');
-        }
-
         return $this->render('BH3Bundle:Admin:messagerie.html.twig');
     }
 
@@ -91,11 +85,6 @@ class AdminController extends Controller
      */
     public function rostersAction()
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('Accès limité aux administrateurs');
-        }
-
         return $this->render('BH3Bundle:Admin:rosters.html.twig');
     }
 
@@ -105,11 +94,6 @@ class AdminController extends Controller
      */
     public function palmaresAction()
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('Accès limité aux administrateurs');
-        }
-
         return $this->render('BH3Bundle:Admin:palmares.html.twig');
     }
 
@@ -119,11 +103,6 @@ class AdminController extends Controller
      */
     public function partenairesAction()
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('Accès limité aux administrateurs');
-        }
-
         return $this->render('BH3Bundle:Admin:partenaires.html.twig');
     }
 }

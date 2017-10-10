@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use BH3Bundle\Entity\News;
 use BH3Bundle\Form\Type\NewsType;
+use Symfony\Component\Filesystem\Filesystem;
 
 class AdminController extends Controller
 {
@@ -57,7 +58,7 @@ class AdminController extends Controller
      * @Route("/admin/news/edit/{id}", name="admin_news_edit", requirements={"id" = "\d+"})
      * @Method("GET")
      */
-    public function newsEditAction()
+    public function newsEditAction($id)
     {
 
     }
@@ -66,9 +67,18 @@ class AdminController extends Controller
      * @Route("/admin/news/delete/{id}", name="admin_news_delete", requirements={"id" = "\d+"})
      * Method("GET")
      */
-    public function newsDeleteAction()
+    public function newsDeleteAction($id)
     {
+        $new = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
 
+        $fs = new FileSystem();
+        $fs->remove($this->getParameter('img_directory').'/news//'.$new->getPicture());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($new);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_news');
     }
 
     /**

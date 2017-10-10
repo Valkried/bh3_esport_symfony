@@ -14,7 +14,7 @@ class Pagination
     {
         $offset = ($currentPage - 1) * $nbElt;
 
-        if ($criteria)
+        if ($criteria && $criteriaValue)
         {
             $this->listElt = $repository->findBy(
                 array($criteria => $criteriaValue),

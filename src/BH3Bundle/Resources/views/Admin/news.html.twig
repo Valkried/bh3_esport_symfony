@@ -76,7 +76,7 @@
                     {# Bannière et bouton flottant #}
                     <div class="card-image">
                         <img src="{{ asset('img/news/'~ new.picture) }}" alt="{{ new.title }}" class="activator waves-effect waves-light">
-                        <a href="" class="btn-floating btn-large halfway-fab waves-effect waves-light cyan darken-2">
+                        <a href="{{ path('admin_news_visibility', {'id': new.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light cyan darken-2">
                             <i class="material-icons">{% if new.published %}lock_open{% else %}lock{% endif %}</i>
                         </a>
                     </div>

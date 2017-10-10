@@ -82,6 +82,20 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/admin/news/visibility/{id}", name="admin_news_visibility", requirements={"id" = "\d+"})
+     */
+    public function newsVisibilityAction($id)
+    {
+        $new = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
+
+        ($new->getPublished() === true) ? $new->setPublished(false) : $new->setPublished(true);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('admin_news');
+    }
+
+    /**
      * @Route("/admin/membres", name="admin_membres")
      * @Method("GET")
      */

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use BH3Bundle\Entity\News;
 use BH3Bundle\Form\Type\NewsType;
+use BH3Bundle\Services\Pagination;
 
 class AdminController extends Controller
 {
@@ -16,11 +17,12 @@ class AdminController extends Controller
      * @Route("/admin/news/{page}", name="admin_news", requirements={"page" = "\d+"}, defaults={"page" = 1})
      * @Method({"GET", "POST"})
      */
-    public function newsAction(Request $request, $page)
+    public function newsAction(Request $request, $page, Pagination $pagination)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
 
-        $pagination = $this->get('bh3.pagination');
+        // Paramètres : limite, tri, ordre, repository, page actuelle, critère, valeur du critère)
+        $pagination->activate(3, 'date', 'DESC', $repository, $page);
 
         $new = new News;
         $form = $this->createForm(NewsType::class, $new);
@@ -36,7 +38,7 @@ class AdminController extends Controller
         
         return $this->render('BH3Bundle:Admin:news.html.twig', array(
             'form' => $form->createView(),
-            'news' => $pagination->getList(3, 'date', 'DESC', $repository, $page),
+            'news' => $pagination->getElements(),
             'nbPages' => $pagination->getPages(),
             'currentPage' => $page
         ));

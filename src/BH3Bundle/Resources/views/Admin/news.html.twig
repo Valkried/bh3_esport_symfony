@@ -89,8 +89,19 @@
 
                     {# Modifier / Supprimer #}
                     <div class="card-action">
-                        <a href="{{ path('admin_news_delete', {'id': new.id}) }}" class="left red-text"><i class="material-icons left">delete</i>Supprimer</a>
+                        <a href="#modal{{ new.id }}" class="left red-text modal-trigger"><i class="material-icons left">delete</i>Supprimer</a>
                         <a href="" class="yellow-text text-darken-3"><i class="material-icons left">edit</i>Modifier</a>
+                    </div>
+
+                    {# Fenêtre modale #}
+                    <div id="modal{{ new.id }}" class="modal">
+                        <div class="modal-content">
+                            <h5>Êtes-vous sûr de vouloir supprimer cette news ?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ path('admin_news_delete', {'id': new.id}) }}" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
+                            <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
+                        </div>
                     </div>
 
                     {# Contenu #}

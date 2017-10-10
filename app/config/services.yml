@@ -17,7 +17,3 @@ services:
     BH3Bundle\:
         resource: '../../src/BH3Bundle/*'
         exclude: '../../src/BH3Bundle/{Entity,Repository}'
-
-    BH3Bundle\Services\FileUploader:
-        arguments:
-            $targetDir: '%img_directory%'

@@ -20,8 +20,8 @@ class PublicController extends Controller
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
 
-        // Paramètres : limite, tri, ordre, repository, page actuelle, critère, valeur du critère)
-        $pagination = $this->get('bh3.pagination')->setParameters(3, 'date', 'DESC', $repository, $page, 'published', 1);
+        // Paramètres : limite, page actuelle, repository, tri, ordre, critère de sélection (opt), valeur du critère (opt)
+        $pagination = $this->get('bh3.pagination')->setParameters(3, $page, $repository, 'date', 'DESC', 'published', true);
 
         return $this->render('BH3Bundle:Public:index.html.twig', array(
             'news' => $pagination->getElements(),

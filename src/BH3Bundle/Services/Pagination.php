@@ -10,7 +10,7 @@ class Pagination
     private $listElt;
     private $listPages;
 
-    public function setParameters($nbElt, $order, $sorting, $repository, $currentPage, $criteria = null, $criteriaValue = null)
+    public function setParameters($nbElt, $currentPage, $repository, $sorting, $order, $criteria = null, $criteriaValue = null)
     {
         $offset = ($currentPage - 1) * $nbElt;
 
@@ -18,7 +18,7 @@ class Pagination
         {
             $this->listElt = $repository->findBy(
                 array($criteria => $criteriaValue),
-                array($order => $sorting),
+                array($sorting => $order),
                 $nbElt, $offset);
         }
 
@@ -26,7 +26,7 @@ class Pagination
         {
             $this->listElt = $repository->findBy(
                 array(),
-                array($order => $sorting),
+                array($sorting => $order),
                 $nbElt, $offset);
         }
 

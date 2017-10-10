@@ -3,6 +3,7 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * News
@@ -25,6 +26,13 @@ class News
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *    min = 10,
+     *    max = 60,
+     *    minMessage = "Le nom doit faire au moins 10 caractères",
+     *    maxMessage = "Le champ ne doit pas dépasser 60 caractères")
+     * @Assert\NotBlank(message = "Le titre doit être renseigné")
+     * @Assert\Type(type = "string")
      */
     private $title;
 
@@ -32,6 +40,11 @@ class News
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\Length(
+     *    min = 50,
+     *    minMessage = "Le contenu doit faire au moins 50 caractères")
+     * @Assert\NotBlank(message = "Le contenu doit être renseigné")
+     * @Assert\Type(type = "string")
      */
     private $content;
 
@@ -45,6 +58,23 @@ class News
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255, unique=true)
+     * @Assert\File(
+     *    maxSize = "300k",
+     *    maxSizeMessage = "L'image ne doit pas dépasser 300ko",
+     *    disallowEmptyMessage = "Le fichier ne doit pas être vide",
+     *    notFoundMessage = "Le fichier n'a pas été trouvé")
+     * @Assert\Image(
+     *    minWidth = 1280,
+     *    minWidthMessage = "L'image est trop petite (minimum 1280px de large)",
+     *    maxWidth = 1280,
+     *    maxWidthMessage = "L'image est trop grande (maximum 1280px de large)",
+     *    minHeight = 512,
+     *    minHeightMessage = "L'image est trop petite (minimum 512px de hauteur)",
+     *    maxHeight = 512,
+     *    maxHeightMessage = "L'image est trop grande (minimum 512px de hauteur)",
+     *    mimeTypes = {"image/jpeg", "image/png"},
+     *    mimeTypesMessage = "Cette image n'est pas valide",
+     *    sizeNotDetectedMessage = "La taille de l'image n'a pas pu être détectée")
      */
     private $picture;
 

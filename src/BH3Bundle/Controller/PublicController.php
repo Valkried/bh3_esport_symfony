@@ -20,21 +20,11 @@ class PublicController extends Controller
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
 
-        $limit = 3; // Nombre de news à afficher par page
-        
-        $offset = ($page - 1) * $limit;
-        $nbPages = ceil(count($repository->findAll()) / $limit);
-
-        if ($page > $nbPages)
-        {
-            throw new NotFoundHttpException('La page demandée n\'existe pas');
-        }
-
-        $listNews = $repository->getAllNews($offset, $limit);
+        $pagination = $this->get('bh3.pagination');
 
         return $this->render('BH3Bundle:Public:index.html.twig', array(
-            'news' => $listNews,
-            'nbPages' => $nbPages,
+            'news' => $pagination->getList(3, 'date', 'DESC', $repository, $page, 'published', 1),
+            'nbPages' => $pagination->getPages(),
             'currentPage' => $page
         ));
     }

@@ -10,7 +10,7 @@ class Pagination
     private $listElt;
     private $listPages;
 
-    public function activate($nbElt, $order, $sorting, $repository, $currentPage, $criteria = null, $criteriaValue = null)
+    public function setParameters($nbElt, $order, $sorting, $repository, $currentPage, $criteria = null, $criteriaValue = null)
     {
         $offset = ($currentPage - 1) * $nbElt;
 
@@ -36,6 +36,8 @@ class Pagination
         {
             throw new NotFoundHttpException('La page demandée n\'existe pas');
         }
+
+        return $this;
     }
 
     public function getElements()

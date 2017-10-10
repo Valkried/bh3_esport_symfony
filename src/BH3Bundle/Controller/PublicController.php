@@ -9,7 +9,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use BH3Bundle\Entity\Email;
 use BH3Bundle\Form\Type\ContactType;
-use BH3Bundle\Services\Pagination;
 
 class PublicController extends Controller
 {
@@ -17,12 +16,12 @@ class PublicController extends Controller
      * @Route("/{page}", name="home", requirements={"page" = "\d+"}, defaults={"page" = 1})
      * @Method("GET")
      */
-    public function indexAction($page, Pagination $pagination)
+    public function indexAction($page)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
 
         // Paramètres : limite, tri, ordre, repository, page actuelle, critère, valeur du critère)
-        $pagination->activate(3, 'date', 'DESC', $repository, $page, 'published', 1);
+        $pagination = $this->get('bh3.pagination')->setParameters(3, 'date', 'DESC', $repository, $page, 'published', 1);
 
         return $this->render('BH3Bundle:Public:index.html.twig', array(
             'news' => $pagination->getElements(),

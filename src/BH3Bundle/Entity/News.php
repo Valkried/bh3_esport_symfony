@@ -60,7 +60,14 @@ class News
      *
      * @ORM\Column(name="published", type="boolean")
      */
-    private $published = false;
+    private $published;
+
+
+    public function __construct()
+    {
+        $this->setDate(new \Datetime);
+        $this->setPublished(false);
+    }
 
 
     /**

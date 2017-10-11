@@ -32,7 +32,6 @@ class Email
      *    minMessage = "Le nom doit faire au moins 2 caractères",
      *    maxMessage = "Le champ ne doit pas dépasser 50 caractères")
      * @Assert\NotBlank(message = "Le nom doit être renseigné")
-     * @Assert\Type(type = "string")
      */
     private $name;
 
@@ -42,7 +41,6 @@ class Email
      * @ORM\Column(name="email", type="string", length=255)
      * @Assert\Email(message = "L'email {{ value }} n'est pas valide", checkMX = true)
      * @Assert\NotBlank(message = "L'email doit être renseigné")
-     * @Assert\Type(type = "string")
      */
     private $email;
 
@@ -56,7 +54,6 @@ class Email
      *    minMessage = "Le sujet doit faire au moins 2 caractères",
      *    maxMessage = "Le champ ne doit pas dépasser 255 caractères")
      * @Assert\NotBlank(message = "Le sujet doit être renseigné")
-     * @Assert\Type(type = "string")
      */
     private $subject;
 
@@ -70,7 +67,6 @@ class Email
      *    minMessage = "Le contenu doit faire au moins 2 caractères",
      *    maxMessage = "Le champ ne doit pas dépasser 1000 caractères")
      * @Assert\NotBlank(message = "Le contenu doit être renseigné")
-     * @Assert\Type(type = "string")
      */
     private $content;
 

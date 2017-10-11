@@ -3,6 +3,7 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Membre
@@ -25,6 +26,12 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 60,
+     *    minMessage = "Le pseudo doit faire au moins 2 caractères",
+     *    maxMessage = "Le pseudo ne doit pas dépasser 60 caractères")
+     * @Assert\NotBlank(message = "Le pseudo doit être renseigné")
      */
     private $pseudo;
 
@@ -32,6 +39,12 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 60,
+     *    minMessage = "Le prénom doit faire au moins 2 caractères",
+     *    maxMessage = "Le prénom ne doit pas dépasser 60 caractères")
+     * @Assert\NotBlank(message = "Le prénom doit être renseigné")
      */
     private $name;
 
@@ -39,6 +52,8 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Assert\Email(message = "L'email {{ value }} n'est pas valide", checkMX = true)
+     * @Assert\NotBlank(message = "L'email doit être renseigné")
      */
     private $email;
 
@@ -46,6 +61,9 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="rank", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *    max = 60,
+     *    maxMessage = "La fonction ne doit pas dépasser 60 caractères")
      */
     private $rank;
 
@@ -53,6 +71,9 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *    max = 255,
+     *    maxMessage = "Le twitter ne doit pas dépasser 255 caractères")
      */
     private $twitter;
 
@@ -60,6 +81,13 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="profile", type="string", length=255, nullable=true)
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' n'est pas valide",
+     *    checkDNS = true,
+     *    dnsMessage = "L'hôte '{{ value }}' n'a pas pu être trouvé")
+     * @Assert\Length(
+     *    max = 255,
+     *    maxMessage = "L'url ne doit pas dépasser 255 caractères")
      */
     private $profile;
 
@@ -67,6 +95,23 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255)
+     * @Assert\File(
+     *    maxSize = "100k",
+     *    maxSizeMessage = "L'image ne doit pas dépasser 100ko",
+     *    disallowEmptyMessage = "Le fichier ne doit pas être vide",
+     *    notFoundMessage = "Le fichier n'a pas été trouvé")
+     * @Assert\Image(
+     *    minWidth = 250,
+     *    minWidthMessage = "L'image est trop petite (250*250px)",
+     *    maxWidth = 250,
+     *    maxWidthMessage = "L'image est trop large (250*250px)",
+     *    minHeight = 250,
+     *    minHeightMessage = "L'image est trop petite (250*250px)",
+     *    maxHeight = 250,
+     *    maxHeightMessage = "L'image est trop haute (250*250px)",
+     *    mimeTypes = {"image/jpeg", "image/png"},
+     *    mimeTypesMessage = "Cette image n'est pas valide",
+     *    sizeNotDetectedMessage = "La taille de l'image n'a pas pu être détectée")
      */
     private $picture;
 
@@ -74,6 +119,9 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="plateforme", type="string", length=255)
+     * @Assert\Length(
+     *    max = 255,
+     *    maxMessage = "La plateforme ne doit pas dépasser 255 caractères")
      */
     private $plateforme;
 
@@ -81,6 +129,10 @@ class Membre
      * @var bool
      *
      * @ORM\Column(name="staff", type="boolean")
+     * @Assert\Type(
+     *     type="bool",
+     *     message="La valeur {{ value }} n'est pas valide {{ type }}")
+     * @Assert\NotBlank(message = "La plateforme doit être sélectionnée")
      */
     private $staff;
 

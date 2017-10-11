@@ -29,10 +29,9 @@ class News
      * @Assert\Length(
      *    min = 10,
      *    max = 60,
-     *    minMessage = "Le nom doit faire au moins 10 caractères",
-     *    maxMessage = "Le champ ne doit pas dépasser 60 caractères")
+     *    minMessage = "Le titre doit faire au moins 10 caractères",
+     *    maxMessage = "Le titre ne doit pas dépasser 60 caractères")
      * @Assert\NotBlank(message = "Le titre doit être renseigné")
-     * @Assert\Type(type = "string")
      */
     private $title;
 
@@ -44,7 +43,6 @@ class News
      *    min = 50,
      *    minMessage = "Le contenu doit faire au moins 50 caractères")
      * @Assert\NotBlank(message = "Le contenu doit être renseigné")
-     * @Assert\Type(type = "string")
      */
     private $content;
 
@@ -65,13 +63,13 @@ class News
      *    notFoundMessage = "Le fichier n'a pas été trouvé")
      * @Assert\Image(
      *    minWidth = 1280,
-     *    minWidthMessage = "L'image est trop petite (minimum 1280px de large)",
+     *    minWidthMessage = "L'image est trop petite (1280*512px)",
      *    maxWidth = 1280,
-     *    maxWidthMessage = "L'image est trop grande (maximum 1280px de large)",
+     *    maxWidthMessage = "L'image est trop large (1280*512px)",
      *    minHeight = 512,
-     *    minHeightMessage = "L'image est trop petite (minimum 512px de hauteur)",
+     *    minHeightMessage = "L'image est trop petite (1280*512px)",
      *    maxHeight = 512,
-     *    maxHeightMessage = "L'image est trop grande (minimum 512px de hauteur)",
+     *    maxHeightMessage = "L'image est trop haute (1280*512px)",
      *    mimeTypes = {"image/jpeg", "image/png"},
      *    mimeTypesMessage = "Cette image n'est pas valide",
      *    sizeNotDetectedMessage = "La taille de l'image n'a pas pu être détectée")
@@ -89,6 +87,9 @@ class News
      * @var boolean
      *
      * @ORM\Column(name="published", type="boolean")
+     * @Assert\Type(
+     *     type="bool",
+     *     message="La valeur {{ value }} n'est pas valide {{ type }}")
      */
     private $published;
 

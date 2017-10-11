@@ -4,8 +4,91 @@
     Modifier une news - Administration
 {% endblock %}
 
+{% block css %}
+<style>
+    button {
+        width: 100%;
+        margin: 10px auto;
+    }
+    h4 {
+        margin-bottom: 45px;
+    }
+    .switch label {
+        pointer-events: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    @media (min-width: 1201px) {
+        .switch label {
+            position: relative;
+            top: 31px;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
-    {{ form(form) }}
+    <div class="row">
+        
+        <div class="col s12 center-align">
+            <h4>Modifier une news</h4>
+        </div>
+
+        <div class="col s12">
+            <div class="card-panel">
+
+                {{ form_start(form) }}
+
+                    <div class="row">
+
+                        <div class="col s12 input-field">
+                            {{ form_errors(form.title) }}
+                            {{ form_widget(form.title) }}
+                            {{ form_label(form.title, 'Titre') }}
+                        </div>
+
+                        <div class="col s12 input-field">
+                            {{ form_errors(form.content) }}
+                            {{ form_widget(form.content, {'attr': {'class': 'materialize-textarea'}}) }}
+                            {{ form_label(form.content, 'Contenu') }}
+                        </div>
+
+                        <div class="col s12 xl6 input-field file-field">
+                            {{ form_errors(form.picture) }}
+                            <div class="btn hoverable cyan darken-2 waves-effect waves-light">
+                                <span><i class="material-icons left">image</i>Bannière</span>
+                                {{ form_widget(form.picture) }}
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input type="text" class="file-path validate readonly" placeholder="La bannière DOIT faire 1280*512px" style="cursor: not-allowed;" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col s12 xl2">
+                            <div class="switch">
+                                <label>
+                                    <i class="material-icons">lock</i>
+                                    {{ form_widget(form.published) }}
+                                    <span class="lever"></span>
+                                    <i class="material-icons">check</i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col s12 xl4 input-field">
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn cyan darken-2 waves-effect waves-light hoverable'}, 'label': 'Modifier'}) }}
+                        </div>
+
+                    </div>
+
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+
+            </div>
+        </div>
+
+    </div>
 
 {% endblock %}

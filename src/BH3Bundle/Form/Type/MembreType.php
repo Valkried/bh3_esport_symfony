@@ -25,10 +25,10 @@ class MembreType extends AbstractType
             ->add('pseudo', TextType::class)
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
-            ->add('rank', TextType::class)
-            ->add('twitter', TextType::class)
-            ->add('profile', UrlType::class)
-            ->add('picture', FileType::class)
+            ->add('rank', TextType::class, array('required' => false))
+            ->add('twitter', TextType::class, array('required' => false))
+            ->add('profile', UrlType::class, array('required' => false))
+            ->add('picture', FileType::class, array('required' => false))
             ->add('plateforme', ChoiceType::class, array(
                 'choices' => array(
                     'Xbox' => 'xbox',

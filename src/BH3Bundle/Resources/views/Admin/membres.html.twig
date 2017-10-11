@@ -139,11 +139,11 @@
         {# LISTE DE MEMBRES #}
         {% for membre in membres %}
             <div class="col s12 m6 l4 xl3">
-                <div class="card sticky-action hoverable">
+                <div class="card hoverable">
 
                     {# Photo et bouton flottant #}
                     <div class="card-image">
-                        <img src="{{ asset('img/membres/'~ membre.picture) }}" alt="{{ membre.pseudo }}" class="activator waves-effect waves-light">
+                        <img src="{{ asset('img/membres/'~ membre.picture) }}" alt="{{ membre.pseudo }}">
                         <a href="" class="btn-floating btn-large halfway-fab waves-effect waves-light cyan darken-2">
                             <i class="material-icons">edit</i>
                         </a>
@@ -151,13 +151,13 @@
 
                     {# Titre #}
                     <div class="card-content">
-                        <span class="card-title activator">{{ membre.pseudo }}</span>
+                        <h5 class="card-title">{{ membre.pseudo|upper }}</h5>
                         <p>{{ membre.name }}</p>
                     </div>
 
                     {# Supprimer #}
                     <div class="card-action center-align">
-                        <a href="#modal{{ membre.id }}" class="red-text modal-trigger btn-flat">Supprimer</a>
+                        <a href="#modal{{ membre.id }}" class="red-text waves-effect waves-red modal-trigger btn-flat">Supprimer</a>
                     </div>
 
                     {# Fenêtre modale #}
@@ -169,11 +169,6 @@
                             <a href="" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
                             <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
                         </div>
-                    </div>
-
-                    {# Contenu #}
-                    <div class="card-reveal center-align">
-                        <span class="card-title">{{ membre.pseudo }}<i class="material-icons right">close</i></span>
                     </div>
 
                 </div>

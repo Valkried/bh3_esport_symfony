@@ -100,3 +100,5 @@ input[type=text].valid:not(.browser-default):focus,
 
 .switch label input[type=checkbox]:checked+.lever { background-color: #e57373; }
 .switch label input[type=checkbox]:checked+.lever:after { background-color: #b71c1c; }
+
+.btn-flat:focus { background-color: transparent; }

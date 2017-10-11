@@ -96,7 +96,7 @@ class Membre
         $this->setRank(null);
         $this->setTwitter(null);
         $this->setProfile(null);
-        $this->setPlateforme('xbox');
+        $this->setPlateforme('website');
         $this->setStaff(false);
     }
 

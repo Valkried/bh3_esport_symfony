@@ -1,21 +1,18 @@
 <?php
 
-namespace BH3Bundle\Controller;
+namespace BH3Bundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use BH3Bundle\Entity\News;
-use BH3Bundle\Entity\Membre;
-use BH3Bundle\Form\Type\NewsType;
-use BH3Bundle\Form\Type\MembreType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use BH3Bundle\Entity\News;
+use BH3Bundle\Form\Type\NewsType;
 
-class AdminController extends Controller
+class NewsController extends Controller
 {
     /**
      * @Route("/admin/news/{page}", name="admin_news", requirements={"page" = "\d+"}, defaults={"page" = 1})
@@ -130,77 +127,5 @@ class AdminController extends Controller
         $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('admin_news');
-    }
-
-    /**
-     * @Route("/admin/membres", name="admin_membres")
-     * @Method({"GET", "POST"})
-     */
-    public function membresAction(Request $request)
-    {
-        $membre = new Membre;
-        $form = $this->createForm(MembreType::class, $membre);
-
-        $listMembres = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->findAll();
-
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
-        {
-            if (!$membre->getPicture()) {
-                $membre->setPicture('tete-bh3.png');
-            } else {
-                $picture = $membre->getPicture();
-                $pictureName = $membre->getPseudo().'.'.$picture->guessExtension();
-                $picture->move($this->getParameter('img_directory').'/membres', $pictureName);
-                $membre->setPicture($pictureName);
-            }
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($membre);
-            $em->flush();
-
-            return $this->redirectToRoute('admin_membres');
-
-        }
-
-        return $this->render('BH3Bundle:Admin:membres.html.twig', array(
-            'form' => $form->createView(),
-            'membres' => $listMembres
-        ));
-    }
-
-    /**
-     * @Route("/admin/messagerie", name="admin_messagerie")
-     * @Method("GET")
-     */
-    public function messagerieAction()
-    {
-        return $this->render('BH3Bundle:Admin:messagerie.html.twig');
-    }
-
-    /**
-     * @Route("/admin/rosters", name="admin_rosters")
-     * @Method("GET")
-     */
-    public function rostersAction()
-    {
-        return $this->render('BH3Bundle:Admin:rosters.html.twig');
-    }
-
-    /**
-     * @Route("/admin/palmares", name="admin_palmares")
-     * @Method("GET")
-     */
-    public function palmaresAction()
-    {
-        return $this->render('BH3Bundle:Admin:palmares.html.twig');
-    }
-
-    /**
-     * @Route("/admin/partenaires", name="admin_partenaires")
-     * @Method("GET")
-     */
-    public function partenairesAction()
-    {
-        return $this->render('BH3Bundle:Admin:partenaires.html.twig');
     }
 }

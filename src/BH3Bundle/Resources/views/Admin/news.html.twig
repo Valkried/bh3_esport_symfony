@@ -77,7 +77,7 @@
                     <div class="card-image">
                         <img src="{{ asset('img/news/'~ new.picture) }}" alt="{{ new.title }}" class="activator waves-effect waves-light">
                         <a href="{{ path('admin_news_visibility', {'id': new.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light cyan darken-2">
-                            <i class="material-icons">{% if new.published %}lock_open{% else %}lock{% endif %}</i>
+                            <i class="material-icons">{% if new.published %}check{% else %}lock{% endif %}</i>
                         </a>
                     </div>
 
@@ -87,10 +87,10 @@
                         <p>Par {{ new.author.username }}, le {{ new.date|date('d/m/Y à h:i') }}</p>
                     </div>
 
-                    {# Modifier / Supprimer #}
+                    {# Supprimer / Modifier #}
                     <div class="card-action">
                         <a href="#modal{{ new.id }}" class="left red-text modal-trigger"><i class="material-icons left">delete</i>Supprimer</a>
-                        <a href="" class="yellow-text text-darken-3"><i class="material-icons left">edit</i>Modifier</a>
+                        <a href="{{ path('admin_news_edit', {'id': new.id}) }}" class="yellow-text text-darken-3"><i class="material-icons left">edit</i>Modifier</a>
                     </div>
 
                     {# Fenêtre modale #}

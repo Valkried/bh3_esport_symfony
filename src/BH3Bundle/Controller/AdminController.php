@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use BH3Bundle\Entity\News;
 use BH3Bundle\Form\Type\NewsType;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class AdminController extends Controller
 {
@@ -60,7 +62,15 @@ class AdminController extends Controller
      */
     public function newsEditAction($id)
     {
+        $new = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
+        $new->setPicture(new File($this->getParameter('img_directory').'/news//'.$new->getPicture()));
 
+        $form = $this->createForm(NewsType::class, $new);
+        $form->add('published', CheckboxType::class);
+
+        return $this->render('BH3Bundle:Admin:news_edit.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

@@ -42,48 +42,56 @@
 
                     <div class="row">
                     
+                        {# Pseudo #}
                         <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.pseudo) }}
                             {{ form_widget(form.pseudo) }}
                             {{ form_label(form.pseudo) }}
                         </div>
 
+                        {# Prénom #}
                         <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.name) }}
                             {{ form_widget(form.name) }}
-                            {{ form_label(form.name) }}
+                            {{ form_label(form.name, 'Prénom') }}
                         </div>
 
+                        {# Adresse email #}
                         <div class="col s12 l6 input-field">
                             {{ form_errors(form.email) }}
                             {{ form_widget(form.email) }}
-                            {{ form_label(form.email) }}
+                            {{ form_label(form.email, 'Adresse email') }}
                         </div>
 
+                        {# Roster #}
                         <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.roster) }}
                             {{ form_widget(form.roster) }}
                             {{ form_label(form.roster) }}
                         </div>
 
+                        {# Plateforme #}
                         <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.plateforme) }}
                             {{ form_widget(form.plateforme) }}
                             {{ form_label(form.plateforme) }}
                         </div>
 
+                        {# Twitter #}
                         <div class="col s12 l6 input-field">
                             {{ form_errors(form.twitter) }}
                             {{ form_widget(form.twitter) }}
                             {{ form_label(form.twitter) }}
                         </div>
 
+                        {# Profil Xbox Live #}
                         <div class="col s12 xl6 input-field">
                             {{ form_errors(form.profile) }}
                             {{ form_widget(form.profile) }}
-                            {{ form_label(form.profile) }}
+                            {{ form_label(form.profile, 'Profil Xbox Live / Steam / Site web') }}
                         </div>
 
+                        {# Photo #}
                         <div class="col s12 xl6 input-field file-field">
                             {{ form_errors(form.picture) }}
                             <div class="btn hoverable cyan darken-2 waves-effect waves-light">
@@ -95,12 +103,14 @@
                             </div>
                         </div>
 
+                        {# Fonction #}
                         <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.rank) }}
                             {{ form_widget(form.rank) }}
-                            {{ form_label(form.rank) }}
+                            {{ form_label(form.rank, 'Fonction (staff)') }}
                         </div>
 
+                        {# Switch Joueur / Staff #}
                         <div class="col s12 m6 l3">
                             <div class="switch">
                                 <label>
@@ -112,6 +122,7 @@
                             </div>
                         </div>
 
+                        {# Submit #}
                         <div class="col s12 l6 input-field">
                             {{ form_widget(form.submit, {'attr': {'class': 'btn cyan darken-2 waves-effect waves-light hoverable'}, 'label': 'Ajouter un membre'}) }}
                         </div>
@@ -124,6 +135,50 @@
 
             </div>
         </div>
+
+        {# LISTE DE MEMBRES #}
+        {% for membre in membres %}
+            <div class="col s12 m6 l4 xl3">
+                <div class="card sticky-action hoverable">
+
+                    {# Photo et bouton flottant #}
+                    <div class="card-image">
+                        <img src="{{ asset('img/membres/'~ membre.picture) }}" alt="{{ membre.pseudo }}" class="activator waves-effect waves-light">
+                        <a href="" class="btn-floating btn-large halfway-fab waves-effect waves-light cyan darken-2">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </div>
+
+                    {# Titre #}
+                    <div class="card-content">
+                        <span class="card-title activator">{{ membre.pseudo }}</span>
+                        <p>{{ membre.name }}</p>
+                    </div>
+
+                    {# Supprimer #}
+                    <div class="card-action center-align">
+                        <a href="#modal{{ membre.id }}" class="red-text modal-trigger btn-flat">Supprimer</a>
+                    </div>
+
+                    {# Fenêtre modale #}
+                    <div id="modal{{ membre.id }}" class="modal">
+                        <div class="modal-content">
+                            <h5>Êtes-vous sûr de vouloir supprimer ce membre ?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
+                            <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
+                        </div>
+                    </div>
+
+                    {# Contenu #}
+                    <div class="card-reveal center-align">
+                        <span class="card-title">{{ membre.pseudo }}<i class="material-icons right">close</i></span>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
 
     </div>
 

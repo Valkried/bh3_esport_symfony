@@ -141,8 +141,11 @@ class AdminController extends Controller
         $membre = new Membre;
         $form = $this->createForm(MembreType::class, $membre);
 
+        $listMembres = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->findAll();
+
         return $this->render('BH3Bundle:Admin:membres.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'membres' => $listMembres
         ));
     }
 

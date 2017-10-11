@@ -32,13 +32,10 @@ class AdminController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             $picture = $new->getPicture();
-
             $pictureName = md5(uniqid()).'.'.$picture->guessExtension();
-
             $picture->move($this->getParameter('img_directory').'/news', $pictureName);
-
             $new->setPicture($pictureName);
-
+            
             $new->setAuthor($this->get('security.token_storage')->getToken()->getUser());
 
             $em = $this->getDoctrine()->getManager();
@@ -87,11 +84,17 @@ class AdminController extends Controller
             $em->persist($new);
             $em->flush();
 
-            return $this->redirectToRoute('admin_news');
+            if (!$new->getPublished()) {
+                return $this->redirectToRoute('admin_news_edit', array('id' => $id));
+            } else {
+                return $this->redirectToRoute('home');
+            }
         }
 
         return $this->render('BH3Bundle:Admin:news_edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'news' => $new,
+            'oldPicture' => $oldPicture
         ));
     }
 

@@ -11,9 +11,6 @@
         width: 100%;
         margin: 10px auto;
     }
-    .btn-large:hover {
-        background-color: #f44336 !important;
-    }
 </style>
 {% endblock %}
 
@@ -83,7 +80,7 @@
 
                     {# Envoyer #}
                     <div class="col s12 input-field">
-                        {{ form_widget(contactForm.submit, {'attr': {'class': 'btn-large waves-effect waves-light hoverable red darken-4'}, 'label': 'Envoyer'}) }}
+                        {{ form_widget(contactForm.submit, {'attr': {'class': 'btn-large waves-effect waves-light hoverable yellow darken-3'}, 'label': 'Envoyer'}) }}
                     </div>
 
                 </div>

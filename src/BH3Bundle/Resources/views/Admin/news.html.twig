@@ -46,7 +46,7 @@
 
                         <div class="col s12 m6 input-field file-field">
                             {{ form_errors(form.picture) }}
-                            <div class="btn hoverable cyan darken-2 waves-effect waves-light">
+                            <div class="btn hoverable yellow darken-3 waves-effect waves-light">
                                 <span><i class="material-icons left">image</i>Bannière</span>
                                 {{ form_widget(form.picture, {'attr': {'required': 'required'}}) }}
                             </div>
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="col s12 m6 input-field">
-                            {{ form_widget(form.submit, {'attr': {'class': 'btn cyan darken-2 waves-effect waves-light hoverable'}, 'label': 'Poster une news'}) }}
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Poster une news'}) }}
                         </div>
 
                     </div>
@@ -76,7 +76,7 @@
                     {# Bannière et bouton flottant #}
                     <div class="card-image">
                         <img src="{{ asset('img/news/'~ new.picture) }}" alt="{{ new.title }}" class="activator waves-effect waves-light">
-                        <a href="{{ path('admin_news_visibility', {'id': new.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light cyan darken-2">
+                        <a href="{{ path('admin_news_visibility', {'id': new.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3">
                             <i class="material-icons">{% if new.published %}check{% else %}lock{% endif %}</i>
                         </a>
                     </div>
@@ -89,8 +89,8 @@
 
                     {# Supprimer / Modifier #}
                     <div class="card-action">
-                        <a href="#modal{{ new.id }}" class="btn-flat waves-effect waves-red red-text modal-trigger"><i class="material-icons left">delete</i>Supprimer</a>
-                        <a href="{{ path('admin_news_edit', {'id': new.id}) }}" class="btn-flat waves-effect waves-yellow yellow-text text-darken-3"><i class="material-icons left">edit</i>Modifier</a>
+                        <a href="#modal{{ new.id }}" class="btn-flat red-text modal-trigger"><i class="material-icons left">delete</i>Supprimer</a>
+                        <a href="{{ path('admin_news_edit', {'id': new.id}) }}" class="btn-flat yellow-text text-darken-3"><i class="material-icons left">edit</i>Modifier</a>
                     </div>
 
                     {# Fenêtre modale #}

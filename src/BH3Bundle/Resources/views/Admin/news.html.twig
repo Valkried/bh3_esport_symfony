@@ -48,7 +48,7 @@
                             {{ form_errors(form.picture) }}
                             <div class="btn hoverable cyan darken-2 waves-effect waves-light">
                                 <span><i class="material-icons left">image</i>Bannière</span>
-                                {{ form_widget(form.picture) }}
+                                {{ form_widget(form.picture, {'attr': {'required': 'required'}}) }}
                             </div>
                             <div class="file-path-wrapper">
                                 <input type="text" class="file-path validate readonly" placeholder="La bannière DOIT faire 1280*512px" style="cursor: not-allowed;" disabled>

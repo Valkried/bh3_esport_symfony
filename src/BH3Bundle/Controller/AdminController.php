@@ -58,15 +58,37 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/news/edit/{id}", name="admin_news_edit", requirements={"id" = "\d+"})
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function newsEditAction($id)
+    public function newsEditAction(Request $request, $id)
     {
         $new = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
+        $oldPicture = $new->getPicture();
         $new->setPicture(new File($this->getParameter('img_directory').'/news//'.$new->getPicture()));
 
         $form = $this->createForm(NewsType::class, $new);
-        $form->add('published', CheckboxType::class);
+        $form->add('published', CheckboxType::class, array('required' => false));
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            if (!$new->getPicture()) {
+                $new->setPicture($oldPicture);
+            } else {
+                $picture = $new->getPicture();
+                $pictureName = md5(uniqid()).'.'.$picture->guessExtension();
+                $picture->move($this->getParameter('img_directory').'/news', $pictureName);
+                $new->setPicture($pictureName);
+
+                $fs = new FileSystem();
+                $fs->remove($this->getParameter('img_directory').'/news//'.$oldPicture);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($new);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_news');
+        }
 
         return $this->render('BH3Bundle:Admin:news_edit.html.twig', array(
             'form' => $form->createView()

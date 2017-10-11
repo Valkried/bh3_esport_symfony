@@ -20,7 +20,7 @@ class NewsType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('picture', FileType::class)
+            ->add('picture', FileType::class, array('required' => false))
             ->add('submit', SubmitType::class);
     }
     

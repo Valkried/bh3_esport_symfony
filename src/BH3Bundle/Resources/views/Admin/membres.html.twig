@@ -4,6 +4,137 @@
     Membres - Administration
 {% endblock %}
 
+{% block css %}
+<style>
+    button {
+        width: 100%;
+        margin: 10px auto;
+    }
+    h4 {
+        margin-bottom: 45px;
+    }
+    .switch label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    @media (min-width: 601px) {
+        .switch label {
+            position: relative;
+            top: 31px;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
+    <div class="row">
+
+        <div class="col s12 center-align">
+            <h4>Membres</h4>
+        </div>
+
+        <div class="col s12">
+            <div class="card-panel">
+            
+                {{ form_start(form) }}
+
+                    <div class="row">
+                    
+                        <div class="col s12 m6 l3 input-field">
+                            {{ form_errors(form.pseudo) }}
+                            {{ form_widget(form.pseudo) }}
+                            {{ form_label(form.pseudo) }}
+                        </div>
+
+                        <div class="col s12 m6 l3 input-field">
+                            {{ form_errors(form.name) }}
+                            {{ form_widget(form.name) }}
+                            {{ form_label(form.name) }}
+                        </div>
+
+                        <div class="col s12 l6 input-field">
+                            {{ form_errors(form.email) }}
+                            {{ form_widget(form.email) }}
+                            {{ form_label(form.email) }}
+                        </div>
+
+                        <div class="col s12 m6 l3 input-field">
+                            {{ form_errors(form.roster) }}
+                            {{ form_widget(form.roster) }}
+                            {{ form_label(form.roster) }}
+                        </div>
+
+                        <div class="col s12 m6 l3 input-field">
+                            {{ form_errors(form.plateforme) }}
+                            {{ form_widget(form.plateforme) }}
+                            {{ form_label(form.plateforme) }}
+                        </div>
+
+                        <div class="col s12 l6 input-field">
+                            {{ form_errors(form.twitter) }}
+                            {{ form_widget(form.twitter) }}
+                            {{ form_label(form.twitter) }}
+                        </div>
+
+                        <div class="col s12 xl6 input-field">
+                            {{ form_errors(form.profile) }}
+                            {{ form_widget(form.profile) }}
+                            {{ form_label(form.profile) }}
+                        </div>
+
+                        <div class="col s12 xl6 input-field file-field">
+                            {{ form_errors(form.picture) }}
+                            <div class="btn hoverable cyan darken-2 waves-effect waves-light">
+                                <span><i class="material-icons left">image</i>Photo de profil</span>
+                                {{ form_widget(form.picture) }}
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input type="text" class="file-path validate readonly" placeholder="L'image DOIT faire 250*250px" style="cursor: not-allowed;" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l3 input-field">
+                            {{ form_errors(form.rank) }}
+                            {{ form_widget(form.rank) }}
+                            {{ form_label(form.rank) }}
+                        </div>
+
+                        <div class="col s12 m6 l3">
+                            <div class="switch">
+                                <label>
+                                    Joueur
+                                    {{ form_widget(form.staff) }}
+                                    <span class="lever"></span>
+                                    Staff
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col s12 l6 input-field">
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn cyan darken-2 waves-effect waves-light hoverable'}, 'label': 'Ajouter un membre'}) }}
+                        </div>
+
+                    </div>
+
+                    {{ form_rest(form) }}
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$(function() {
+
+$('select').material_select();
+
+});
+</script>
 {% endblock %}

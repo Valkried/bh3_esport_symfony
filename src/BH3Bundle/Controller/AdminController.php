@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use BH3Bundle\Entity\News;
+use BH3Bundle\Entity\Membre;
 use BH3Bundle\Form\Type\NewsType;
+use BH3Bundle\Form\Type\MembreType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -136,7 +138,12 @@ class AdminController extends Controller
      */
     public function membresAction()
     {
-        return $this->render('BH3Bundle:Admin:membres.html.twig');
+        $membre = new Membre;
+        $form = $this->createForm(MembreType::class, $membre);
+
+        return $this->render('BH3Bundle:Admin:membres.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

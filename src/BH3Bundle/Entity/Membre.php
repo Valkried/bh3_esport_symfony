@@ -47,48 +47,58 @@ class Membre
      *
      * @ORM\Column(name="rank", type="string", length=255, nullable=true)
      */
-    private $rank = null;
+    private $rank;
 
     /**
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
-    private $twitter = null;
+    private $twitter;
 
     /**
      * @var string
      *
      * @ORM\Column(name="profile", type="string", length=255, nullable=true)
      */
-    private $profile = null;
+    private $profile;
 
     /**
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255)
      */
-    private $picture = 'tete-bh3.png';
+    private $picture;
 
     /**
      * @var string
      *
      * @ORM\Column(name="plateforme", type="string", length=255)
      */
-    private $plateforme = 'website';
+    private $plateforme;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="staff", type="boolean")
      */
-    private $staff = false;
+    private $staff;
 
     /**
      * @ORM\ManyToOne(targetEntity="BH3Bundle\Entity\Roster", inversedBy="membres")
      * @ORM\JoinColumn(nullable=false)
      */
     private $roster;
+
+
+    public function __construct()
+    {
+        $this->setRank(null);
+        $this->setTwitter(null);
+        $this->setProfile(null);
+        $this->setPlateforme('xbox');
+        $this->setStaff(false);
+    }
 
 
     /**

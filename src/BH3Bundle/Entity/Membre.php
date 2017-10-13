@@ -132,7 +132,6 @@ class Membre
      * @Assert\Type(
      *     type="bool",
      *     message="La valeur {{ value }} n'est pas valide {{ type }}")
-     * @Assert\NotBlank(message = "La plateforme doit être sélectionnée")
      */
     private $staff;
 

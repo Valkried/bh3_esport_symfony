@@ -30,7 +30,7 @@ class MembresController extends Controller
                 $membre->setPicture('tete-bh3.png');
             } else {
                 $picture = $membre->getPicture();
-                $pictureName = $membre->getPseudo().'.'.$picture->guessExtension();
+                $pictureName = md5(uniqid()).'.'.$picture->guessExtension();
                 $picture->move($this->getParameter('img_directory').'/membres', $pictureName);
                 $membre->setPicture($pictureName);
             }
@@ -46,5 +46,25 @@ class MembresController extends Controller
             'form' => $form->createView(),
             'membres' => $listMembres
         ));
+    }
+
+    /**
+     * @Route("/admin/membres/delete/{id}", name="admin_membres_delete", requirements={"id" = "\d+"})
+     * Method("GET")
+     */
+    public function membresDeleteAction($id)
+    {
+        $membre = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->find($id);
+
+        if ($membre->getPicture() !== 'tete-bh3.png') {
+            $fs = new FileSystem();
+            $fs->remove($this->getParameter('img_directory').'/membres//'.$membre->getPicture());
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($membre);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_membres');
     }
 }

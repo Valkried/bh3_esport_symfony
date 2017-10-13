@@ -166,7 +166,7 @@
                             <h5>Êtes-vous sûr de vouloir supprimer ce membre ?</h5>
                         </div>
                         <div class="modal-footer">
-                            <a href="" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
+                            <a href="{{ path('admin_membres_delete', {'id': membre.id}) }}" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
                             <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
                         </div>
                     </div>

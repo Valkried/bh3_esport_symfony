@@ -49,6 +49,45 @@ class MembresController extends Controller
     }
 
     /**
+     * @Route("/admin/membres/edit/{id}", name="admin_membres_edit", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
+     */
+    public function membresEditAction(Request $request, $id)
+    {
+        $membre = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->find($id);
+        $oldPicture = $membre->getPicture();
+        $membre->setPicture(new File($this->getParameter('img_directory').'/membres//'.$membre->getPicture()));
+
+        $form = $this->createForm(MembreType::class, $membre);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            if (!$membre->getPicture()) {
+                $membre->setPicture($oldPicture);
+            } else {
+                $picture = $membre->getPicture();
+                $pictureName = md5(uniqid()).'.'.$picture->guessExtension();
+                $picture->move($this->getParameter('img_directory').'/membres', $pictureName);
+                $membre->setPicture($pictureName);
+
+                $fs = new FileSystem();
+                $fs->remove($this->getParameter('img_directory').'/membres//'.$oldPicture);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($membre);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_membres');
+        }
+
+        return $this->render('BH3Bundle:Admin:membre_edit.html.twig', array(
+            'form' => $form->createView(),
+            'membre' => $membre
+        ));
+    }
+
+    /**
      * @Route("/admin/membres/delete/{id}", name="admin_membres_delete", requirements={"id" = "\d+"})
      * Method("GET")
      */

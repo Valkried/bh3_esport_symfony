@@ -3,6 +3,7 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Roster
@@ -29,8 +30,7 @@ class Roster
     private $name;
 
     /**
-     * @var string
-     *
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="url", type="string", length=255, unique=true)
      */
     private $url;
@@ -80,30 +80,6 @@ class Roster
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Roster
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
     }
 
     /**
@@ -171,5 +147,29 @@ class Roster
     public function getMembres()
     {
         return $this->membres;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Roster
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

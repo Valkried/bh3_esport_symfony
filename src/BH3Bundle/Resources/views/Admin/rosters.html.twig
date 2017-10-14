@@ -4,6 +4,102 @@
     Rosters - Administration
 {% endblock %}
 
+{% block css %}
+<style>
+    button {
+        width: 100%;
+        margin: 10px auto;
+    }
+    h4 {
+        margin-bottom: 45px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
+
+    <div class="row">
+
+        <div class="col s12 center-align">
+            <h4>Rosters</h4>
+        </div>
+
+        {# FORMULAIRE #}
+        <div class="col s12">
+            <div class="card-panel">
+
+                {{ form_start(form) }}
+
+                    <div class="row">
+
+                        <div class="col s12 m6 input-field file-field">
+                            {{ form_errors(form.picture) }}
+                            <div class="btn hoverable yellow darken-3 waves-effect waves-light">
+                                <span><i class="material-icons left">image</i>Bannière</span>
+                                {{ form_widget(form.picture, {'attr': {'required': 'required'}}) }}
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input type="text" class="file-path validate readonly" placeholder="L'image DOIT faire 1280*410px" style="cursor: not-allowed;" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.name) }}
+                            {{ form_widget(form.name) }}
+                            {{ form_label(form.name, 'Nom du roster') }}
+                        </div>
+
+                        <div class="col s12 input-field">
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Ajouter un roster'}) }}
+                        </div>
+
+                    </div>
+
+                    {{ form_rest(form) }}
+                    
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+        {# LISTE DE ROSTERS #}
+        {% for roster in rosters if roster.id != 4 %}
+            <div class="col s12 l6">
+                <div class="card hoverable">
+
+                    {# Photo et bouton flottant #}
+                    <div class="card-image">
+                        <img src="{{ asset('img/rosters/'~ roster.picture) }}" alt="{{ roster.name }}">
+                        <a href="{{ path('admin_rosters_edit', {'id': roster.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </div>
+
+                    {# Titre #}
+                    <div class="card-content">
+                        <span class="card-title">{{ roster.name|upper }}</span>
+                    </div>
+
+                    {# Supprimer #}
+                    <div class="card-action center-align">
+                        <a href="#modal_delete{{ roster.id }}" class="red-text modal-trigger btn-flat">Supprimer</a>
+                    </div>
+
+                    {# Fenêtre modale de suppression #}
+                    <div id="modal_delete{{ roster.id }}" class="modal">
+                        <div class="modal-content">
+                            <h5>Êtes-vous sûr de vouloir supprimer ce roster ?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ path('admin_rosters_delete', {'id': roster.id}) }}" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
+                            <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
 
 {% endblock %}

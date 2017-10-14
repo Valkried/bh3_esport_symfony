@@ -18,7 +18,7 @@ class RosterType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('picture', FileType::class)
+            ->add('picture', FileType::class, array('required' => false))
             ->add('submit', SubmitType::class);
     }
     

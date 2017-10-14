@@ -31,8 +31,6 @@ class NewsController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             $uploader = $this->get('bh3.uploadimg')->upload($new, 'news');
-            
-            $new->setAuthor($this->get('security.token_storage')->getToken()->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($new);

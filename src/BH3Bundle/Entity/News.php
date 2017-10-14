@@ -3,6 +3,7 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -47,6 +48,7 @@ class News
     private $content;
 
     /**
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="BH3Bundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */

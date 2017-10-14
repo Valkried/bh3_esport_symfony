@@ -26,6 +26,12 @@ class Roster
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 60,
+     *    minMessage = "Le titre doit faire au moins 2 caractères",
+     *    maxMessage = "Le titre ne doit pas dépasser 60 caractères")
+     * @Assert\NotBlank(message = "Le titre doit être renseigné")
      */
     private $name;
 
@@ -39,6 +45,23 @@ class Roster
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255, unique=true)
+     * @Assert\File(
+     *    maxSize = "300k",
+     *    maxSizeMessage = "L'image ne doit pas dépasser 300ko",
+     *    disallowEmptyMessage = "Le fichier ne doit pas être vide",
+     *    notFoundMessage = "Le fichier n'a pas été trouvé")
+     * @Assert\Image(
+     *    minWidth = 1280,
+     *    minWidthMessage = "L'image est trop petite (1280*410px)",
+     *    maxWidth = 1280,
+     *    maxWidthMessage = "L'image est trop large (1280*410px)",
+     *    minHeight = 410,
+     *    minHeightMessage = "L'image est trop petite (1280*410px)",
+     *    maxHeight = 410,
+     *    maxHeightMessage = "L'image est trop haute (1280*410px)",
+     *    mimeTypes = {"image/jpeg", "image/png"},
+     *    mimeTypesMessage = "Cette image n'est pas valide",
+     *    sizeNotDetectedMessage = "La taille de l'image n'a pas pu être détectée")
      */
     private $picture;
 

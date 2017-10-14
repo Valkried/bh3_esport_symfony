@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RosterType extends AbstractType
 {
@@ -19,6 +20,12 @@ class RosterType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('picture', FileType::class, array('required' => false))
+            ->add('membres', EntityType::class, array(
+                'required' => false,
+                'class' => 'BH3Bundle:Membre',
+                'choice_label' => 'pseudo',
+                'multiple' => true
+            ))
             ->add('submit', SubmitType::class);
     }
     

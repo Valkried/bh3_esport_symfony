@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use BH3Bundle\Entity\Roster;
@@ -28,6 +29,10 @@ class RostersController extends Controller
         {
             $uploader = $this->get('bh3.uploadimg')->upload($roster, 'rosters');
 
+            foreach ($roster->getMembres() as $membre) {
+                $roster->addMembre($membre);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($roster);
             $em->flush();
@@ -48,8 +53,11 @@ class RostersController extends Controller
     public function rostersEditAction(Request $request, $id)
     {
         $roster = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->find($id);
+
         $oldPicture = $roster->getPicture();
         $roster->setPicture(new File($this->getParameter('img_directory').'/rosters//'.$roster->getPicture()));
+
+        $oldMembres = clone $roster->getMembres();
 
         $form = $this->createForm(RosterType::class, $roster);
 
@@ -64,8 +72,15 @@ class RostersController extends Controller
                 $fs->remove($this->getParameter('img_directory').'/rosters//'.$oldPicture);
             }
 
+            foreach ($oldMembres as $membre) {
+                $membre->setRoster($this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->getLoisir());
+            }
+
+            foreach ($roster->getMembres() as $membre) {
+                $roster->addMembre($membre);
+            }
+
             $em = $this->getDoctrine()->getManager();
-            $em->persist($roster);
             $em->flush();
 
             return $this->redirectToRoute('admin_rosters');
@@ -91,15 +106,8 @@ class RostersController extends Controller
         $fs = new FileSystem();
         $fs->remove($this->getParameter('img_directory').'/rosters//'.$roster->getPicture());
 
-        $membres = $roster->getMembres();
-
-        if (!empty($membres)) {
-            $loisir = $repository->getLoisir();
-
-            foreach ($membres as $membre)
-            {
-                $membre->setRoster($loisir);
-            }
+        foreach ($roster->getMembres() as $membre) {
+            $membre->setRoster($repository->getLoisir());
         }
 
         $em = $this->getDoctrine()->getManager();

@@ -30,10 +30,7 @@ class NewsController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $picture = $new->getPicture();
-            $pictureName = md5(uniqid()).'.'.$picture->guessExtension();
-            $picture->move($this->getParameter('img_directory').'/news', $pictureName);
-            $new->setPicture($pictureName);
+            $uploader = $this->get('bh3.uploadimg')->upload($new, 'news');
             
             $new->setAuthor($this->get('security.token_storage')->getToken()->getUser());
 
@@ -70,10 +67,7 @@ class NewsController extends Controller
             if (!$new->getPicture()) {
                 $new->setPicture($oldPicture);
             } else {
-                $picture = $new->getPicture();
-                $pictureName = md5(uniqid()).'.'.$picture->guessExtension();
-                $picture->move($this->getParameter('img_directory').'/news', $pictureName);
-                $new->setPicture($pictureName);
+                $uploader = $this->get('bh3.uploadimg')->upload($new, 'news');
 
                 $fs = new FileSystem();
                 $fs->remove($this->getParameter('img_directory').'/news//'.$oldPicture);

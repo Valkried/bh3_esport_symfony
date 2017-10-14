@@ -1,3 +1,6 @@
 services:
     bh3.pagination:
         class: BH3Bundle\Services\Pagination
+    
+    bh3.uploadimg:
+        class: BH3Bundle\Services\UploadImg

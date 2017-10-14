@@ -84,10 +84,23 @@ class RostersController extends Controller
      */
     public function rostersDeleteAction($id)
     {
-        $roster = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->find($id);
+        $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster');
+
+        $roster = $repository->find($id);
 
         $fs = new FileSystem();
         $fs->remove($this->getParameter('img_directory').'/rosters//'.$roster->getPicture());
+
+        $membres = $roster->getMembres();
+
+        if (!empty($membres)) {
+            $loisir = $repository->getLoisir();
+
+            foreach ($membres as $membre)
+            {
+                $membre->setRoster($loisir);
+            }
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($roster);

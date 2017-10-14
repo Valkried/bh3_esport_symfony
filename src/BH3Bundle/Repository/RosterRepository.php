@@ -10,4 +10,8 @@ namespace BH3Bundle\Repository;
  */
 class RosterRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLoisir()
+    {
+        return $this->findOneBy(array('id' => 4));
+    }
 }

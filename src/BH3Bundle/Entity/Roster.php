@@ -69,6 +69,7 @@ class Roster
 
     /**
      * @ORM\OneToMany(targetEntity="BH3Bundle\Entity\Membre", mappedBy="roster")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $membres;
 

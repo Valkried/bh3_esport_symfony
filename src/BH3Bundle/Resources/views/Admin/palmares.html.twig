@@ -90,6 +90,7 @@
                         <th>Localisation</th>
                         <th>Rang</th>
                         <th>Date</th>
+                        <th><i class="material-icons">settings</i></th>
                     </tr>
                 </thead>
 
@@ -103,7 +104,22 @@
                             <td>{{ palmares.localisation }}</td>
                             <td>{{ palmares.ranking }}</td>
                             <td>{{ palmares.date }}</td>
+                            <td>
+                                <a href=""><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                                <a href="#modal_delete{{ palmares.id }}", class="modal-trigger"><i class="material-icons red-text">delete</i></a>
+                            </td>
                         </tr>
+
+                        {# Fenêtre modale de suppression #}
+                        <div id="modal_delete{{ palmares.id }}" class="modal">
+                            <div class="modal-content">
+                                <h5>Êtes-vous sûr de vouloir supprimer ce score ?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{{ path('admin_palmares_delete', {'id': palmares.id}) }}" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
+                                <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
+                            </div>
+                        </div>
                     {% endfor %}
 
                 </tbody>

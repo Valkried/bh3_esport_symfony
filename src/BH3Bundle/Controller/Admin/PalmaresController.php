@@ -38,4 +38,20 @@ class PalmaresController extends Controller
             'palmaresList' => $palmaresList
         ));
     }
+
+    /**
+     * @Route("/admin/palmares/delete/{id}", name="admin_palmares_delete", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
+     */
+    public function palmaresDeleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $palmares = $em->getRepository('BH3Bundle:Palmares')->find($id);
+
+        $em->remove($palmares);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_palmares');
+    }
 }

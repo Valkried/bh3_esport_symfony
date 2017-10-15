@@ -68,7 +68,7 @@ class Palmares
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"game"})
+     * @Gedmo\Slug(fields={"game"}, unique=false)
      * @ORM\Column(name="picture", type="string", length=255)
      */
     private $picture;

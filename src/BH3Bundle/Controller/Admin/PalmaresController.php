@@ -6,19 +6,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\File;
-use BH3Bundle\Entity\Roster;
-use BH3Bundle\Form\Type\RosterType;
+use BH3Bundle\Entity\Palmares;
+use BH3Bundle\Form\Type\PalmaresType;
 
 class PalmaresController extends Controller
 {
     /**
      * @Route("/admin/palmares", name="admin_palmares")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function palmaresAction()
+    public function palmaresAction(Request $request)
     {
-        return $this->render('BH3Bundle:Admin:palmares.html.twig');
+        $palmares = new Palmares();
+        $form = $this->createForm(PalmaresType::class, $palmares);
+
+        $palmaresList = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Palmares')->getByDate();
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            //$palmares->setPicture($palmares->getPicture().'.png');
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($palmares);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_palmares');
+        }
+
+        return $this->render('BH3Bundle:Admin:palmares.html.twig', array(
+            'form' => $form->createView(),
+            'palmaresList' => $palmaresList
+        ));
     }
 }

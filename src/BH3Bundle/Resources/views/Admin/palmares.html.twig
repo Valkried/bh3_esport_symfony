@@ -4,6 +4,122 @@
     Palmarès - Administration
 {% endblock %}
 
+{% block css %}
+<style>
+    button {
+        width: 100%;
+        margin: 10px auto;
+    }
+    h4 {
+        margin-bottom: 45px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
+    <div class="row">
+    
+        <div class="col s12 center-align">
+            <h4>Palmarès</h4>
+        </div>
+
+        <div class="col s12">
+            <div class="card-panel">
+
+                {{ form_start(form) }}
+
+                    <div class="row">
+
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.game) }}
+                            {{ form_widget(form.game) }}
+                            {{ form_label(form.game, 'Jeu') }}
+                        </div>
+
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.roster) }}
+                            {{ form_widget(form.roster) }}
+                            {{ form_label(form.roster, 'Roster') }}
+                        </div>
+
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.event) }}
+                            {{ form_widget(form.event) }}
+                            {{ form_label(form.event, 'Evénement (ex : "ILoveBtb\'14")') }}
+                        </div>
+
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.localisation) }}
+                            {{ form_widget(form.localisation) }}
+                            {{ form_label(form.localisation, 'Localisation (ex : "Bordeaux")') }}
+                        </div>
+
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.ranking) }}
+                            {{ form_widget(form.ranking) }}
+                            {{ form_label(form.ranking, 'Rang (ex : "1er")') }}
+                        </div>
+
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.date) }}
+                            {{ form_widget(form.date) }}
+                            {{ form_label(form.date, 'Date (ex : "2017")') }}
+                        </div>
+
+                        <div class="col s12 input-field">
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Poster un score'}) }}
+                        </div>
+
+                    </div>
+
+                    {{ form_rest(form) }}
+                    
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+        <div class="col s12">
+            <table class="striped highlight bordered responsive-table">
+                <thead>
+                    <tr>
+                        <th>Jeu</th>
+                        <th>Roster</th>
+                        <th>Event</th>
+                        <th>Localisation</th>
+                        <th>Rang</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for palmares in palmaresList %}
+                        <tr>
+                            <td><img src="{{ asset('img/palmares/'~ palmares.picture) }}" alt="{{ palmares.game }}"></td>
+                            <td>{{ palmares.roster }}</td>
+                            <td>{{ palmares.event }}</td>
+                            <td>{{ palmares.localisation }}</td>
+                            <td>{{ palmares.ranking }}</td>
+                            <td>{{ palmares.date }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$(function() {
+
+$('select').material_select();
+
+});
+</script>
 {% endblock %}

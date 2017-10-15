@@ -3,6 +3,8 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Palmares
@@ -66,6 +68,7 @@ class Palmares
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"game"})
      * @ORM\Column(name="picture", type="string", length=255)
      */
     private $picture;
@@ -246,7 +249,6 @@ class Palmares
      */
     public function getPicture()
     {
-        return $this->picture;
+        return $this->picture.'.png';
     }
 }
-

@@ -4,24 +4,12 @@
     Palmarès - Administration
 {% endblock %}
 
-{% block css %}
-<style>
-    button {
-        width: 100%;
-        margin: 10px auto;
-    }
-    h4 {
-        margin-bottom: 45px;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
 
     <div class="row">
     
-        <div class="col s12 center-align">
-            <h4>Palmarès</h4>
+        <div class="col s12">
+            <h4 class="admin-title">Palmarès</h4>
         </div>
 
         <div class="col s12">
@@ -76,7 +64,7 @@
 
                         {# Submit #}
                         <div class="col s12 input-field">
-                            {{ form_widget(form.submit, {'attr': {'class': 'btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Poster un score'}) }}
+                            {{ form_widget(form.submit, {'attr': {'class': 'admin-button btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Ajouter un score'}) }}
                         </div>
 
                     </div>

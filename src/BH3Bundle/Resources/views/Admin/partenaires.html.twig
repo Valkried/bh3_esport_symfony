@@ -4,6 +4,122 @@
     Partenaires - Administration
 {% endblock %}
 
+{% block css %}
+<style>
+    .card-action a {
+        margin: 0 !important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
+
+    <div class="row">
+    
+        <div class="col s12">
+            <h4 class="admin-title">Partenaires</h4>
+        </div>
+
+        <div class="col s12">
+            <div class="card-panel">
+            
+                {# FORMULAIRE #}
+                {{ form_start(form) }}
+
+                    <div class="row">
+
+                        {# Nom #}
+                        <div class="col s12 xl6 input-field">
+                            {{ form_errors(form.name) }}
+                            {{ form_widget(form.name) }}
+                            {{ form_label(form.name, 'Nom') }}
+                        </div>
+
+                        {# Adresse du site #}
+                        <div class="col s12 xl6 input-field">
+                            {{ form_errors(form.url) }}
+                            {{ form_widget(form.url) }}
+                            {{ form_label(form.url, 'Adresse du site') }}
+                        </div>
+
+                        {# Description #}
+                        <div class="col s12 input-field">
+                            {{ form_errors(form.content) }}
+                            {{ form_widget(form.content, {'attr': {'class': 'materialize-textarea'}}) }}
+                            {{ form_label(form.content, 'Description') }}
+                        </div>
+
+                        {# Facebook #}
+                        <div class="col s12 l6 input-field">
+                            {{ form_errors(form.facebook) }}
+                            {{ form_widget(form.facebook) }}
+                            {{ form_label(form.facebook, 'Facebook (url complète)') }}
+                        </div>
+
+                        {# Twitter #}
+                        <div class="col s12 l6 input-field">
+                            {{ form_errors(form.twitter) }}
+                            {{ form_widget(form.twitter) }}
+                            {{ form_label(form.twitter, 'Twitter (url complète)') }}
+                        </div>
+
+                        {# Logo #}
+                        <div class="col s12 input-field file-field">
+                            {{ form_errors(form.picture) }}
+                            <div class="btn hoverable yellow darken-3 waves-effect waves-light">
+                                <span><i class="material-icons left">image</i>Logo</span>
+                                {{ form_widget(form.picture, {'attr': {'required': 'required'}}) }}
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input type="text" class="file-path validate readonly" placeholder="Le logo ne doit pas dépasser 500*150px" style="cursor: not-allowed;" disabled>
+                            </div>
+                        </div>
+
+                        {# Submit #}
+                        <div class="col s12 input-field">
+                            {{ form_widget(form.submit, {'attr': {'class': 'admin-button btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Ajouter un partenaire'}) }}
+                        </div>
+
+                    </div>
+
+                    {{ form_rest(form) }}
+                    
+                {{ form_end(form) }}
+            
+            </div>
+        </div>
+
+        {# LISTE DE PARTENAIRES #}
+        {% for partenaire in partenaires %}
+            <div class="col s12 l6">
+                <div class="card hoverable">
+
+                    {# Titre #}
+                    <div class="card-content">
+                        <span class="card-title center-align">{{ partenaire.name|upper }}</span>
+                    </div>
+
+                    {# Supprimer / Modifier #}
+                    <div class="card-action center-align">
+                        <a href="#modal_delete{{ partenaire.id }}" class="red-text modal-trigger btn-flat">Supprimer</a>
+                        <a href="" class="yellow-text text-darken-3 btn-flat">Modifier</a>
+                    </div>
+
+                    {# Fenêtre modale de suppression #}
+                    <div id="modal_delete{{ partenaire.id }}" class="modal">
+                        <div class="modal-content">
+                            <h5>Êtes-vous sûr de vouloir supprimer ce partenaire ?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ path('admin_partenaires_delete', {'id': partenaire.id}) }}" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
+                            <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    
+    </div>
 
 {% endblock %}

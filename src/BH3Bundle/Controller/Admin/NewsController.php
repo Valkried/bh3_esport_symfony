@@ -30,7 +30,7 @@ class NewsController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $uploader = $this->get('bh3.uploadimg')->upload($new, 'news');
+            $this->get('bh3.uploadimg')->upload($new, 'news');
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($new);
@@ -65,14 +65,13 @@ class NewsController extends Controller
             if (!$new->getPicture()) {
                 $new->setPicture($oldPicture);
             } else {
-                $uploader = $this->get('bh3.uploadimg')->upload($new, 'news');
+                $this->get('bh3.uploadimg')->upload($new, 'news');
 
                 $fs = new FileSystem();
                 $fs->remove($this->getParameter('img_directory').'/news//'.$oldPicture);
             }
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($new);
             $em->flush();
 
             if (!$new->getPublished()) {

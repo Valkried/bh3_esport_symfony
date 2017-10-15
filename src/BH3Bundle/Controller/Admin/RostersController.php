@@ -26,7 +26,7 @@ class RostersController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $uploader = $this->get('bh3.uploadimg')->upload($roster, 'rosters');
+            $this->get('bh3.uploadimg')->upload($roster, 'rosters');
 
             foreach ($roster->getMembres() as $membre) {
                 $roster->addMembre($membre);
@@ -65,7 +65,7 @@ class RostersController extends Controller
             if (!$roster->getPicture()) {
                 $roster->setPicture($oldPicture);
             } else {
-                $uploader = $this->get('bh3.uploadimg')->upload($roster, 'rosters');
+                $this->get('bh3.uploadimg')->upload($roster, 'rosters');
 
                 $fs = new FileSystem();
                 $fs->remove($this->getParameter('img_directory').'/rosters//'.$oldPicture);
@@ -79,8 +79,7 @@ class RostersController extends Controller
                 $roster->addMembre($membre);
             }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_rosters');
         }

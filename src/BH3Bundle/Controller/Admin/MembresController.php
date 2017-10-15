@@ -29,7 +29,7 @@ class MembresController extends Controller
             if (!$membre->getPicture()) {
                 $membre->setPicture('tete-bh3.png');
             } else {
-                $uploader = $this->get('bh3.uploadimg')->upload($membre, 'membres');
+                $this->get('bh3.uploadimg')->upload($membre, 'membres');
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -62,14 +62,13 @@ class MembresController extends Controller
             if (!$membre->getPicture()) {
                 $membre->setPicture($oldPicture);
             } else {
-                $uploader = $this->get('bh3.uploadimg')->upload($membre, 'membres');
+                $this->get('bh3.uploadimg')->upload($membre, 'membres');
 
                 $fs = new FileSystem();
                 $fs->remove($this->getParameter('img_directory').'/membres//'.$oldPicture);
             }
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($membre);
             $em->flush();
 
             return $this->redirectToRoute('admin_membres');

@@ -5,17 +5,13 @@
 {% block css %}
 <style>
     .logo {
-        margin-bottom: 25px;
+        max-height: 100px;
     }
-
-    @media only screen and (min-width: 601px) {
-        .card-panel .row {
-            display: flex;
-            align-items: center;
-        }
-        .logo {
-            margin-bottom: 0px;
-        }
+    .social img {
+        max-width: 50px;
+    }
+    .no-margin {
+        margin: 0;
     }
 </style>
 {% endblock %}
@@ -27,33 +23,35 @@
     {% for partenaire in partenaires %}
         <div class="col s12">
             <div class="card-panel hoverable">
-                <div class="row">
+                <div class="row no-margin">
                 
                     {# Logo #}
-                    <div class="col s8 offset-s2 m3 xl2">
+                    <div class="col s12">
                         <a href="{{ partenaire.url }}" target="_blank">
                             <img src="{{ asset('img/partenaires/'~ partenaire.picture) }}" alt="{{ partenaire.name }}" class="responsive-img logo">
                         </a>
                     </div>
 
                     {# Présentation #}
-                    <div class="col s12 m6 xl8">
+                    <div class="col s10 offset-s1">
                         <p>{{ partenaire.content|nl2br }}</p>
                     </div>
 
-                    <div class="col m3 xl2 hide-on-small-only">
-                        {% if partenaire.twitter %}
-                            {# Twitter #}
+                    {# Réseaux sociaux #}
+                    {% if partenaire.twitter or partenaire.facebook %}
+                        <div class="col s12 social">
+                            {% if partenaire.twitter %}
                             <a href="{{ partenaire.twitter }}" target="_blank">
                                 <img src="{{ asset('img/social/twitter.png') }}" alt="Twitter" class="responsive-img">
                             </a>
-                        {% else %}
-                            {# Facebook #}
+                            {% endif %}
+                            {% if partenaire.facebook %}
                             <a href="{{ partenaire.facebook }}" target="_blank">
                                 <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook" class="responsive-img">
                             </a>
-                        {% endif %}
-                    </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
 
                 </div>
             </div>

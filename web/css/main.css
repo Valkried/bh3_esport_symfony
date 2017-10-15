@@ -93,6 +93,12 @@ input[type=text].valid:not(.browser-default):focus,
     box-shadow: 0 1px 0 0 #B71B1B !important;
 }
 
+.switch label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* GENERAL */
 
@@ -102,3 +108,19 @@ input[type=text].valid:not(.browser-default):focus,
 .switch label input[type=checkbox]:checked+.lever:after { background-color: #b71c1c; }
 
 .btn-flat:focus { background-color: transparent; }
+
+.admin-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.admin-subtitle {
+    text-align: center;
+    margin-bottom: 45px;
+    margin-top: 30px;
+}
+
+.admin-button {
+    width: 100%;
+    margin: 10px auto;
+}

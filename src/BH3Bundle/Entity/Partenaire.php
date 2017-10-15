@@ -3,6 +3,7 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Partenaire
@@ -32,6 +33,12 @@ class Partenaire
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 50,
+     *    minMessage = "Le nom doit faire au moins 2 caractères",
+     *    maxMessage = "Le nom ne doit pas dépasser 50 caractères")
+     * @Assert\NotBlank(message = "Le contenu doit être rempli")
      */
     private $content;
 
@@ -39,6 +46,24 @@ class Partenaire
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255, unique=true)
+     * @Assert\File(
+     *    maxSize = "300k",
+     *    maxSizeMessage = "Le logo ne doit pas dépasser 300ko",
+     *    disallowEmptyMessage = "Le fichier ne doit pas être vide",
+     *    notFoundMessage = "Le fichier n'a pas été trouvé")
+     * @Assert\Image(
+     *    minWidth = 100,
+     *    minWidthMessage = "Le logo est trop petit (minimum 100px)",
+     *    maxWidth = 500,
+     *    maxWidthMessage = "Le logo est trop large (maximum 500px)",
+     *    minHeight = 100,
+     *    minHeightMessage = "Le logo est trop petit (minimum 100px)",
+     *    maxHeight = 150,
+     *    maxHeightMessage = "Le logo est trop haut (maximum 150px)",
+     *    mimeTypes = {"image/jpeg", "image/png"},
+     *    mimeTypesMessage = "Cette image n'est pas valide",
+     *    sizeNotDetectedMessage = "La taille de l'image n'a pas pu être détectée")
+     * @Assert\NotBlank(message = "Vous devez choisir un logo")
      */
     private $picture;
 
@@ -46,6 +71,14 @@ class Partenaire
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255, unique=true)
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' n'est pas valide",
+     *    checkDNS = true,
+     *    dnsMessage = "L'hôte '{{ value }}' n'a pas pu être trouvé")
+     * @Assert\Length(
+     *    max = 255,
+     *    maxMessage = "L'url ne doit pas dépasser 255 caractères")
+     * @Assert\NotBlank(message = "L'url doit être indiquée")
      */
     private $url;
 
@@ -53,6 +86,13 @@ class Partenaire
      * @var string
      *
      * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' n'est pas valide",
+     *    checkDNS = true,
+     *    dnsMessage = "L'hôte '{{ value }}' n'a pas pu être trouvé")
+     * @Assert\Length(
+     *    max = 255,
+     *    maxMessage = "L'url ne doit pas dépasser 255 caractères")
      */
     private $facebook;
 
@@ -60,6 +100,13 @@ class Partenaire
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' n'est pas valide",
+     *    checkDNS = true,
+     *    dnsMessage = "L'hôte '{{ value }}' n'a pas pu être trouvé")
+     * @Assert\Length(
+     *    max = 255,
+     *    maxMessage = "L'url ne doit pas dépasser 255 caractères")
      */
     private $twitter;
 

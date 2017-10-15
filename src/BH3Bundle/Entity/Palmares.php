@@ -93,6 +93,7 @@ class Palmares
      *      max = 2050,
      *      minMessage = "La date ne peut être inférieure à 2000",
      *      maxMessage = "La date ne peut être supérieure à 2050")
+     * @Assert\NotBlank(message = "La date doit être renseignée")
      */
     private $date;
 

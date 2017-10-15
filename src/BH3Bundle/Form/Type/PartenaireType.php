@@ -21,10 +21,10 @@ class PartenaireType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('picture', FileType::class)
+            ->add('picture', FileType::class, array('required' => false))
             ->add('url', UrlType::class)
-            ->add('facebook', UrlType::class)
-            ->add('twitter', UrlType::class)
+            ->add('facebook', UrlType::class, array('required' => false))
+            ->add('twitter', UrlType::class, array('required' => false))
             ->add('submit', SubmitType::class);
     }
     

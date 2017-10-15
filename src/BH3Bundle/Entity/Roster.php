@@ -63,6 +63,7 @@ class Roster
      *    mimeTypes = {"image/jpeg", "image/png"},
      *    mimeTypesMessage = "Cette image n'est pas valide",
      *    sizeNotDetectedMessage = "La taille de l'image n'a pas pu être détectée")
+     * @Assert\NotBlank(message = "Vous devez choisir une bannière")
      */
     private $picture;
 

@@ -19,6 +19,10 @@ class MessagerieController extends Controller
      */
     public function messagerieAction()
     {
-        return $this->render('BH3Bundle:Admin:messagerie.html.twig');
+        $listEmails = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Email')->findBy(array(), array('date' => 'DESC'));
+
+        return $this->render('BH3Bundle:Admin:messagerie.html.twig', array(
+            'emails' => $listEmails
+        ));
     }
 }

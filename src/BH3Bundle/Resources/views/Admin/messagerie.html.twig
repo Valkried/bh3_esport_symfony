@@ -6,4 +6,31 @@
 
 {% block content %}
 
+    <div class="row">
+    
+    <div class="col s12">
+        <h4 class="admin-title">Messagerie</h4>
+    </div>
+
+    <div class="col s12">
+        <ul class="collapsible popout" data-collapsible="accordion">
+
+            {% for email in emails %}
+                <li>
+                    <div class="collapsible-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 7% 5px;">
+                        <h5 class="red-text text-darken-4">{{ email.subject }}</h5>
+                        <p>Par {{ email.name }} (<span class="red-text text-darken-4">{{ email.email }}</span>), le {{ email.date|date('d/m/Y à h:i') }}</p>
+                    </div>
+
+                    <div class="collapsible-body">
+                        <p>{{ email.content|nl2br }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    
+    </div>
+
 {% endblock %}

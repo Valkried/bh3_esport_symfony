@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}
-    Palmarès - Administration
+    Modifierun score - Administration
 {% endblock %}
 
 {% block css %}
@@ -21,12 +21,12 @@
     <div class="row">
     
         <div class="col s12 center-align">
-            <h4>Palmarès</h4>
+            <h4>Modifier un membre</h4>
         </div>
 
         <div class="col s12">
             <div class="card-panel">
-
+            
                 {# FORMULAIRE #}
                 {{ form_start(form) }}
 
@@ -76,7 +76,7 @@
 
                         {# Submit #}
                         <div class="col s12 input-field">
-                            {{ form_widget(form.submit, {'attr': {'class': 'btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Poster un score'}) }}
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Modifier le score'}) }}
                         </div>
 
                     </div>
@@ -87,54 +87,7 @@
 
             </div>
         </div>
-
-        {# LISTE DES SCORES #}
-        <div class="col s12">
-            <table class="striped highlight bordered responsive-table">
-                <thead>
-                    <tr>
-                        <th>Jeu</th>
-                        <th>Roster</th>
-                        <th>Event</th>
-                        <th>Localisation</th>
-                        <th>Rang</th>
-                        <th>Date</th>
-                        <th><i class="material-icons">settings</i></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    {% for palmares in palmaresList %}
-                        <tr>
-                            <td><img src="{{ asset('img/palmares/'~ palmares.picture) }}" alt="{{ palmares.game }}"></td>
-                            <td>{{ palmares.roster }}</td>
-                            <td>{{ palmares.event }}</td>
-                            <td>{{ palmares.localisation }}</td>
-                            <td>{{ palmares.ranking }}</td>
-                            <td>{{ palmares.date }}</td>
-                            <td>
-                                <a href="{{ path('admin_palmares_edit', {'id': palmares.id}) }}"><i class="material-icons yellow-text text-darken-3">edit</i></a>
-                                <a href="#modal_delete{{ palmares.id }}", class="modal-trigger"><i class="material-icons red-text">delete</i></a>
-                            </td>
-                        </tr>
-
-                        {# Fenêtre modale de suppression #}
-                        <div id="modal_delete{{ palmares.id }}" class="modal">
-                            <div class="modal-content">
-                                <h5>Êtes-vous sûr de vouloir supprimer ce score ?</h5>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="{{ path('admin_palmares_delete', {'id': palmares.id}) }}" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
-                                <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
-                            </div>
-                        </div>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
+    
     </div>
 
 {% endblock %}

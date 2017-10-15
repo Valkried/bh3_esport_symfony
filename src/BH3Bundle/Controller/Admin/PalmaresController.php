@@ -24,8 +24,6 @@ class PalmaresController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            //$palmares->setPicture($palmares->getPicture().'.png');
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($palmares);
             $em->flush();
@@ -36,6 +34,27 @@ class PalmaresController extends Controller
         return $this->render('BH3Bundle:Admin:palmares.html.twig', array(
             'form' => $form->createView(),
             'palmaresList' => $palmaresList
+        ));
+    }
+
+    /**
+     * @Route("/admin/palmares/edit/{id}", name="admin_palmares_edit", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
+     */
+    public function palmaresEditAction(Request $request, $id)
+    {
+        $palmares = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Palmares')->find($id);
+        $form = $this->createForm(PalmaresType::class, $palmares);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_palmares');
+        }
+
+        return $this->render('BH3Bundle:Admin:palmares_edit.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 

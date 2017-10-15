@@ -24,26 +24,29 @@
             <h4>News</h4>
         </div>
 
-        {# FORMULAIRE #}
         <div class="col s12">
             <div class="card-panel">
 
+                {# FORMULAIRE #}
                 {{ form_start(form) }}
 
                     <div class="row">
 
+                        {# Titre #}
                         <div class="col s12 input-field">
                             {{ form_errors(form.title) }}
                             {{ form_widget(form.title) }}
                             {{ form_label(form.title, 'Titre') }}
                         </div>
 
+                        {# Contenu #}
                         <div class="col s12 input-field">
                             {{ form_errors(form.content) }}
                             {{ form_widget(form.content, {'attr': {'class': 'materialize-textarea'}}) }}
                             {{ form_label(form.content, 'Contenu') }}
                         </div>
 
+                        {# Bannière #}
                         <div class="col s12 m6 input-field file-field">
                             {{ form_errors(form.picture) }}
                             <div class="btn hoverable yellow darken-3 waves-effect waves-light">
@@ -55,6 +58,7 @@
                             </div>
                         </div>
 
+                        {# Submit #}
                         <div class="col s12 m6 input-field">
                             {{ form_widget(form.submit, {'attr': {'class': 'btn yellow darken-3 waves-effect waves-light hoverable'}, 'label': 'Poster une news'}) }}
                         </div>

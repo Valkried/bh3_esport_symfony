@@ -27,6 +27,7 @@ class Palmares
      * @var string
      *
      * @ORM\Column(name="game", type="string", length=255)
+     * @Assert\NotBlank(message = "Le jeu doit être renseigné")
      */
     private $game;
 
@@ -34,6 +35,12 @@ class Palmares
      * @var string
      *
      * @ORM\Column(name="roster", type="string", length=255)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 25,
+     *    minMessage = "Le roster doit faire au moins 2 caractères",
+     *    maxMessage = "Le roster ne doit pas dépasser 25 caractères")
+     * @Assert\NotBlank(message = "Le roster doit être renseigné")
      */
     private $roster;
 
@@ -41,6 +48,12 @@ class Palmares
      * @var string
      *
      * @ORM\Column(name="event", type="string", length=255)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 25,
+     *    minMessage = "L'événement doit faire au moins 2 caractères",
+     *    maxMessage = "L'événement ne doit pas dépasser 25 caractères")
+     * @Assert\NotBlank(message = "L'événement doit être renseigné")
      */
     private $event;
 
@@ -48,6 +61,12 @@ class Palmares
      * @var string
      *
      * @ORM\Column(name="localisation", type="string", length=255)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 25,
+     *    minMessage = "La localisation doit faire au moins 2 caractères",
+     *    maxMessage = "La localisation ne doit pas dépasser 25 caractères")
+     * @Assert\NotBlank(message = "La localisation doit être renseignée")
      */
     private $localisation;
 
@@ -55,13 +74,25 @@ class Palmares
      * @var string
      *
      * @ORM\Column(name="ranking", type="string", length=255)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 10,
+     *    minMessage = "Le rang doit faire au moins 2 caractères",
+     *    maxMessage = "Le rang ne doit pas dépasser 10 caractères")
+     * @Assert\NotBlank(message = "Le rang doit être renseigné")
      */
     private $ranking;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="date", type="string", length=255)
+     * @ORM\Column(name="date", type="smallint", length=255)
+     * @Assert\Type("int")
+     * @Assert\Range(
+     *      min = 2000,
+     *      max = 2050,
+     *      minMessage = "La date ne peut être inférieure à 2000",
+     *      maxMessage = "La date ne peut être supérieure à 2050")
      */
     private $date;
 

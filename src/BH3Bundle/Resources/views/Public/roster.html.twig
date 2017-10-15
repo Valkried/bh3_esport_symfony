@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Roster{% endblock %}
+{% block title %} {{ roster.name}} {% endblock %}
 
 {% block css %}
 <style>
@@ -33,56 +33,52 @@
 
     <div class="row center-align">
 
-        {% for roster in roster %}
+        {# Bannière du roster #}
+        <div class="col s12">
+            <img src="{{ asset('img/rosters/'~ roster.picture) }}" alt="{{ roster.name }}" class="responsive-img">
+        </div>
+        
+        {% for membre in roster.membres %}
+            <div class="col s12 m6 xl4">
+                <div class="card-panel hoverable">
+                    <div class="row outer-card">
 
-            {# Bannière du roster #}
-            <div class="col s12">
-                <img src="{{ asset('img/rosters/'~ roster.picture) }}" alt="{{ roster.name }}" class="responsive-img">
-            </div>
-            
-            {% for membre in roster.membres %}
-                <div class="col s12 m6 xl4">
-                    <div class="card-panel hoverable">
-                        <div class="row outer-card">
+                        {# Photo de profil #}
+                        <div class="col s6">
+                            <img src="{{ asset('img/membres/'~ membre.picture) }}" alt="{{ membre.pseudo }}" class="profil">
+                        </div>
 
-                            {# Photo de profil #}
-                            <div class="col s6">
-                                <img src="{{ asset('img/membres/'~ membre.picture) }}" alt="{{ membre.pseudo }}" class="profil">
-                            </div>
+                        <div class="col s6 inner-card">
 
-                            <div class="col s6 inner-card">
+                            {# Pseudo #}
+                            <h5 class="red-text text-darken-4">{{ membre.pseudo }}</h5>
 
-                                {# Pseudo #}
-                                <h5 class="red-text text-darken-4">{{ membre.pseudo }}</h5>
+                            {# Prénom #}
+                            <h6>{{ membre.name }}</h6>
 
-                                {# Prénom #}
-                                <h6>{{ membre.name }}</h6>
-
-                                <div>
-                                    {# Plateforme #}
-                                    {% if membre.profile %}
-                                        <a href="{{ membre.profile }}" target="_blank">
-                                            <img src="{{ asset('img/plateforme/'~ membre.plateforme ~'.png') }}" alt="{{ membre.plateforme }}" class="icon">
-                                        </a>
-                                    {% else %}
+                            <div>
+                                {# Plateforme #}
+                                {% if membre.profile %}
+                                    <a href="{{ membre.profile }}" target="_blank">
                                         <img src="{{ asset('img/plateforme/'~ membre.plateforme ~'.png') }}" alt="{{ membre.plateforme }}" class="icon">
-                                    {% endif %}
+                                    </a>
+                                {% else %}
+                                    <img src="{{ asset('img/plateforme/'~ membre.plateforme ~'.png') }}" alt="{{ membre.plateforme }}" class="icon">
+                                {% endif %}
 
-                                    {# Twitter #}
-                                    {% if membre.twitter %}
-                                        <a href="https://www.twitter.com/{{ membre.twitter }}" target="_blank">
-                                            <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
-                                        </a>
-                                    {% endif %}
-                                </div>
-
+                                {# Twitter #}
+                                {% if membre.twitter %}
+                                    <a href="https://www.twitter.com/{{ membre.twitter }}" target="_blank">
+                                        <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
+                                    </a>
+                                {% endif %}
                             </div>
 
                         </div>
+
                     </div>
                 </div>
-            {% endfor %}
-
+            </div>
         {% endfor %}
 
     </div>

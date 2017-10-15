@@ -97,7 +97,7 @@ class PublicController extends Controller
      */
     public function rosterAction($url)
     {
-        $roster = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findBy(array('url' => $url));
+        $roster = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findOneBy(array('url' => $url));
 
         if (!$roster)
         {

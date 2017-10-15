@@ -22,7 +22,7 @@ class MembresController extends Controller
         $membre = new Membre;
         $form = $this->createForm(MembreType::class, $membre);
 
-        $listMembres = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->findAll();
+        $listMembres = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->getAll();
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {

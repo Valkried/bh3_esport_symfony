@@ -84,4 +84,6 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             blameable: true
+            sortable: true
+
             

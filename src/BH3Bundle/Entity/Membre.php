@@ -3,6 +3,7 @@
 namespace BH3Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -140,6 +141,12 @@ class Membre
      * @ORM\JoinColumn(nullable=false)
      */
     private $roster;
+
+    /**
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
 
 
     public function __construct()

@@ -4,3 +4,6 @@ services:
     
     bh3.uploadimg:
         class: BH3Bundle\Services\UploadImg
+    
+    purifier:
+        class: BH3Bundle\Services\Purifier

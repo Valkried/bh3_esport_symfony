@@ -11,6 +11,8 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use BH3Bundle\Entity\News;
 use BH3Bundle\Form\Type\NewsType;
+use BH3Bundle\Services\Purifier;
+use BH3Bundle\Services\Pagination;
 
 class NewsController extends Controller
 {
@@ -18,12 +20,12 @@ class NewsController extends Controller
      * @Route("/admin/news/{page}", name="admin_news", requirements={"page" = "\d+"}, defaults={"page" = 1})
      * @Method({"GET", "POST"})
      */
-    public function newsAction(Request $request, $page)
+    public function newsAction(Request $request, Purifier $purifier, Pagination $pagination, $page)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News');
 
         // Paramètres : limite, page actuelle, repository, tri, ordre, critère de sélection (opt), valeur du critère (opt)
-        $pagination = $this->get('bh3.pagination')->setParameters(3, $page, $repository, 'date', 'DESC');
+        $listNews = $pagination->setParameters(3, $page, $repository, 'date', 'DESC');
 
         $new = new News;
         $form = $this->createForm(NewsType::class, $new);
@@ -32,17 +34,19 @@ class NewsController extends Controller
         {
             $this->get('bh3.uploadimg')->upload($new, 'news');
 
+            $new->setContent($purifier->purify($new->getContent()));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($new);
             $em->flush();
 
-            return $this->redirectToRoute('admin_news');
+            return $this->redirectToRoute('admin_news_edit', array('id' => $new->getId()));
         }
         
         return $this->render('BH3Bundle:Admin:news.html.twig', array(
             'form' => $form->createView(),
-            'news' => $pagination->getElements(),
-            'nbPages' => $pagination->getPages(),
+            'news' => $listNews->getElements(),
+            'nbPages' => $listNews->getPages(),
             'currentPage' => $page
         ));
     }
@@ -51,7 +55,7 @@ class NewsController extends Controller
      * @Route("/admin/news/edit/{id}", name="admin_news_edit", requirements={"id" = "\d+"})
      * @Method({"GET", "POST"})
      */
-    public function newsEditAction(Request $request, $id)
+    public function newsEditAction(Request $request, Purifier $purifier, $id)
     {
         $new = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
         $oldPicture = $new->getPicture();
@@ -70,6 +74,8 @@ class NewsController extends Controller
                 $fs = new FileSystem();
                 $fs->remove($this->getParameter('img_directory').'/news//'.$oldPicture);
             }
+
+            $new->setContent($purifier->purify($new->getContent()));
 
             $em = $this->getDoctrine()->getManager();
             $em->flush();

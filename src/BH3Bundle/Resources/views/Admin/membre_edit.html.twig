@@ -32,56 +32,56 @@
                     <div class="row">
                     
                         {# Pseudo #}
-                        <div class="col s12 m6 input-field">
+                        <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.pseudo) }}
-                            {{ form_widget(form.pseudo) }}
+                            {{ form_widget(form.pseudo, {'attr': {'data-length': 20, 'pattern': '.{2,20}', 'title': 'Minimum 2 caractères, maximum 20 caractères'}}) }}
                             {{ form_label(form.pseudo) }}
                         </div>
 
                         {# Prénom #}
-                        <div class="col s12 m6 input-field">
+                        <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.name) }}
-                            {{ form_widget(form.name) }}
+                            {{ form_widget(form.name, {'attr': {'data-length': 20, 'pattern': '.{2,20}', 'title': 'Minimum 2 caractères, maximum 20 caractères'}}) }}
                             {{ form_label(form.name, 'Prénom') }}
                         </div>
 
                         {# Adresse email #}
-                        <div class="col s12 input-field">
+                        <div class="col s12 l6 input-field">
                             {{ form_errors(form.email) }}
-                            {{ form_widget(form.email) }}
+                            {{ form_widget(form.email, {'attr': {'data-length': 255, 'pattern': '.{0,255}', 'title': 'Maximum 255 caractères'}}) }}
                             {{ form_label(form.email, 'Adresse email') }}
                         </div>
 
                         {# Roster #}
-                        <div class="col s12 m6 xl4 input-field">
+                        <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.roster) }}
                             {{ form_widget(form.roster) }}
                             {{ form_label(form.roster) }}
                         </div>
 
                         {# Plateforme #}
-                        <div class="col s12 m6 xl4 input-field">
+                        <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.plateforme) }}
                             {{ form_widget(form.plateforme) }}
                             {{ form_label(form.plateforme) }}
                         </div>
 
                         {# Twitter #}
-                        <div class="col s12 xl4 input-field">
+                        <div class="col s12 l6 input-field">
                             {{ form_errors(form.twitter) }}
-                            {{ form_widget(form.twitter) }}
+                            {{ form_widget(form.twitter, {'attr': {'data-length': 255, 'pattern': '.{0,255}', 'title': 'Maximum 255 caractères'}}) }}
                             {{ form_label(form.twitter) }}
                         </div>
 
                         {# Profil Xbox Live #}
-                        <div class="col s12 input-field">
+                        <div class="col s12 xl6 input-field">
                             {{ form_errors(form.profile) }}
                             {{ form_widget(form.profile) }}
                             {{ form_label(form.profile, 'Profil Xbox Live / Steam / Site web') }}
                         </div>
 
                         {# Photo #}
-                        <div class="col s12 input-field file-field">
+                        <div class="col s12 xl6 input-field file-field">
                             {{ form_errors(form.picture) }}
                             <div class="btn hoverable yellow darken-3 waves-effect waves-light">
                                 <span><i class="material-icons left">image</i>Photo de profil</span>
@@ -93,14 +93,14 @@
                         </div>
 
                         {# Fonction #}
-                        <div class="col s12 m6 input-field">
+                        <div class="col s12 m6 l3 input-field">
                             {{ form_errors(form.rank) }}
-                            {{ form_widget(form.rank) }}
+                            {{ form_widget(form.rank, {'attr': {'data-length': 30, 'pattern': '.{0,30}', 'title': 'Maximum 30 caractères'}}) }}
                             {{ form_label(form.rank, 'Fonction (staff)') }}
                         </div>
 
                         {# Switch Joueur / Staff #}
-                        <div class="col s12 m6">
+                        <div class="col s12 m6 l3">
                             <div class="switch">
                                 <label>
                                     Joueur

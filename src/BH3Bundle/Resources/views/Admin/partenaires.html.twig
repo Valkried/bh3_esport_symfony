@@ -31,35 +31,35 @@
                         {# Nom #}
                         <div class="col s12 xl6 input-field">
                             {{ form_errors(form.name) }}
-                            {{ form_widget(form.name) }}
+                            {{ form_widget(form.name, {'attr': {'data-length': 50, 'pattern': '.{2,50}', 'title': 'Minimum 2 caractères, maximum 50 caractères'}}) }}
                             {{ form_label(form.name, 'Nom') }}
                         </div>
 
                         {# Adresse du site #}
                         <div class="col s12 xl6 input-field">
                             {{ form_errors(form.url) }}
-                            {{ form_widget(form.url) }}
+                            {{ form_widget(form.url, {'attr': {'data-length': 255, 'pattern': '.{0,255}', 'title': 'Maximum 255 caractères'}}) }}
                             {{ form_label(form.url, 'Adresse du site') }}
                         </div>
 
                         {# Description #}
                         <div class="col s12 input-field">
                             {{ form_errors(form.content) }}
-                            {{ form_widget(form.content, {'attr': {'class': 'materialize-textarea'}}) }}
+                            {{ form_widget(form.content, {'attr': {'class': 'materialize-textarea', 'data-length': 450}}) }}
                             {{ form_label(form.content, 'Description') }}
                         </div>
 
                         {# Facebook #}
                         <div class="col s12 l6 input-field">
                             {{ form_errors(form.facebook) }}
-                            {{ form_widget(form.facebook) }}
+                            {{ form_widget(form.facebook, {'attr': {'data-length': 255, 'pattern': '.{0,255}', 'title': 'Maximum 255 caractères'}}) }}
                             {{ form_label(form.facebook, 'Facebook (url complète)') }}
                         </div>
 
                         {# Twitter #}
                         <div class="col s12 l6 input-field">
                             {{ form_errors(form.twitter) }}
-                            {{ form_widget(form.twitter) }}
+                            {{ form_widget(form.twitter, {'attr': {'data-length': 255, 'pattern': '.{0,255}', 'title': 'Maximum 255 caractères'}}) }}
                             {{ form_label(form.twitter, 'Twitter (url complète)') }}
                         </div>
 

@@ -29,9 +29,9 @@ class Membre
      * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
      * @Assert\Length(
      *    min = 2,
-     *    max = 60,
+     *    max = 20,
      *    minMessage = "Le pseudo doit faire au moins 2 caractères",
-     *    maxMessage = "Le pseudo ne doit pas dépasser 60 caractères")
+     *    maxMessage = "Le pseudo ne doit pas dépasser 20 caractères")
      * @Assert\NotBlank(message = "Le pseudo doit être renseigné")
      */
     private $pseudo;
@@ -42,9 +42,9 @@ class Membre
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\Length(
      *    min = 2,
-     *    max = 60,
+     *    max = 20,
      *    minMessage = "Le prénom doit faire au moins 2 caractères",
-     *    maxMessage = "Le prénom ne doit pas dépasser 60 caractères")
+     *    maxMessage = "Le prénom ne doit pas dépasser 20 caractères")
      * @Assert\NotBlank(message = "Le prénom doit être renseigné")
      */
     private $name;
@@ -63,8 +63,8 @@ class Membre
      *
      * @ORM\Column(name="rank", type="string", length=255, nullable=true)
      * @Assert\Length(
-     *    max = 60,
-     *    maxMessage = "La fonction ne doit pas dépasser 60 caractères")
+     *    max = 30,
+     *    maxMessage = "La fonction ne doit pas dépasser 30 caractères")
      */
     private $rank;
 

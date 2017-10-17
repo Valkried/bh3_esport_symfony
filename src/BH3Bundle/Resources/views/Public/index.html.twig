@@ -50,7 +50,7 @@
                                 <div class="card-panel hoverable">
                                     <h4 class="black-text">{{ new.title }}</h4>
                                     <h6 class="red-text text-darken-4">Posté par {{ new.author.username }}</h6>
-                                    <p class="black-text">{{ new.content|slice(0, 350) }}...</p>
+                                    <p class="black-text">{{ new.content|striptags|slice(0, 350) }}...</p>
                                 </div>
                             </a>
                         </article>

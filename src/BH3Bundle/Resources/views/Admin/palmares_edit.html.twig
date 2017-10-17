@@ -30,35 +30,35 @@
                         {# Roster #}
                         <div class="col s12 m6 input-field">
                             {{ form_errors(form.roster) }}
-                            {{ form_widget(form.roster) }}
+                            {{ form_widget(form.roster, {'attr': {'data-length': 25, 'pattern': '.{2,25}', 'title': 'Minimum 2 caractères, maximum 25 caractères'}}) }}
                             {{ form_label(form.roster, 'Roster') }}
                         </div>
 
                         {# Evénement #}
                         <div class="col s12 m6 input-field">
                             {{ form_errors(form.event) }}
-                            {{ form_widget(form.event) }}
+                            {{ form_widget(form.event, {'attr': {'data-length': 25, 'pattern': '.{2,25}', 'title': 'Minimum 2 caractères, maximum 25 caractères'}}) }}
                             {{ form_label(form.event, 'Evénement (ex : "ILoveBtb\'14")') }}
                         </div>
 
                         {# Localisation #}
                         <div class="col s12 m6 input-field">
                             {{ form_errors(form.localisation) }}
-                            {{ form_widget(form.localisation) }}
+                            {{ form_widget(form.localisation, {'attr': {'data-length': 25, 'pattern': '.{2,25}', 'title': 'Minimum 2 caractères, maximum 25 caractères'}}) }}
                             {{ form_label(form.localisation, 'Localisation (ex : "Bordeaux")') }}
                         </div>
 
                         {# Rang #}
                         <div class="col s12 m6 input-field">
                             {{ form_errors(form.ranking) }}
-                            {{ form_widget(form.ranking) }}
+                            {{ form_widget(form.ranking, {'attr': {'data-length': 10, 'pattern': '.{2,10}', 'title': 'Minimum 2 caractères, maximum 10 caractères'}}) }}
                             {{ form_label(form.ranking, 'Rang (ex : "1er")') }}
                         </div>
 
                         {# Date #}
                         <div class="col s12 m6 input-field">
                             {{ form_errors(form.date) }}
-                            {{ form_widget(form.date) }}
+                            {{ form_widget(form.date, {'attr': {'data-length': 4, 'title': '4 caractères'}}) }}
                             {{ form_label(form.date, 'Date (ex : "2017")') }}
                         </div>
 

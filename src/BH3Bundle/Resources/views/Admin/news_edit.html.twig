@@ -9,6 +9,14 @@
     .parallax-container {
         margin-bottom: 15px;
     }
+    #text-format {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #text-format button {
+        margin-right: 10px;
+        margin-bottom: 15px;
+    }
     @media (min-width: 1201px) {
         .switch label {
             position: relative;
@@ -37,15 +45,25 @@
                         {# Titre #}
                         <div class="col s12 input-field">
                             {{ form_errors(form.title) }}
-                            {{ form_widget(form.title) }}
+                            {{ form_widget(form.title, {'attr': {'data-length': 60, 'pattern': '.{10,60}', 'title': 'Minimum 10 caractères, maximum 60 caractères'}}) }}
                             {{ form_label(form.title, 'Titre') }}
                         </div>
 
                         {# Contenu #}
                         <div class="col s12 input-field">
                             {{ form_errors(form.content) }}
-                            {{ form_widget(form.content, {'attr': {'class': 'materialize-textarea'}}) }}
+                            {{ form_widget(form.content, {'attr': {'class': 'materialize-textarea', 'data-length': 10000}}) }}
                             {{ form_label(form.content, 'Contenu') }}
+                        </div>
+
+                        {# Formatage #}
+                        <div class="col s12" id="text-format">
+                            <button type="button" id="title" class="btn tooltipped amber darken-4" data-tooltip="[title] Sous-titre [/title]"><i class="material-icons">title</i></button>
+                            <button type="button" id="bold" class="btn tooltipped amber darken-4" data-tooltip="[b] Gras [/b]"><i class="material-icons">format_bold</i></button>
+                            <button type="button" id="italic" class="btn tooltipped amber darken-4" data-tooltip="[i] Italique [/i]"><i class="material-icons">format_italic</i></button>
+                            <button type="button" id="link" class="btn tooltipped amber darken-4" data-tooltip="[link=adresse_du_lien.html] Nom du lien [/link]"><i class="material-icons">link</i></button>
+                            <button type="button" id="image" class="btn tooltipped amber darken-4" data-tooltip="[img] adresse_de_l_image.jpg [/img]"><i class="material-icons">image</i></button>
+                            <button type="button" id="video" class="btn tooltipped amber darken-4" data-tooltip="[video] https://www.youtube.com/watch?v=4labjwAQh6Q [/video]"><i class="material-icons">ondemand_video</i></button>
                         </div>
 
                         {# Bannière #}
@@ -103,7 +121,7 @@
             </div>
 
             <div class="card-panel center-align">
-                <p>{{ news.content|nl2br }}</p>
+                <p>{{ news.content|raw|nl2br }}</p>
             </div>
         </div>
 
@@ -114,7 +132,35 @@
 {% block javascripts %}
 <script>
     $(function() {
+
         $('.parallax').parallax();
+
+        $('.tooltipped').tooltip({delay: 0});
+
+        $('#title').click(function() {
+            $('.materialize-textarea').val($('.materialize-textarea').val() + '[title]Titre[/title]');
+        });
+
+        $('#bold').click(function() {
+            $('.materialize-textarea').val($('.materialize-textarea').val() + '[b][/b]');
+        });
+
+        $('#italic').click(function() {
+            $('.materialize-textarea').val($('.materialize-textarea').val() + '[i][/i]');
+        });
+
+        $('#link').click(function() {
+            $('.materialize-textarea').val($('.materialize-textarea').val() + '[a=adresse_du_lien]Nom du lien[/a]');
+        });
+
+        $('#image').click(function() {
+            $('.materialize-textarea').val($('.materialize-textarea').val() + '[img]adresse_de_l_image.jpg[/img]');
+        });
+
+        $('#video').click(function() {
+            $('.materialize-textarea').val($('.materialize-textarea').val() + '[video]adresse_video_youtube[/video]');
+        });
+
     });
 </script>
 {% endblock %}

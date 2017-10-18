@@ -10,7 +10,7 @@ class Purifier
     public function purify($dirty_html)
     {
         $config = HTMLPurifier_Config::createDefault();
-        $config->set('HTML.Allowed', 'em,strong,h4,a[href],img[src]');
+        $config->set('HTML.Allowed', 'em,strong,h5,a[href],img[src]');
         
         $purifier = new HTMLPurifier($config);
 

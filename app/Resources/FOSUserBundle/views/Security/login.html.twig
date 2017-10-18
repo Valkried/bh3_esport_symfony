@@ -1,0 +1,56 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col s12">
+            <h4 class="admin-title">Se connecter</h4>
+        </div>
+
+        {% block fos_user_content %}
+            <div class="col s8 offset-s2">
+
+                <div class="card-panel">
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
+
+                        <div class="row">
+
+                            <div class="input-field col s12">
+                                <label for="username">Nom d'utilisateur</label>
+                                <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Nom d'utilisateur" required>
+                            </div>
+
+                            <div class="input-field col s12 m6">
+                                <label for="password">Mot de passe</label>
+                                <input type="password" id="password" name="_password" placeholder="Mot de passe" required>
+                            </div>
+
+                            <div class="input-field col s12 m6">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                <label for="remember_me">Se souvenir de moi</label>
+                            </div>
+
+                            <div class="input-field checkbox col s12">
+                                <button type="submit" class="btn-large admin-button waves-effect waves-light yellow darken-3 hoverable">Se connecter</button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        {% endblock %}
+
+    </div>
+
+{% endblock %}

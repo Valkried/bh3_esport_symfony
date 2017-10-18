@@ -122,7 +122,7 @@
                     {# Contenu #}
                     <div class="card-reveal center-align">
                         <span class="card-title">{{ new.title }}<i class="material-icons right">close</i></span>
-                        <p>{{ new.content|raw|nl2br }}</p>
+                        <p>{{ new.content|bbcode|raw|nl2br }}</p>
                     </div>
 
                 </div>
@@ -156,29 +156,33 @@ $(function() {
 
     $('.tooltipped').tooltip({delay: 0});
 
-    $('#title').click(function() {
-        $('.materialize-textarea').val($('.materialize-textarea').val() + '[title]Titre[/title]');
-    });
+    function insert(bbcodeIn, bbcodeOut) {
+        var cursorPos = $('textarea').prop('selectionStart');
+        var v = $('textarea').val();
+        var text = window.getSelection().toString();
+        var textBefore = v.substring(0,  cursorPos);
+        var textAfter  = v.substring(cursorPos + text.length, v.length);
 
-    $('#bold').click(function() {
-        $('.materialize-textarea').val($('.materialize-textarea').val() + '[b][/b]');
-    });
+        $('textarea').val(textBefore + bbcodeIn + text + bbcodeOut + textAfter);
+    }
 
-    $('#italic').click(function() {
-        $('.materialize-textarea').val($('.materialize-textarea').val() + '[i][/i]');
-    });
+    // Title
+    $('#title').click(function() { insert('[title]', '[/title]'); });
 
-    $('#link').click(function() {
-        $('.materialize-textarea').val($('.materialize-textarea').val() + '[a=adresse_du_lien]Nom du lien[/a]');
-    });
+    // Bold
+    $('#bold').click(function() { insert('[b]', '[/b]'); });
 
-    $('#image').click(function() {
-        $('.materialize-textarea').val($('.materialize-textarea').val() + '[img]adresse_de_l_image.jpg[/img]');
-    });
+    // Italic
+    $('#italic').click(function() { insert('[i]', '[/i]'); });
 
-    $('#video').click(function() {
-        $('.materialize-textarea').val($('.materialize-textarea').val() + '[video]adresse_video_youtube[/video]');
-    });
+    // Link
+    $('#link').click(function() { insert('[link=adresse_du_lien]', '[/link]'); });
+
+    // Image
+    $('#image').click(function() { insert('[img]', '[/img]'); });
+
+    // Video
+    $('#video').click(function() { insert('[video]', '[/video]'); });
 
 });
 </script>

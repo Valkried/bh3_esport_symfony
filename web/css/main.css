@@ -99,6 +99,12 @@ input[type=text].valid:not(.browser-default):focus,
     align-items: center;
 }
 
+[type="checkbox"] + label,
+[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label {
+    pointer-events: auto;
+}
+
 
 /* GENERAL */
 
@@ -124,3 +130,10 @@ input[type=text].valid:not(.browser-default):focus,
     width: 100%;
     margin: 10px auto;
 }
+
+.subtitle {
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+a { color: #b71c1c; }

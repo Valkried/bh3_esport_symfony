@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Doctrine\Bundle\DoctrineCacheBundle\DependencyInjection\Configuration;
 
 class BH3BundleExtension extends Extension
 {

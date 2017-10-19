@@ -6,7 +6,7 @@ class BBCodeExtension extends \Twig_Extension
 {
     public function getFilters()
     {
-        return array(new \Twig_SimpleFilter('bbcode', array($this, 'bbcode')));
+        return array(new \Twig_SimpleFilter('bbcode', array($this, 'bbcode'), array('is_safe' => array('html'))));
     }
 
     public function getName()

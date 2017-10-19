@@ -41,7 +41,7 @@ class AdminsController extends Controller
 
     /**
      * @Route("/admin/admins/delete/{id}", name="admin_admins_delete", requirements={"id" = "\d+"})
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function deleteAction($id)
     {

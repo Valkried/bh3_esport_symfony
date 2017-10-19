@@ -137,3 +137,5 @@ input[type=text].valid:not(.browser-default):focus,
 }
 
 a { color: #b71c1c; }
+
+#slider h2 { text-shadow: 0 0 5px black; }

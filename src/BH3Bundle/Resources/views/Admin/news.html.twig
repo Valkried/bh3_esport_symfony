@@ -91,7 +91,7 @@
                     {# Bannière et bouton flottant #}
                     <div class="card-image">
                         <img src="{{ asset('img/news/'~ new.picture) }}" alt="{{ new.title }}" class="activator waves-effect waves-light">
-                        <a href="{{ path('admin_news_visibility', {'id': new.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3">
+                        <a href="{{ path('admin_news_visibility', {'id': new.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3 tooltipped" data-tooltip="Modifier la visibilité">
                             <i class="material-icons">{% if new.published %}check{% else %}lock{% endif %}</i>
                         </a>
                     </div>

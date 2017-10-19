@@ -1,0 +1,99 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Gestion des administrateurs
+{% endblock %}
+
+{% block css %}
+<style>
+    .card-panel .row {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col s12">
+            <h4 class="admin-title">Gestion des administrateurs</h4>
+        </div>
+
+        {% for admin in admins %}
+            <div class="col s12">
+                <div class="card-panel">
+                    <div class="row">
+
+                        {# Pseudo #}
+                        <div class="col s12 m6 l4 xl2 center-align input-field">{{ admin.username }}</div>
+
+                        {# Rôle #}
+                        <div class="col s12 m6 l4 xl3 center-align input-field">({{ admin.roles[0] }})</div>
+
+                        {# Choix du rôle #}
+                        <select id="{{ admin.id }}" class="col s12 m4 l4 xl3 center-align input-field">
+                            <option value="ROLE_USER"{% if admin.roles[0] == 'ROLE_USER' %} selected{% endif %}>Utilisateur</option>
+                            <option value="ROLE_REDACTEUR"{% if admin.roles[0] == 'ROLE_REDACTEUR' %} selected{% endif %}>Rédacteur</option>
+                            <option value="ROLE_MANAGER"{% if admin.roles[0] == 'ROLE_MANAGER' %} selected{% endif %}>Manager</option>
+                            <option value="ROLE_ADMIN"{% if admin.roles[0] == 'ROLE_ADMIN' %} selected{% endif %}>Administrateur</option>
+                            <option value="ROLE_SUPER_ADMIN"{% if admin.roles[0] == 'ROLE_SUPER_ADMIN' %} selected{% endif %}>Dieu</option>
+                        </select>
+
+                        {# Bouton modifier #}
+                        <div class="col s6 m4 l6 xl2 center-align input-field">
+                            <button data-id="{{ admin.id }}" class="btn admin-button yellow darken-3">
+                                <i class="material-icons white-text">edit</i>
+                            </button>
+                        </div>
+
+                        {# Bouton supprimer #}
+                        <div class="col s6 m4 l6 xl2 center-align input-field">
+                            <a href="#modal_delete{{ admin.id }}" class="modal-trigger">
+                                <button class="btn admin-button red">
+                                    <i class="material-icons white-text">delete</i>
+                                </button>
+                            </a>
+                        </div>
+
+                        {# Fenêtre modale de suppression #}
+                        <div id="modal_delete{{ admin.id }}" class="modal">
+                            <div class="modal-content">
+                                <h5>Êtes-vous sûr de vouloir supprimer cet administrateur ?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{{ path('admin_admins_delete', {'id': admin.id}) }}" class="waves-effect waves-red red-text btn-flat"><i class="material-icons left">delete</i>Supprimer</a>
+                                <a href="#!" class="waves-effect btn-flat modal-action modal-close"><i class="material-icons left">cancel</i>Non, annuler</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$(function() {
+
+$('select').material_select();
+
+$('button').click(function() {
+    var url = '{{ path("admin_admins_role") }}'
+    var id = $(this).attr('data-id')
+    var val = $('select#' + id + ' option:selected').val();
+    $.post(url, {id: id, role: val}, function() {
+        location.reload();
+    });
+})
+
+});
+</script>
+{% endblock %}

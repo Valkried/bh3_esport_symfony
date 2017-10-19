@@ -32,8 +32,9 @@ security:
         - { path: ^/admin/, role: [ROLE_MANAGER, ROLE_REDACTEUR] }
         - { path: ^/admin/news, role: ROLE_REDACTEUR }
         - { path: ^/admin/membres, role: ROLE_MANAGER }
-        - { path: ^/admin/rosters, role: ROLE_ADMIN }
-        - { path: ^/admin/palmares, role: ROLE_ADMIN }
+        - { path: ^/admin/rosters, role: ROLE_MANAGER }
+        - { path: ^/admin/palmares, role: ROLE_MANAGER }
         - { path: ^/admin/partenaires, role: ROLE_ADMIN }
         - { path: ^/admin/messagerie, role: ROLE_ADMIN }
+        - { path: ^/admin/admins, role: ROLE_SUPER_ADMIN }
         

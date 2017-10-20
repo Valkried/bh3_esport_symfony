@@ -1,0 +1,43 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row">
+
+    <div class="col s12">
+        <h4 class="admin-title">S'enregistrer</h4>
+    </div>
+
+    <div class="col s12 l8 offset-l2">
+        <div class="card-panel">
+        
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+
+                {# Nom d'utilisateur #}
+                <div class="col s12 input-field">
+                    {{ form_errors(form.username) }}
+                    {{ form_widget(form.username) }}
+                    {{ form_label(form.username) }}
+                </div>
+
+                {# Email #}
+                <div class="col s12 input-field">
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_label(form.email) }}
+                </div>
+
+                {# Mot de passe #}
+                <div class="col s12 input-field">
+                    {{ form_errors(form.current_password) }}
+                    {{ form_widget(form.current_password) }}
+                    {{ form_label(form.current_password) }}
+                </div>
+
+                <div>
+                    <button type="submit" class="btn-large admin-button waves-effect waves-light yellow darken-3 hoverable">{{ 'profile.edit.submit'|trans }}</button>
+                </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+</div>

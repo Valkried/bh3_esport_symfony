@@ -68,7 +68,7 @@
                     {# Photo et bouton flottant #}
                     <div class="card-image">
                         <img src="{{ asset('img/rosters/'~ roster.picture) }}" alt="{{ roster.name }}">
-                        <a href="{{ path('admin_rosters_edit', {'id': roster.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3">
+                        <a href="{{ path('admin_rosters_edit', {'id': roster.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3 tooltipped" data-tooltip="Modifier le roster">
                             <i class="material-icons">edit</i>
                         </a>
                     </div>
@@ -107,6 +107,8 @@
 $(function() {
 
 $('select').material_select();
+
+$('.tooltipped').tooltip({delay: 0});
 
 });
 </script>

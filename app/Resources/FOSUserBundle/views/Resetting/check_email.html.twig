@@ -2,6 +2,10 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}
+    Email envoyé !
+{% endblock %}
+
 {% block fos_user_content %}
 <div class="card-panel">
     <p class="center-align">{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</p>

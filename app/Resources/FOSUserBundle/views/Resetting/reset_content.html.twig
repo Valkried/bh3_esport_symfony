@@ -1,0 +1,36 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row">
+
+    <div class="col s12">
+        <h4 class="admin-title">
+            Modifier le mot de passe
+        </h4>
+    </div>
+
+    <div class="col s12">
+        <div class="card-panel">
+        
+            {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+
+                {# Mot de passe #}
+                {% for password in form.plainPassword %}
+                    <div class="col s12 input-field">
+                        {{ form_errors(password) }}
+                        {{ form_widget(password) }}
+                        {{ form_label(password) }}
+                    </div>
+                {% endfor %}
+
+                <div>
+                    <button type="submit" class="btn-large admin-button waves-effect waves-light yellow darken-3 hoverable">{{ 'resetting.reset.submit'|trans }}</button>
+                </div>
+
+            {{ form_end(form) }}
+        
+        </div>
+    </div>
+
+</div>
+
+

@@ -136,7 +136,7 @@
                     {# Photo et bouton flottant #}
                     <div class="card-image">
                         <img src="{{ asset('img/membres/'~ membre.picture) }}" alt="{{ membre.pseudo }}">
-                        <a href="{{ path('admin_membres_edit', {'id': membre.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3">
+                        <a href="{{ path('admin_membres_edit', {'id': membre.id}) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-3 tooltipped" data-tooltip="Modifier le membre">
                             <i class="material-icons">edit</i>
                         </a>
                     </div>
@@ -176,6 +176,8 @@
 $(function() {
 
 $('select').material_select();
+
+$('.tooltipped').tooltip({delay: 0});
 
 });
 </script>

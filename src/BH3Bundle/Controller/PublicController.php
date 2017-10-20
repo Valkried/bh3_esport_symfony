@@ -146,20 +146,33 @@ class PublicController extends Controller
             $em->persist($email);
             $em->flush();
 
-            $message = (new \Swift_Message('Contact BH3'))
+            $message = (new \Swift_Message($email->getSubject().' | Contact BH3'))
                 ->setFrom($email->getEmail())
                 ->setTo('burningheads@live.fr')
                 ->setBody(
-                    $this->renderView('Emails/contact.html.twig', array(
-                        'name' => $email->getName(),
-                        'subject' => $email->getSubject(),
-                        'email' => $email->getEmail(),
-                        'content' => $email->getContent(),
-                        'date' => $email->getDate()
+                    $this->renderView('Emails/contact.html.twig',
+                        array(
+                            'name' => $email->getName(),
+                            'subject' => $email->getSubject(),
+                            'email' => $email->getEmail(),
+                            'content' => $email->getContent(),
+                            'date' => $email->getDate()
+                        )
                     ), 'text/html')
-                );
+                ->addPart(
+                    $this->renderView('Emails/contact.html.twig',
+                        array(
+                            'name' => $email->getName(),
+                            'subject' => $email->getSubject(),
+                            'email' => $email->getEmail(),
+                            'content' => $email->getContent(),
+                            'date' => $email->getDate()
+                        )
+                    ), 'text/plain');
 
             $this->get('mailer')->send($message);
+
+            $request->getSession()->getFlashbag()->add('info', 'Votre message a bien été envoyé !');
 
             return $this->redirectToRoute('home');
         }

@@ -20,6 +20,9 @@
     #twitter {
         margin-top: 17px;
     }
+    .flashbag {
+        margin-top: 0;
+    }
 </style>
 {% endblock %}
 
@@ -31,6 +34,15 @@
             <div class="row">
             
                 <div class="articles">
+
+                    {# Flashbag de confirmation (email) #}
+                    {% for message in app.session.flashbag.get('info') %}
+                        <div class="col s12">
+                            <div class="card-panel blue lighten-1 white-text center-align flashbag">
+                                {{ message }}
+                            </div>
+                        </div>
+                    {% endfor %}
                 
                     {# SLIDER #}
                     <div class="col s12 hide-on-small-only">

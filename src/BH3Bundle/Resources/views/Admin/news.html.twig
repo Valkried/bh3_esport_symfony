@@ -105,7 +105,7 @@
                     {# Supprimer / Modifier #}
                     <div class="card-action">
                         <a href="#modal{{ new.id }}" class="btn-flat red-text modal-trigger"><i class="material-icons left">delete</i>Supprimer</a>
-                        <a href="{{ path('admin_news_edit', {'id': new.id}) }}" class="btn-flat yellow-text text-darken-3"><i class="material-icons left">edit</i>Modifier</a>
+                        <a href="{{ path('admin_news_edit', {'slug': new.slug}) }}" class="btn-flat yellow-text text-darken-3"><i class="material-icons left">edit</i>Modifier</a>
                     </div>
 
                     {# Fenêtre modale #}

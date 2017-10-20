@@ -40,7 +40,7 @@ class NewsController extends Controller
             $em->persist($new);
             $em->flush();
 
-            return $this->redirectToRoute('admin_news_edit', array('id' => $new->getId()));
+            return $this->redirectToRoute('admin_news_edit', array('slug' => $new->getSlug()));
         }
         
         return $this->render('BH3Bundle:Admin:news.html.twig', array(
@@ -52,12 +52,12 @@ class NewsController extends Controller
     }
 
     /**
-     * @Route("/admin/news/edit/{id}", name="admin_news_edit", requirements={"id" = "\d+"})
+     * @Route("/admin/news/edit/{slug}", name="admin_news_edit")
      * @Method({"GET", "POST"})
      */
-    public function newsEditAction(Request $request, Purifier $purifier, $id)
+    public function newsEditAction(Request $request, Purifier $purifier, $slug)
     {
-        $new = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
+        $new = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->findOneBy(array('slug' => $slug));
         $oldPicture = $new->getPicture();
         $new->setPicture(new File($this->getParameter('img_directory').'/news//'.$new->getPicture()));
 
@@ -81,7 +81,7 @@ class NewsController extends Controller
             $em->flush();
 
             if (!$new->getPublished()) {
-                return $this->redirectToRoute('admin_news_edit', array('id' => $id));
+                return $this->redirectToRoute('admin_news_edit', array('slug' => $slug));
             } else {
                 return $this->redirectToRoute('home');
             }

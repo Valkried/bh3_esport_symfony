@@ -108,25 +108,23 @@
         </div>
 
         {# Aperçu de la news #}
-        <div class="row center-align">
-            <div class="col s12">
-            
-                <div class="parallax-container">
-                    <div class="parallax">
-                        <img src="{{ asset('img/news/') ~ oldPicture }}" alt="{{ news.title }}">
-                    </div>
+        <div class="col s12 center-align">
+        
+            <div class="parallax-container">
+                <div class="parallax">
+                    <img src="{{ asset('img/news/') ~ oldPicture }}" alt="{{ news.title }}">
                 </div>
+            </div>
 
-                <div class="card-panel">
-                    <h3>{{ news.title }}</h3>
-                    <h5>Par {{ news.author.username }}, le {{ news.date|date('d/m/Y à h:i') }}</h5>
-                </div>
+            <div class="card-panel">
+                <h3>{{ news.title }}</h3>
+                <h5>Par {{ news.author.username }}, le {{ news.date|date('d/m/Y à h:i') }}</h5>
+            </div>
 
-                <div class="card-panel">
-                    {{ news.content|bbcode|nl2br }}
-                </div>
+            <div class="card-panel">
+                {{ news.content|bbcode|nl2br }}
+            </div>
 
-        </div>
     </div>
 
     </div>

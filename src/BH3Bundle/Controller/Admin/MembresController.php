@@ -82,7 +82,7 @@ class MembresController extends Controller
 
     /**
      * @Route("/admin/membres/delete/{id}", name="admin_membres_delete", requirements={"id" = "\d+"})
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function membresDeleteAction($id)
     {

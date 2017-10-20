@@ -93,7 +93,7 @@ class RostersController extends Controller
 
     /**
      * @Route("/admin/rosters/delete/{id}", name="admin_rosters_delete", requirements={"id" = "\d+"})
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function rostersDeleteAction($id)
     {

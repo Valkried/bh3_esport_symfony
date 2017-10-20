@@ -96,7 +96,7 @@ class NewsController extends Controller
 
     /**
      * @Route("/admin/news/delete/{id}", name="admin_news_delete", requirements={"id" = "\d+"})
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function newsDeleteAction($id)
     {
@@ -114,7 +114,7 @@ class NewsController extends Controller
 
     /**
      * @Route("/admin/news/visibility/{id}", name="admin_news_visibility", requirements={"id" = "\d+"})
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function newsVisibilityAction($id)
     {

@@ -37,4 +37,3 @@ security:
         - { path: ^/admin/partenaires, role: ROLE_ADMIN }
         - { path: ^/admin/messagerie, role: ROLE_ADMIN }
         - { path: ^/admin/admins, role: ROLE_SUPER_ADMIN }
-        

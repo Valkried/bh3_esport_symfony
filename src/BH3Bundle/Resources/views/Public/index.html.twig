@@ -48,7 +48,7 @@
                     <div class="col s12 hide-on-small-only">
                         <div id="slider" class="carousel carousel-slider center-align hoverable">
                             {% for new in news %}
-                                <a href="{{ path('news', {'id': new.id}) }}" class="carousel-item white-text" style="background: url('{{ asset('img/news/') ~ new.picture }}') center no-repeat; background-size: 1000px;">
+                                <a href="{{ path('news', {'slug': new.slug}) }}" class="carousel-item white-text" style="background: url('{{ asset('img/news/') ~ new.picture }}') center no-repeat; background-size: 1000px;">
                                     <h2>{{ new.title }}</h2>
                                 </a>
                             {% endfor %}
@@ -58,7 +58,7 @@
                     {# NEWS #}
                     {% for new in news %}
                         <article class="col s12">
-                            <a href="{{ path('news', {'id': new.id}) }}">
+                            <a href="{{ path('news', {'slug': new.slug}) }}">
                                 <div class="card-panel hoverable">
                                     <h4 class="black-text">{{ new.title }}</h4>
                                     <h6 class="red-text text-darken-4">Posté par {{ new.author.username }}</h6>

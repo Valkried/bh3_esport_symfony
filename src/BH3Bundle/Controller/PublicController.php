@@ -40,12 +40,12 @@ class PublicController extends Controller
     }
 
     /**
-     * @Route("/news/{id}", name="news", requirements={"id" = "\d+"})
+     * @Route("/news/{slug}", name="news")
      * @Method("GET")
      */
-    public function newsAction($id)
+    public function newsAction($slug)
     {
-        $news = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->find($id);
+        $news = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->findOneBy(array('slug' => $slug));
 
         if ($news === null) {
             throw new NotFoundHttpException('La page demandée n\'existe pas');

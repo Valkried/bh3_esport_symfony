@@ -26,6 +26,12 @@ class Partenaire
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 50,
+     *    minMessage = "Le nom doit faire au moins 2 caractères",
+     *    maxMessage = "Le nom ne doit pas dépasser 50 caractères")
+     * @Assert\NotBlank(message = "Le nom doit être rempli")
      */
     private $name;
 
@@ -34,10 +40,10 @@ class Partenaire
      *
      * @ORM\Column(name="content", type="text")
      * @Assert\Length(
-     *    min = 2,
-     *    max = 50,
-     *    minMessage = "Le nom doit faire au moins 2 caractères",
-     *    maxMessage = "Le nom ne doit pas dépasser 50 caractères")
+     *    min = 10,
+     *    max = 500,
+     *    minMessage = "Le contenu doit faire au moins 10 caractères",
+     *    maxMessage = "Le contenu ne doit pas dépasser 500 caractères")
      * @Assert\NotBlank(message = "Le contenu doit être rempli")
      */
     private $content;

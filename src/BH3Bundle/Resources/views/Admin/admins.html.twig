@@ -38,7 +38,7 @@
                         <select id="{{ admin.id }}" class="col s12 m4 l4 xl3 center-align input-field">
                             <option value="ROLE_USER"{% if admin.roles[0] == 'ROLE_USER' %} selected{% endif %}>Utilisateur</option>
                             <option value="ROLE_REDACTEUR"{% if admin.roles[0] == 'ROLE_REDACTEUR' %} selected{% endif %}>Rédacteur</option>
-                            <option value="ROLE_MANAGER"{% if admin.roles[0] == 'ROLE_MANAGER' %} selected{% endif %}>Manager</option>
+                            <option value="ROLE_SECRETAIRE"{% if admin.roles[0] == 'ROLE_SECRETAIRE' %} selected{% endif %}>Secrétaire</option>
                             <option value="ROLE_ADMIN"{% if admin.roles[0] == 'ROLE_ADMIN' %} selected{% endif %}>Administrateur</option>
                             <option value="ROLE_SUPER_ADMIN"{% if admin.roles[0] == 'ROLE_SUPER_ADMIN' %} selected{% endif %}>Dieu</option>
                         </select>

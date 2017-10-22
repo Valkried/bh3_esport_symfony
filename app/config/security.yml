@@ -28,14 +28,13 @@ security:
                 secret: '%secret%'
     
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: [ROLE_SECRETAIRE, ROLE_REDACTEUR] }
-        - { path: ^/admin/news, role: ROLE_REDACTEUR }
-        - { path: ^/admin/membres, role: ROLE_SECRETAIRE }
-        - { path: ^/admin/rosters, role: ROLE_ADMIN }
-        - { path: ^/admin/palmares, role: ROLE_SECRETAIRE }
-        - { path: ^/admin/partenaires, role: ROLE_ADMIN }
-        - { path: ^/admin/messagerie, role: ROLE_SECRETAIRE }
-        - { path: ^/admin/admins, role: ROLE_SUPER_ADMIN }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/news, roles: ROLE_REDACTEUR }
+        - { path: ^/admin/membres, roles: ROLE_SECRETAIRE }
+        - { path: ^/admin/rosters, roles: ROLE_SECRETAIRE }
+        - { path: ^/admin/messagerie, roles: ROLE_SECRETAIRE }
+        - { path: ^/admin/palmares, roles: ROLE_SECRETAIRE }
+        - { path: ^/admin/partenaires, roles: ROLE_ADMIN }
+        - { path: ^/admin/admins, roles: ROLE_SUPER_ADMIN }

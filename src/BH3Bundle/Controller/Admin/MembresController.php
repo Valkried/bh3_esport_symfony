@@ -64,8 +64,10 @@ class MembresController extends Controller
             } else {
                 $this->get('bh3.uploadimg')->upload($membre, 'membres');
 
-                $fs = new FileSystem();
-                $fs->remove($this->getParameter('img_directory').'/membres//'.$oldPicture);
+                if ($oldPicture !== 'tete-bh3.png') {
+                    $fs = new FileSystem();
+                    $fs->remove($this->getParameter('img_directory').'/membres//'.$oldPicture);
+                }
             }
 
             $em = $this->getDoctrine()->getManager();

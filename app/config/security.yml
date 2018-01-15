@@ -36,5 +36,5 @@ security:
         - { path: ^/admin/rosters, roles: ROLE_SECRETAIRE }
         - { path: ^/admin/messagerie, roles: ROLE_SECRETAIRE }
         - { path: ^/admin/palmares, roles: ROLE_SECRETAIRE }
-        - { path: ^/admin/partenaires, roles: ROLE_ADMIN }
+        - { path: ^/admin/partenaires, roles: ROLE_SECRETAIRE }
         - { path: ^/admin/admins, roles: ROLE_SUPER_ADMIN }

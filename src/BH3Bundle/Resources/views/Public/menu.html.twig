@@ -45,8 +45,6 @@
             <li><a href="{{ path('admin_rosters') }}"><i class="material-icons left">group_work</i>ROSTERS</a></li>
             <li><a href="{{ path('admin_palmares') }}"><i class="material-icons left">school</i>PALMARES</a></li>
             <li><a href="{{ path('admin_messagerie') }}"><i class="material-icons left">email</i>MESSAGERIE</a></li>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('admin_partenaires') }}"><i class="material-icons left">euro_symbol</i>PARTENAIRES</a></li>
         {% endif %}
         {% if is_granted('ROLE_SUPER_ADMIN') %}
@@ -71,8 +69,6 @@
                 <li><a href="{{ path('admin_rosters') }}"><i class="material-icons left red-text text-darken-4">group_work</i>ROSTERS</a></li>
                 <li><a href="{{ path('admin_palmares') }}"><i class="material-icons left red-text text-darken-4">school</i>PALMARES</a></li>
                 <li><a href="{{ path('admin_messagerie') }}"><i class="material-icons left red-text text-darken-4">email</i>MESSAGERIE</a></li>
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="{{ path('admin_partenaires') }}"><i class="material-icons left red-text text-darken-4">euro_symbol</i>PARTENAIRES</a></li>
             {% endif %}
             {% if is_granted('ROLE_SUPER_ADMIN') %}

@@ -32,7 +32,7 @@ class BBCodeExtension extends \Twig_Extension
         $text = preg_replace('#\[img\](.*)\[/img\]#isU', '<img src="$1" alt="Image de présentation" class="responsive-img"/>', $text);
 
         // Video
-        $text = preg_replace('#\[video\].+v=(\d{11}|\w{11}).*\[/video\]#isU', '<div class="video-container"><iframe src="https://www.youtube.com/embed/$1?autoplay=0" frameborder="0" allowfullscreen></iframe></div>', $text);
+        $text = preg_replace('#\[video\].+v=(.{11}).*\[/video\]#isU', '<div class="video-container"><iframe src="https://www.youtube.com/embed/$1?autoplay=0" frameborder="0" allowfullscreen></iframe></div>', $text);
 
         return $text;
     }

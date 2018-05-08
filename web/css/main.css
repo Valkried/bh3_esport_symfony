@@ -36,13 +36,20 @@ nav
 
 nav ul li
 {
-    display: inline-block;
+    display: inline;
     float: none;
+    margin-top: -22px;
 }
 
-nav ul li a { padding: 0 40px; }
+nav ul li a {
+    padding: 0 40px;
+    display: inline-block;
+}
 
-nav #mobile li { display: block; }
+nav #mobile li {
+    display: block;
+    margin-top: 0;
+}
 
 .dropdown-content li>a,
 .dropdown-content li>span { color: #b71c1c; }

@@ -142,6 +142,10 @@ class PublicController extends Controller
 
         if ($request->isMethod('POST') && $contactForm->handleRequest($request)->isValid())
         {
+            if (preg_match_all('%.*@.*\..*%', $email->getSubject())) {
+                return $this->redirectToRoute('home');
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($email);
             $em->flush();

@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+		<title>Algorithe gain BH3</title>
+		<link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+		<style>
+			body { margin-top: 50px; background-color:#2B2B2B; font-family: 'Source Sans Pro', sans-serif; font-size: 0.9em; }
+			section { border: 1px solid black; width: 370px; height: auto; margin: 10px auto 0px; padding: 20px; border-radius: 15px; background-color: #F8F8F8; box-shadow: 0px 5px 20px black; }
+			form { display: flex; flex-direction: column; }
+			label, p { display: flex; margin: 5px 0px; justify-content: space-between; }
+			p { margin-bottom: 0px; }
+			#reset { width: 100%; }
+			input[type=number] { text-align: center; width: 70px; }
+			#resultat { background-color:#520000; color: #F8F8F8; }
+			h1 { text-align: center; font-size: 1.3em; margin: 0px; }
+			h2 { text-align: center; font-size: 1em; font-weight: normal; margin: 0px 0px 20px; }
+			@media screen and (max-width: 500px), screen and (orientation: portrait) {
+				body { margin: 0px; }
+				section { width: 80%; margin: 5px auto; }
+				input, label, p { width: 100%; }
+				* { text-align: center; }
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<section>
+			<h1>Calcul de la répartition du cash prize</h1>
+		</section>
+		
+		<section id="resultat">
+			<p>Part de la structure : <span id="structure">0 €</span></p>
+			<p>Part du roster : <span id="roster">0 €</span></p>
+		</section>
+
+		<section id="montant">
+			<label for="avance">Entrez le montant avancé par la structure : <input type="number" id="avance" min="0" value="250"></label>
+			<div id="sliderAvance"></div>
+			<label for="gain">Entrez le montant remporté par le roster : <input type="number" id="gain" min="0" value="1000"></label>
+			<div id="sliderGain"></div>
+		</section>
+		
+		<section id="palliers">
+			<h2>Part de la structure (en &#37;)</h2>
+			<label for="pallier1">Pallier 1 : <span id="sliderPal1" style="display: inline-block; width: 200px;"></span><input type="number" id="pallier1" min="0" disabled></label>
+			<label for="pallier2">Pallier 2 : <span id="sliderPal2" style="display: inline-block; width: 200px;"></span><input type="number" id="pallier2" min="0" disabled></label>
+			<label for="pallier3">Pallier 3 : <span id="sliderPal3" style="display: inline-block; width: 200px;"></span><input type="number" id="pallier3" min="0" disabled></label>
+			<label for="pallier4">Pallier 4 : <span id="sliderPal4" style="display: inline-block; width: 200px;"></span><input type="number" id="pallier4" min="0" disabled></label>
+			<label for="pallier5">Pallier 5 : <span id="sliderPal5" style="display: inline-block; width: 200px;"></span><input type="number" id="pallier5" min="0" disabled></label>
+			<label for="pallier6">Pallier 6 : <span id="sliderPal6" style="display: inline-block; width: 200px;"></span><input type="number" id="pallier6" min="0" disabled></label>
+			<label for="pallier7">Pallier 7 : <span id="sliderPal7" style="display: inline-block; width: 200px;"></span><input type="number" id="pallier7" min="0" disabled></label>
+		</section>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+		<script>
+			$(function() {
+				
+				var max = 35, // Pourcentage du premier pallier
+					min = 20, // Pourcentage du dernier pallier
+					couleurPallier = '#F8F8F8', // Couleur texte du pallier sélectionné
+					backgroundPallier = '#520000', // Arrière plan du pallier sélectionné
+					pourcentage,
+					aPalliers = [];
+					
+				for (var i = 0; i < 7; i++) { // Ajout des objets jQuery dans le tableau de palliers
+					aPalliers[i] = $("#pallier" + (i + 1));
+				}
+				
+				var step = (max - min) / (aPalliers.length - 1); // Calcul de la différence de pourcentage entre chaque pallier
+				
+				$("#sliderAvance").slider({
+					value: 250,
+					min: 0,
+					max: 1000,
+					step: 10,
+					slide: function(event, ui) {
+						$("#avance").val(ui.value);
+					}
+				});
+				
+				$("#sliderGain").slider({
+					value: 1000,
+					min: 0,
+					max: 2000,
+					step: 10,
+					slide: function(event, ui) {
+						$("#gain").val(ui.value);
+					}
+				});
+				
+				$(window).on('keyup click mousemove', calcul);
+				
+				$("#reset").click(function() {
+					initPalliers();
+				});
+				
+				initPalliers();
+				calcul();
+				
+				function initPalliers() {
+					
+					aPalliers.forEach(function(element, index) {
+						
+						var valeur = max - (step * index);
+						element.val(valeur);
+						
+						$("#sliderPal" + (index + 1)).slider({
+							value: valeur,
+							min: 0,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+								$("#pallier" + (index + 1)).val(ui.value);
+							}
+						}).slider('disable');
+					});
+				}
+				
+				function calcul() {
+					
+					var avance = parseInt($("#avance").val()),
+						gain = parseInt($("#gain").val());
+					
+					if (avance && gain) {
+						
+						if (gain <= (avance / 3)) { // Pallier 1
+							calculPourcentage(1);
+						}
+						
+						if (gain <= (avance / 2) && gain > (avance / 3)) { // Pallier 2
+							calculPourcentage(2);
+						}
+						
+						if (gain > (avance / 2) && gain < (avance * 2)) { // Pallier 3
+							calculPourcentage(3);
+						}
+						
+						if (gain >= (avance * 2) && gain < (avance * 3)) { // Pallier 4
+							calculPourcentage(4);
+						}
+						
+						if (gain >= (avance * 3) && gain < (avance * 4)) { // Pallier 5
+							calculPourcentage(5);
+						}
+						
+						if (gain >= (avance * 4) && gain < (avance * 5)) { // Pallier 6
+							calculPourcentage(6);
+						}
+						
+						if (gain >= (avance * 5)) { // Pallier 7
+							calculPourcentage(7);
+						}
+						
+						// Calcul de la part de la structure et du roster
+						var structure = Math.round(gain * pourcentage),
+							roster = Math.round(gain - structure);
+						
+						// Plafond maximum que peut prendre la structure
+						if (structure > 2000) {
+							structure = 2000;
+							roster = gain - structure;
+						}
+						
+						// Affichage du montant
+						$("#structure").text(structure + " €");
+						$("#roster").text(roster + " €");
+					}
+					
+				};
+				
+				function calculPourcentage(nbPallier) {
+					
+					pourcentage = $("#pallier" + nbPallier).val() / 100;
+					$("#palliers input").css({'color': 'black', 'background-color': 'white'});
+					$("#pallier" + nbPallier).css({'color': couleurPallier, 'background-color': backgroundPallier});
+				}
+
+			});
+		</script>
+	</body>
+</html>

@@ -12,9 +12,9 @@
 
 {% block content %}
 
-    <div class="row center-align">
+    <div class="row">
         <div class="col s12">
-        
+
             <div class="parallax-container">
                 <div class="parallax">
                     <img src="{{ asset('img/news/') ~ news.picture }}" alt="{{ news.title }}">
@@ -23,7 +23,7 @@
 
             <div class="card-panel">
                 <h3>{{ news.title }}</h3>
-                <h5>Par {{ news.author.username }}, le {{ news.date|date('d/m/Y à h:i') }}</h5>
+                <h5>Par {{ news.author.username }}, le {{ news.date|date('d/m/Y') }}</h5>
             </div>
 
             <div class="card-panel">

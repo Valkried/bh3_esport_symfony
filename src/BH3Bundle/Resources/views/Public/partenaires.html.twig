@@ -7,9 +7,6 @@
     .logo {
         max-height: 100px;
     }
-    .social img {
-        max-width: 50px;
-    }
     .no-margin {
         margin: 0;
     }
@@ -23,35 +20,38 @@
     {% for partenaire in partenaires %}
         <div class="col s12">
             <div class="card-panel hoverable">
-                <div class="row no-margin">
+                <div class="row no-margin flexbox-vertical-container">
                 
                     {# Logo #}
-                    <div class="col s12">
-                        <a href="{{ partenaire.url }}" target="_blank">
-                            <img src="{{ asset('img/partenaires/'~ partenaire.picture) }}" alt="{{ partenaire.name }}" class="responsive-img logo">
-                        </a>
+                    <div class="col s2 offset-s1 center-align">
+                        <div>
+                            <a href="{{ partenaire.url }}" target="_blank">
+                                <img src="{{ asset('img/partenaires/'~ partenaire.picture) }}" alt="{{ partenaire.name }}" class="responsive-img logo">
+                            </a>
+                        </div>
+
+                        <div>
+                            {% if partenaire.twitter or partenaire.facebook %}
+                                <div class="social">
+                                    {% if partenaire.twitter %}
+                                    <a href="{{ partenaire.twitter }}" target="_blank">
+                                        <img src="{{ asset('img/social/twitter.png') }}" alt="Twitter" class="responsive-img">
+                                    </a>
+                                    {% endif %}
+                                    {% if partenaire.facebook %}
+                                    <a href="{{ partenaire.facebook }}" target="_blank">
+                                        <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook" class="responsive-img">
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
 
                     {# Présentation #}
-                    <div class="col s10 offset-s1">
+                    <div class="col s8 offset-s1 left-align">
                         <p>{{ partenaire.content|nl2br }}</p>
                     </div>
-
-                    {# Réseaux sociaux #}
-                    {% if partenaire.twitter or partenaire.facebook %}
-                        <div class="col s12 social">
-                            {% if partenaire.twitter %}
-                            <a href="{{ partenaire.twitter }}" target="_blank">
-                                <img src="{{ asset('img/social/twitter.png') }}" alt="Twitter" class="responsive-img">
-                            </a>
-                            {% endif %}
-                            {% if partenaire.facebook %}
-                            <a href="{{ partenaire.facebook }}" target="_blank">
-                                <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook" class="responsive-img">
-                            </a>
-                            {% endif %}
-                        </div>
-                    {% endif %}
 
                 </div>
             </div>

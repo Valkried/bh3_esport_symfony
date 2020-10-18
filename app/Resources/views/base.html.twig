@@ -51,15 +51,34 @@
         </main>
 
         {# FOOTER #}
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col s12 center-align white-text">
-                        Burning Heads 2017 | Made by Valkried
-                    </div>
-                </div>
+        <footer style="display: flex;">
+            <div class="" style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; ">
+                <div><a style="color: white; font-size: 10px;" class="modal-trigger" href="#modalMentionsLegales">Mentions légales</a></div>
+                <div style="color: white;">Burning Heads 2020 | Made by Valkried</div>
             </div>
         </footer>
+
+        <!-- Modal Structure -->
+        <div id="modalMentionsLegales" class="modal">
+            <div class="modal-content">
+                <h4>Mentions légales</h4>
+                <p>Raison Sociale : BH3 - ESPORT <br>
+                    Siège Social : 7 Parc de la Scie, 76130 Mont Saint Aignan <br>
+                    Téléphone : 06 71 88 09 80 <br>
+                    Directeur de publication : Julien DUBUS <br>
+                    Forme Juridique : Association <br>
+                    <br><br>
+                    Nom, raison sociale, adresse et téléphone de l'hébergeur : <br>
+                    OVH <br>
+                    SAS au capital de 10 059 500 € <br>
+                    RCS Lille Métropole 424 761 419 00045 <br>
+                    2 rue Kellermann - 59100 Roubaix - France <br>
+                    Téléphone : 1007</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+            </div>
+        </div>
 
         {# JAVASCRIPT #}
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -68,3 +87,6 @@
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+
+
+

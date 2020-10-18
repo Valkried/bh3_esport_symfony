@@ -5,7 +5,7 @@
 {% block css %}
 <style>
     #introduction {
-        margin: 30px auto;
+        margin: 15px auto;
     }
     button {
         width: 100%;
@@ -24,11 +24,11 @@
 
         <div id="introduction" class="col s12 center-align">
             <p>
-                Pour une candidature individuelle, vous pouvez prendre directement contact avec le capitaine du roster souhaité.<br>
-                Pour une intégration au sein du staff, d’un roster complet ou pour toute autre demande, veuillez nous contacter via le formulaire ci dessous.
+                Pour une candidature individuelle, nous vous invitons à prendre contact avec le capitaine du roster concerné via notre <a href="https://discordapp.com/invite/kxjDHG9" target="_blank">Discord</a>. <br />
+                Pour une intégration au sein du staff ou pour toute autre demande, veuillez nous contacter via le formulaire ci dessous. 
             </p>
             <p>
-                Nous étudierons non seulement votre niveau de jeu, mais également votre comportement ainsi que votre motivation.<br>
+                Nous étudierons non seulement votre niveau de jeu, mais également votre comportement ainsi que votre motivation. <br />
                 N’hésitez pas à tenter l’aventure avec nous !
             </p>
         </div>
@@ -75,7 +75,7 @@
                     <div class="col s12 input-field">
                         {{ form_errors(contactForm.content) }}
                         {{ form_widget(contactForm.content, {'attr': {'class': 'materialize-textarea', 'data-length': 1000}}) }}
-                        {{ form_label(contactForm.content, 'Entrez votre message') }}
+                        {{ form_label(contactForm.content, 'Entrez votre message (n\'oubliez pas d\'indiquer votre ID Discord si vous en avez un)') }}
                     </div>
 
                     {# Envoyer #}
@@ -88,7 +88,7 @@
                 {{ form_rest(contactForm) }}
 
                 {{ form_end(contactForm) }}
-                
+
             </div>
         </div>
 

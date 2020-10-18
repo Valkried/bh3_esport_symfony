@@ -20,30 +20,36 @@ class PalmaresType extends AbstractType
         $builder
             ->add('game', ChoiceType::class, array(
                 'choices' => array(
-                    'CS:GO' => 'CS:GO',
-                    'Rocket League' => 'Rocket League',
-                    'Call of Duty' => 'Call of Duty',
-                    'Fifa' => 'Fifa',
                     'Battlefield' => 'Battlefield',
+                    'Call of Duty' => 'Call of Duty',
+                    'CS:GO' => 'CS:GO',
+                    'DragonBall FighterZ' => 'DragonBall FighterZ',
+                    'Fifa' => 'Fifa',
                     'Halo' => 'Halo',
-                    'Titanfall' => 'Titanfall'
-                )
+                    'Overwatch' => 'Overwatch',
+                    'Rainbow Six Siege' => 'Rainbow Six Siege',
+                    'Rocket League' => 'Rocket League',
+                    'Street Fighter 5' => 'Street Fighter 5',
+                    'Titanfall' => 'Titanfall',
+                    'Versus Fighting' => 'Versus Fighting',
+                ),
             ))
             ->add('roster', TextType::class)
             ->add('event', TextType::class)
             ->add('localisation', TextType::class)
+            ->add('geography', TextType::class)
             ->add('ranking', TextType::class)
-            ->add('date', IntegerType::class)
+            ->add('datetime', TextType::class)
             ->add('submit', SubmitType::class);
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BH3Bundle\Entity\Palmares'
+            'data_class' => 'BH3Bundle\Entity\Palmares',
         ));
     }
 
@@ -54,6 +60,4 @@ class PalmaresType extends AbstractType
     {
         return 'bh3bundle_palmares';
     }
-
-
 }

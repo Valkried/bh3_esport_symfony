@@ -33,24 +33,25 @@ class MembreType extends AbstractType
                 'choices' => array(
                     'Xbox' => 'xbox',
                     'PC' => 'steam',
-                    'Site web' => 'website'
-                )
+                    'PS4' => 'ps4',
+                    'Site web' => 'website',
+                ),
             ))
             ->add('staff', CheckboxType::class, array('required' => false))
             ->add('roster', EntityType::class, array(
                 'class' => 'BH3Bundle:Roster',
-                'choice_label' => 'name'
+                'choice_label' => 'name',
             ))
             ->add('submit', SubmitType::class);
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BH3Bundle\Entity\Membre'
+            'data_class' => 'BH3Bundle\Entity\Membre',
         ));
     }
 
@@ -61,6 +62,4 @@ class MembreType extends AbstractType
     {
         return 'bh3bundle_membre';
     }
-
-
 }

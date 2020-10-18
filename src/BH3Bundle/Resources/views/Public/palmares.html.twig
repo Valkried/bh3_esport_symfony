@@ -33,10 +33,28 @@
                 <tr>
                     <td><img src="{{ asset('img/palmares/'~ palmares.picture) }}" alt="{{ palmares.game }}"></td>
                     <td>{{ palmares.roster }}</td>
-                    <td>{{ palmares.event }}</td>
+                    <td style="display: flex; align-items: center;"><img style="margin-right: 5px !important;" src="{{
+                        palmares.geography == 'EU' ?
+                        asset('img/palmares/eu_zone.png')
+                        :
+                        palmares.geography == 'WORLD' ?
+                        asset('img/palmares/world_zone.png')
+                        :
+                        palmares.geography == 'UK' ?
+                        asset('img/palmares/uk_zone.png')
+                        :
+                        palmares.geography == 'JAP' ?
+                        asset('img/palmares/jap_zone.png')
+                        :
+                        palmares.geography == 'USA' ?
+                        asset('img/palmares/usa_zone.png')
+                        :
+                        asset('img/palmares/fr_zone.png')
+                        }}" width="24px"><span>{{ palmares.event }}</span></td>
+
                     <td>{{ palmares.localisation }}</td>
                     <td>{{ palmares.ranking }}</td>
-                    <td>{{ palmares.date }}</td>
+                    <td>{{ palmares.applyMonthEquality(palmares.datetime) }}</td>
                 </tr>
             {% endfor %}
 
@@ -44,3 +62,5 @@
     </table>
 
 {% endblock %}
+
+

@@ -2,6 +2,7 @@
 
 namespace BH3Bundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -73,6 +74,13 @@ class Palmares
     /**
      * @var string
      *
+     * @ORM\Column(name="geography", type="string", length=255)
+     */
+    private $geography;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="ranking", type="string", length=255)
      * @Assert\Length(
      *    min = 2,
@@ -84,18 +92,11 @@ class Palmares
     private $ranking;
 
     /**
-     * @var string
+     * @var DateTime
      *
-     * @ORM\Column(name="date", type="smallint", length=255)
-     * @Assert\Type("int")
-     * @Assert\Range(
-     *      min = 2000,
-     *      max = 2050,
-     *      minMessage = "La date ne peut être inférieure à 2000",
-     *      maxMessage = "La date ne peut être supérieure à 2050")
-     * @Assert\NotBlank(message = "La date doit être renseignée")
+     * @ORM\Column(name="datetime", type="datetime", nullable=true)
      */
-    private $date;
+    private $datetime;
 
     /**
      * @var string
@@ -239,25 +240,53 @@ class Palmares
     /**
      * Set date
      *
-     * @param string $date
+     * @param string $datetime
      *
      * @return Palmares
+     * @throws \Exception
      */
-    public function setDate($date)
+    public function setDatetime($datetime)
     {
-        $this->date = $date;
-
+        $format = explode('/', $datetime);
+        $formatted = $format[2].'-'.$format[1].'-'.$format[0];
+        $this->datetime = new DateTime($formatted);
         return $this;
     }
 
     /**
-     * Get date
+     * Get datetime
      *
      * @return string
      */
-    public function getDate()
+    public function getDatetime()
     {
-        return $this->date;
+        if($this->datetime!=null){
+            return $this->datetime->format('d/m/Y');
+        }
+    }
+
+    public function applyMonthEquality($strDate){
+        $mois = [
+            '01' => 'Janvier',
+            '02' => 'Février',
+            '03' => 'Mars',
+            '04' => 'Avril',
+            '05' => 'Mai',
+            '06' => 'Juin',
+            '07' => 'Juillet',
+            '08' => 'Août',
+            '09' => 'Septembre',
+            '10' => 'Octobre',
+            '11' => 'Novembre',
+            '12' => 'Décembre',
+        ];
+
+        $explore = explode('/', $strDate);
+        foreach ($mois as $key => $value){
+            if($key == $explore[1]){
+                return $value.' '.$explore[2];
+            }
+        }
     }
 
     /**
@@ -282,5 +311,21 @@ class Palmares
     public function getPicture()
     {
         return $this->picture.'.png';
+    }
+
+    /**
+     * @return string
+     */
+    public function getGeography()
+    {
+        return $this->geography;
+    }
+
+    /**
+     * @param string $geography
+     */
+    public function setGeography($geography)
+    {
+        $this->geography = $geography;
     }
 }

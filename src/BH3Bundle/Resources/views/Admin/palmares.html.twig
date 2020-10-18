@@ -48,6 +48,13 @@
                             {{ form_label(form.localisation, 'Localisation (ex : "Bordeaux")') }}
                         </div>
 
+                        {# Zone #}
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.geography) }}
+                            {{ form_widget(form.geography, {'attr': {'data-length': 5, 'pattern': '.{2,25}', 'title': 'Minimum 2 caractères, maximum 25 caractères'}}) }}
+                            {{ form_label(form.geography, 'Zone (ex : "FR, UK, EU, JAP, USA ou WORLD")') }}
+                        </div>
+
                         {# Rang #}
                         <div class="col s12 m6 input-field">
                             {{ form_errors(form.ranking) }}
@@ -57,9 +64,9 @@
 
                         {# Date #}
                         <div class="col s12 m6 input-field">
-                            {{ form_errors(form.date) }}
-                            {{ form_widget(form.date, {'attr': {'data-length': 4, 'title': '4 caractères'}}) }}
-                            {{ form_label(form.date, 'Date (ex : "2017")') }}
+                            {{ form_errors(form.datetime) }}
+                            {{ form_widget(form.datetime, {'attr': {'data-length': 10, 'title': '10 caractères'}}) }}
+                            {{ form_label(form.datetime, 'Date (ex : "01/12/2019")') }}
                         </div>
 
                         {# Submit #}
@@ -97,10 +104,29 @@
                         <tr>
                             <td><img src="{{ asset('img/palmares/'~ palmares.picture) }}" alt="{{ palmares.game }}"></td>
                             <td>{{ palmares.roster }}</td>
-                            <td>{{ palmares.event }}</td>
-                            <td>{{ palmares.localisation }}</td>
+                            <td  style="display: flex; align-items: center;"><img style="margin-right: 5px !important;" src="{{
+                                palmares.geography == 'EU' ?
+                                asset('img/palmares/eu_zone.png')
+                                :
+                                palmares.geography == 'WORLD' ?
+                                asset('img/palmares/world_zone.png')
+                                :
+                                palmares.geography == 'UK' ?
+                                asset('img/palmares/uk_zone.png')
+                                :
+                                palmares.geography == 'JAP' ?
+                                asset('img/palmares/jap_zone.png')
+                                :
+                                palmares.geography == 'USA' ?
+                                asset('img/palmares/usa_zone.png')
+                                :
+                                asset('img/palmares/fr_zone.png')
+                                }}" width="24px"><span>{{ palmares.event }}</td>
+
+                            <td>{{ palmares.localisation }}</span></td>
+
                             <td>{{ palmares.ranking }}</td>
-                            <td>{{ palmares.date }}</td>
+                            <td>{{ palmares.applyMonthEquality(palmares.datetime) }}</td>
                             <td>
                                 <a href="{{ path('admin_palmares_edit', {'id': palmares.id}) }}"><i class="material-icons yellow-text text-darken-3">edit</i></a>
                                 <a href="#modal_delete{{ palmares.id }}", class="modal-trigger"><i class="material-icons red-text">delete</i></a>

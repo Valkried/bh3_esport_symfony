@@ -143,6 +143,27 @@ input[type=text].valid:not(.browser-default):focus,
     margin-bottom: 0;
 }
 
+.social {
+    margin-top: 20px;
+}
+
+.social img {
+    max-width: 30px;
+}
+
+.flexbox-vertical-container {
+    display: flex;
+    align-items: center;
+}
+
 a { color: #b71c1c; }
 
 #slider h2 { text-shadow: 0 0 5px black; }
+
+
+/* FIXES */
+
+/*justify the text articles (news)*/
+body > main > div > section > div > div.articles > article > a > div > p{
+    text-align: justify !important;
+}

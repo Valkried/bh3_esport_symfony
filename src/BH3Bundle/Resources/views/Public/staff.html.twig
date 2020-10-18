@@ -22,13 +22,12 @@
 {% block content %}
 
     <div class="row center-align">
-    
+
         <div id="introduction" class="col s12">
             <p>
-                Le staff Burning Heads est composé de personnes volontaires et motivées, au service de nos joueurs. Peu importe le prix, nous travaillons toujours 
-                pour améliorer les conditions de jeu de nos rosters : nous nous efforçons de nous informer sur les dernières actualités des joueurs afin de les 
-                relayer avec l’aide de nos newsers et youtubers ; nous assurons la gestion des équipes durant les tournois, que ce soit pour inscrire les équipes 
-                aux LANs, régler un litige ou répartir le cash-prize remporté.
+                Le staff Burning Heads est composé de personnes volontaires et motivées, au service de nos joueurs. Peu importe le prix, nous travaillons toujours
+                pour améliorer les conditions de jeu de nos rosters : nous nous efforçons de nous informer sur les dernières actualités des joueurs afin de les relayer avec l’aide de nos réseaux sociaux.
+                Nous assurons un suivi régulier de nos équipes afin de répondre rapidement à leurs besoins.
             </p>
             <p>
                 Notre priorité est de donner de la visibilité à nos joueurs, afin qu’ils aient toute la reconnaissance qu’ils méritent dans le milieu de l’esport.
@@ -45,7 +44,7 @@
                     <div>
                         {# Plateforme #}
                         {% if membre.profile %}
-                            <a href="{{ membre.profile }}">
+                            <a href="{{ membre.profile }}" target="_blank">
                                 <img src="{{ asset('img/plateforme/'~ membre.plateforme ~'.png') }}" alt="{{ membre.plateforme }}" class="icon">
                             </a>
                         {% else %}
@@ -54,7 +53,7 @@
 
                         {# Twitter #}
                         {% if membre.twitter %}
-                            <a href="https://www.twitter.com/{{ membre.twitter }}">
+                            <a href="https://www.twitter.com/{{ membre.twitter }}" target="_blank">
                                 <img src="{{ asset('img/twitter.png') }}" alt="Twitter" class="icon">
                             </a>
                         {% endif %}
@@ -75,13 +74,9 @@
                 Serez-vous le prochain membre du staff Burning Heads ?  Si vous êtes intéressé par notre association, voici les postes que nous recherchons :
             </p>
             <ul class="left-align">
-                <li>Un Manager Console pour gérer le management de 2 à 3 Rosters (Xbox principalement) en collaboration avec le Head Manager.</li>
-                <li>Un Manager PC pour gérer le management de 2 à 3 Rosters en collaboration avec le Head Manager.</li>
-                <li>Un Graphiste pour nous accompagner sur différents projets (MàJ du design du maillot par ex) et réaliser des visuels pour nos rédacteurs et 
-                    Youtubers.</li>
-                <li>Des Rédacteurs, capables de réaliser des articles pertinents sur l’actualité du jeu vidéo et de l’esport ainsi que sur les événements auquel 
-                    l’association participe.</li>
-                <li>Un Youtuber supplémentaire pour rejoindre l’équipe déjà en place. (Une vidéo par mois demandée)</li>
+                <li>- Un Community Manager pour animer nos réseaux sociaux</li>
+                <li>- Des Rédacteurs, capables de réaliser des articles pertinents sur l’actualité de l’esport ainsi que sur les événements auquel l’association participe</li>
+                <li>- Des streamers et/ou Youtubers pour rejoindre l'équipe en place</li>
             </ul>
         </div>
 

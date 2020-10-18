@@ -26,16 +26,19 @@ class PublicController extends Controller
         return $this->render('BH3Bundle:Public:index.html.twig', array(
             'news' => $pagination->getElements(),
             'nbPages' => $pagination->getPages(),
-            'currentPage' => $page
+            'currentPage' => $page,
         ));
     }
 
     public function menuAction()
     {
-        $listRosters = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findAll();
+        $listRosters = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findBy(
+            array(),
+            array('name' => 'ASC')
+        );
 
         return $this->render('BH3Bundle:Public:menu.html.twig', array(
-            'rosters' => $listRosters
+            'rosters' => $listRosters,
         ));
     }
 
@@ -47,12 +50,12 @@ class PublicController extends Controller
     {
         $news = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:News')->findOneBy(array('slug' => $slug));
 
-        if ($news === null) {
+        if (null === $news) {
             throw new NotFoundHttpException('La page demandée n\'existe pas');
         }
 
         return $this->render('BH3Bundle:Public:news.html.twig', array(
-            'news' => $news
+            'news' => $news,
         ));
     }
 
@@ -74,7 +77,7 @@ class PublicController extends Controller
         $listStaff = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Membre')->getStaff();
 
         return $this->render('BH3Bundle:Public:staff.html.twig', array(
-            'staff' => $listStaff
+            'staff' => $listStaff,
         ));
     }
 
@@ -87,7 +90,7 @@ class PublicController extends Controller
         $listPalmares = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Palmares')->getByDate();
 
         return $this->render('BH3Bundle:Public:palmares.html.twig', array(
-            'palmares' => $listPalmares
+            'palmares' => $listPalmares,
         ));
     }
 
@@ -99,13 +102,12 @@ class PublicController extends Controller
     {
         $roster = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Roster')->findOneBy(array('url' => $url));
 
-        if (!$roster)
-        {
+        if (!$roster) {
             throw new NotFoundHttpException('Ce roster n\'existe pas');
         }
 
         return $this->render('BH3Bundle:Public:roster.html.twig', array(
-            'roster' => $roster
+            'roster' => $roster,
         ));
     }
 
@@ -118,7 +120,7 @@ class PublicController extends Controller
         $listPartenaires = $this->getDoctrine()->getManager()->getRepository('BH3Bundle:Partenaire')->findAll();
 
         return $this->render('BH3Bundle:Public:partenaires.html.twig', array(
-            'partenaires' => $listPartenaires
+            'partenaires' => $listPartenaires,
         ));
     }
 
@@ -137,11 +139,10 @@ class PublicController extends Controller
      */
     public function contactAction(Request $request)
     {
-        $email = new Email;
+        $email = new Email();
         $contactForm = $this->createForm(ContactType::class, $email);
 
-        if ($request->isMethod('POST') && $contactForm->handleRequest($request)->isValid())
-        {
+        if ($request->isMethod('POST') && $contactForm->handleRequest($request)->isValid()) {
             if (preg_match_all('%.*@.*\..*%', $email->getSubject())) {
                 return $this->redirectToRoute('home');
             }
@@ -152,7 +153,7 @@ class PublicController extends Controller
 
             $message = (new \Swift_Message($email->getSubject().' | Contact BH3'))
                 ->setFrom($email->getEmail())
-                ->setTo('burningheads@live.fr')
+                ->setTo('contact@bh3-esport.fr')
                 ->setBody(
                     $this->renderView('Emails/contact.html.twig',
                         array(
@@ -160,7 +161,7 @@ class PublicController extends Controller
                             'subject' => $email->getSubject(),
                             'email' => $email->getEmail(),
                             'content' => $email->getContent(),
-                            'date' => $email->getDate()
+                            'date' => $email->getDate(),
                         )
                     ), 'text/html')
                 ->addPart(
@@ -170,7 +171,7 @@ class PublicController extends Controller
                             'subject' => $email->getSubject(),
                             'email' => $email->getEmail(),
                             'content' => $email->getContent(),
-                            'date' => $email->getDate()
+                            'date' => $email->getDate(),
                         )
                     ), 'text/plain');
 
@@ -182,7 +183,7 @@ class PublicController extends Controller
         }
 
         return $this->render('BH3Bundle:Public:contact.html.twig', array(
-            'contactForm' => $contactForm->createView()
+            'contactForm' => $contactForm->createView(),
         ));
     }
 }

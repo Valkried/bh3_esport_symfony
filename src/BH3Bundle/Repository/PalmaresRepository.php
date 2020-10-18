@@ -13,7 +13,7 @@ class PalmaresRepository extends \Doctrine\ORM\EntityRepository
     public function getByDate()
     {
         $qb = $this->createQueryBuilder('p')
-            ->orderBy('p.date', 'DESC');
+            ->orderBy('p.datetime', 'DESC');
         
         return $qb->getQuery()->getResult();
     }

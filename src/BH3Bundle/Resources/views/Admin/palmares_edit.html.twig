@@ -1,20 +1,20 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}
-    Modifierun score - Administration
+    Modifier un score - Administration
 {% endblock %}
 
 {% block content %}
 
     <div class="row">
-    
+
         <div class="col s12">
-            <h4 class="admin-title">Modifier un membre</h4>
+            <h4 class="admin-title">Modifier un score</h4>
         </div>
 
         <div class="col s12">
             <div class="card-panel">
-            
+
                 {# FORMULAIRE #}
                 {{ form_start(form) }}
 
@@ -48,6 +48,13 @@
                             {{ form_label(form.localisation, 'Localisation (ex : "Bordeaux")') }}
                         </div>
 
+                        {# Zone #}
+                        <div class="col s12 m6 input-field">
+                            {{ form_errors(form.geography) }}
+                            {{ form_widget(form.geography, {'attr': {'data-length': 5, 'pattern': '.{2,25}', 'title': 'Minimum 2 caractères, maximum 25 caractères'}}) }}
+                            {{ form_label(form.geography, 'Zone (ex : "FR, UK, EU, JAP, USA ou WORLD")') }}
+                        </div>
+
                         {# Rang #}
                         <div class="col s12 m6 input-field">
                             {{ form_errors(form.ranking) }}
@@ -57,9 +64,9 @@
 
                         {# Date #}
                         <div class="col s12 m6 input-field">
-                            {{ form_errors(form.date) }}
-                            {{ form_widget(form.date, {'attr': {'data-length': 4, 'title': '4 caractères'}}) }}
-                            {{ form_label(form.date, 'Date (ex : "2017")') }}
+                            {{ form_errors(form.datetime) }}
+                            {{ form_widget(form.datetime, {'attr': {'data-length': 10, 'title': '10 caractères'}}) }}
+                            {{ form_label(form.datetime, 'Date (ex : "31/12/2019")') }}
                         </div>
 
                         {# Submit #}
@@ -70,12 +77,12 @@
                     </div>
 
                     {{ form_rest(form) }}
-                    
+
                 {{ form_end(form) }}
 
             </div>
         </div>
-    
+
     </div>
 
 {% endblock %}

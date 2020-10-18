@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: burningheads
+    database_user: root
+    database_password: null
+    mailer_transport: mail
+    mailer_host: ssl10.ovh.net
+    mailer_port: 587
+    mailer_user: noreply@burning-heads.fr
+    mailer_password: BH3awesomebro2017
+    secret: 729f84a48b80d47ddcb98ec0d2080f55d595c53d
+    img_directory: '%kernel.project_dir%/web/img'

@@ -32,7 +32,7 @@ class Pagination
 
         $this->listPages = ceil(count($repository->findAll()) / $nbElt);
 
-        if ($currentPage < 1 || $currentPage > $this->listPages)
+        if ($currentPage < 1 || ($this->listPages != 0 && $currentPage > $this->listPages))
         {
             throw new NotFoundHttpException('La page demandée n\'existe pas');
         }
